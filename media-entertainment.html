@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/softoweb.png">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Media &amp; Entertainment Software Development – Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .me-hero {
+         position: relative;
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/media-entertainment-header-LP-media-entertainment-hero-banner.webp');
+         background-size: cover;
+         background-position: center center;
+         background-repeat: no-repeat;
+         overflow: hidden;
+      }
+      .me-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(120deg, rgba(8,4,18,.75) 40%, rgba(8,4,18,.48) 100%);
+      }
+      .me-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 820px;
+         margin: 0 auto;
+      }
+      .me-label {
+         display: inline-block;
+         color: #fb383b;
+         letter-spacing: .14em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: 1.2rem;
+         border: 1px solid rgba(251,56,59,.4);
+         padding: 5px 16px;
+         border-radius: 20px;
+      }
+      .me-hero-content h1 {
+         font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+         font-weight: 800;
+         color: #fff;
+         line-height: 1.12;
+         margin-bottom: 1.4rem;
+      }
+      .me-hero-content p {
+         font-size: 1.08rem;
+         color: rgba(255,255,255,.82);
+         line-height: 1.78;
+         margin-bottom: 2.2rem;
+         max-width: 660px;
+         margin-left: auto;
+         margin-right: auto;
+      }
+      .me-hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+      .me-btn-primary {
+         background: #fb383b; color: #fff; border: none;
+         padding: 14px 32px; border-radius: 6px;
+         font-size: .95rem; font-weight: 700;
+         text-decoration: none; display: inline-block;
+         transition: background .2s, transform .2s;
+      }
+      .me-btn-primary:hover { background: #d42e31; color: #fff; transform: translateY(-2px); text-decoration: none; }
+      .me-btn-outline {
+         background: transparent; color: #fff;
+         border: 2px solid rgba(255,255,255,.55);
+         padding: 13px 30px; border-radius: 6px;
+         font-size: .95rem; font-weight: 600;
+         text-decoration: none; display: inline-block;
+         transition: border-color .2s, background .2s;
+      }
+      .me-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); color: #fff; text-decoration: none; }
+
+      /* -- Shared -- */
+      .me-section-label {
+         color: #fb383b; letter-spacing: .13em;
+         font-size: .75rem; font-weight: 700;
+         text-transform: uppercase; margin-bottom: .9rem; display: block;
+      }
+      .me-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: #0d0d1a; line-height: 1.22; }
+      .me-body-text { font-size: 1rem; color: #555; line-height: 1.82; }
+
+      /* -- Intro -- */
+      .me-intro { padding: 96px 0; background: #fff; }
+
+      /* -- Stats -- */
+      .me-stats { padding: 72px 0; background: #0d0410; }
+      .me-stat-item { padding: 20px 12px; }
+      .me-stat-num { font-size: 3.2rem; font-weight: 900; color: #fb383b; display: inline; }
+      .me-stat-suffix { font-size: 2.2rem; font-weight: 800; color: #fb383b; }
+      .me-stat-item p { color: rgba(255,255,255,.6); font-size: .88rem; margin-top: .6rem; line-height: 1.55; }
+
+      /* -- Services -- */
+      .me-services { padding: 96px 0; background: #f5f7fa; }
+      .me-svc-card {
+         background: #fff; border-radius: 14px;
+         box-shadow: 0 2px 22px rgba(0,0,0,.06);
+         height: 100%; transition: transform .25s, box-shadow .25s;
+         margin-bottom: 28px; border-bottom: 3px solid transparent;
+      }
+      .me-svc-card:hover { transform: translateY(-6px); box-shadow: 0 10px 36px rgba(0,0,0,.11); border-bottom-color: #fb383b; }
+      .me-svc-icon {
+         width: 54px; height: 54px;
+         background: linear-gradient(135deg, #fb383b, #c0272a);
+         border-radius: 12px; display: flex; align-items: center; justify-content: center;
+         margin-bottom: 1.2rem;
+      }
+      .me-svc-icon i { color: #fff; font-size: 1.35rem; }
+      .me-svc-body { padding: 30px; }
+      .me-svc-body h4 { font-size: 1.05rem; font-weight: 700; color: #0d0d1a; margin-bottom: .75rem; }
+      .me-svc-body p { font-size: .91rem; color: #666; line-height: 1.72; margin: 0; }
+
+      /* -- Tech strip -- */
+      .me-tech { padding: 64px 0; background: #0d0410; }
+      .me-tech h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
+      .me-tech .sub { color: rgba(255,255,255,.5); font-size: .87rem; margin: 0 0 1.6rem; }
+      .me-badge-row { display: flex; flex-wrap: wrap; gap: 10px; }
+      .me-badge {
+         background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+         border-radius: 8px; padding: 9px 18px;
+         color: rgba(255,255,255,.82); font-size: .83rem; font-weight: 600; letter-spacing: .02em;
+      }
+
+      /* -- Why -- */
+      .me-why { padding: 96px 0; background: #fff; }
+      .me-why-img img { border-radius: 16px; width: 100%; object-fit: cover; max-height: 540px; }
+      .me-why-list { list-style: none; padding: 0; margin: 2rem 0 0; }
+      .me-why-list li { display: flex; gap: 16px; margin-bottom: 1.7rem; }
+      .me-why-list li .me-check { color: #fb383b; font-size: 1.15rem; margin-top: 3px; flex-shrink: 0; }
+      .me-why-list li strong { display: block; font-size: .97rem; font-weight: 700; color: #0d0d1a; margin-bottom: .3rem; }
+      .me-why-list li p { font-size: .9rem; color: #666; line-height: 1.68; margin: 0; }
+
+      /* -- Process -- */
+      .me-process { padding: 96px 0; background: #f5f7fa; }
+      .me-process-step {
+         padding: 34px 28px; background: #fff; border-radius: 14px;
+         height: 100%; margin-bottom: 24px; border-top: 3px solid #fb383b;
+         box-shadow: 0 2px 16px rgba(0,0,0,.05);
+      }
+      .me-process-num { font-size: 3rem; font-weight: 900; color: #f0f0f0; line-height: 1; margin-bottom: .7rem; }
+      .me-process-step h4 { font-size: 1rem; font-weight: 700; color: #0d0d1a; margin-bottom: .65rem; }
+      .me-process-step p { font-size: .9rem; color: #666; line-height: 1.72; margin: 0; }
+
+      /* -- Case Studies -- */
+      .me-cases { padding: 96px 0; background: #fff; }
+      .me-case-card {
+         border-radius: 14px; overflow: hidden;
+         box-shadow: 0 2px 20px rgba(0,0,0,.07);
+         height: 100%; margin-bottom: 28px;
+         transition: transform .25s, box-shadow .25s; background: #fff;
+      }
+      .me-case-card:hover { transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,.12); }
+      .me-case-img { height: 210px; overflow: hidden; }
+      .me-case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+      .me-case-card:hover .me-case-img img { transform: scale(1.05); }
+      .me-case-body { padding: 26px; }
+      .me-case-tag {
+         display: inline-block; background: rgba(251,56,59,.1); color: #fb383b;
+         font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+         text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: .9rem;
+      }
+      .me-case-body h4 { font-size: 1.02rem; font-weight: 700; color: #0d0d1a; margin-bottom: .65rem; }
+      .me-case-body p { font-size: .9rem; color: #666; line-height: 1.7; margin-bottom: 1rem; }
+      .me-case-link { color: #fb383b; font-size: .88rem; font-weight: 600; text-decoration: none; }
+      .me-case-link:hover { text-decoration: underline; color: #d42e31; }
+
+      /* -- FAQ -- */
+      .me-faq { padding: 96px 0; background: #f5f7fa; }
+      .me-faq-item { border-bottom: 1px solid #e5e8ee; }
+      .me-faq-q {
+         width: 100%; background: none; border: none;
+         text-align: left; padding: 22px 0;
+         font-size: .97rem; font-weight: 600; color: #0d0d1a;
+         display: flex; justify-content: space-between; align-items: center;
+         cursor: pointer; gap: 12px;
+      }
+      .me-faq-q i { color: #fb383b; transition: transform .25s; flex-shrink: 0; }
+      .me-faq-item.open .me-faq-q i { transform: rotate(180deg); }
+      .me-faq-a { display: none; padding: 0 0 20px; }
+      .me-faq-item.open .me-faq-a { display: block; }
+      .me-faq-a p { font-size: .92rem; color: #666; line-height: 1.78; margin: 0; }
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/white_logo.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/black_logo.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/black_logo.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item active" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="me-hero">
+      <div class="container">
+         <div class="me-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <span class="me-label">Media &amp; Entertainment</span>
+            <h1>Software that powers content,<br>audiences, and new revenue streams</h1>
+            <p>We help media companies, broadcasters, streaming platforms, and entertainment brands build the digital products they need to engage audiences, monetize content, and compete in a world where attention is everything.</p>
+            <div class="me-hero-btns">
+               <a href="contact.html" class="me-btn-primary">Talk to our team</a>
+               <a href="#me-services" class="me-btn-outline">Explore solutions</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== INTRO ===== -->
+   <section class="me-intro">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <span class="me-section-label">The Opportunity</span>
+               <h2 class="me-h2">Turning content and data into competitive digital products</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="me-body-text">The media and entertainment industry is being reshaped by streaming, personalization, and the explosion of digital content channels. Audiences expect seamless, personalized experiences across every screen — and the companies that can deliver them are winning. We help broadcasters, OTT platforms, gaming companies, music services, and digital publishers build the software they need to acquire and retain audiences, monetize content at scale, and operate efficiently in a rapidly evolving landscape. Our teams combine deep media domain knowledge with modern engineering to build platforms that handle real-world scale.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== STATS ===== -->
+   <section class="me-stats">
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="me-stat-item">
+                  <span class="me-stat-num counter">100</span><span class="me-stat-suffix">+</span>
+                  <p>media and entertainment software projects delivered globally</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="me-stat-item">
+                  <span class="me-stat-num counter">200</span><span class="me-stat-suffix">M+</span>
+                  <p>end users served across streaming and content platforms we have built</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="me-stat-item">
+                  <span class="me-stat-num counter">45</span><span class="me-stat-suffix">%</span>
+                  <p>average increase in audience engagement after platform personalization</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="me-stat-item">
+                  <span class="me-stat-num counter">30</span><span class="me-stat-suffix">%</span>
+                  <p>average reduction in content delivery costs through cloud-native architecture</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== SERVICES ===== -->
+   <section class="me-services" id="me-services">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-8 wow fadeInUp" data-wow-duration="0.9s">
+               <span class="me-section-label">What We Build</span>
+               <h2 class="me-h2">End-to-end media &amp; entertainment software solutions</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="me-svc-card">
+                  <div class="me-svc-body">
+                     <div class="me-svc-icon"><i class="fa fa-play-circle"></i></div>
+                     <h4>OTT &amp; Streaming Platforms</h4>
+                     <p>We design and build end-to-end OTT platforms — from content ingestion, transcoding, and DRM to adaptive streaming delivery, multi-device players, and subscriber management — engineered to handle millions of concurrent viewers.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="me-svc-card">
+                  <div class="me-svc-body">
+                     <div class="me-svc-icon"><i class="fa fa-database"></i></div>
+                     <h4>Content Management &amp; DAM Systems</h4>
+                     <p>We build custom CMS and digital asset management platforms that give editorial, production, and distribution teams the tools to manage, enrich, and publish content efficiently across every channel and format.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="me-svc-card">
+                  <div class="me-svc-body">
+                     <div class="me-svc-icon"><i class="fa fa-magic"></i></div>
+                     <h4>Personalization &amp; Recommendation Engines</h4>
+                     <p>We build AI-powered recommendation systems and personalization engines that analyze viewing behaviour, preferences, and context — delivering the right content to the right audience at the right moment to maximize engagement and retention.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="me-svc-card">
+                  <div class="me-svc-body">
+                     <div class="me-svc-icon"><i class="fa fa-dollar"></i></div>
+                     <h4>Monetization &amp; Ad Tech Platforms</h4>
+                     <p>We build subscription management systems, dynamic ad insertion platforms, paywall solutions, and programmatic advertising integrations — helping media companies maximize revenue from every content asset and audience segment.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+               <div class="me-svc-card">
+                  <div class="me-svc-body">
+                     <div class="me-svc-icon"><i class="fa fa-gamepad"></i></div>
+                     <h4>Gaming &amp; Interactive Experiences</h4>
+                     <p>We develop backend platforms, live operations systems, and player analytics tools for gaming companies — supporting real-time multiplayer, in-game economies, live events, and the data infrastructure needed to run games as a service.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+               <div class="me-svc-card">
+                  <div class="me-svc-body">
+                     <div class="me-svc-icon"><i class="fa fa-bar-chart"></i></div>
+                     <h4>Audience Analytics &amp; Data Platforms</h4>
+                     <p>We build real-time audience analytics platforms, data lakes, and BI dashboards that give media companies deep insight into content performance, audience behaviour, and monetization effectiveness — turning data into editorial and commercial decisions.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== TECH STRIP ===== -->
+   <section class="me-tech">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-3 mb-4 mb-lg-0 wow fadeInLeft" data-wow-duration="0.9s">
+               <h3>Built with industry-leading media technologies</h3>
+               <p class="sub">Every platform we deliver is engineered for scale, reliability, and seamless content delivery.</p>
+            </div>
+            <div class="col-lg-9 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="me-badge-row">
+                  <span class="me-badge">HLS / MPEG-DASH</span>
+                  <span class="me-badge">AWS Media Services</span>
+                  <span class="me-badge">DRM (Widevine / FairPlay)</span>
+                  <span class="me-badge">CDN Optimization</span>
+                  <span class="me-badge">GDPR / CCPA</span>
+                  <span class="me-badge">VAST / VPAID</span>
+                  <span class="me-badge">WebRTC</span>
+                  <span class="me-badge">Elasticsearch</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== WHY NIXORA ===== -->
+   <section class="me-why">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1s">
+               <div class="me-why-img">
+                  <img src="img/Collaborative tech workspace with data analysis.png" class="img-fluid" alt="Media software engineering team">
+               </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <span class="me-section-label">Why Nixora</span>
+               <h2 class="me-h2">Engineering partners who understand media at scale</h2>
+               <ul class="me-why-list">
+                  <li>
+                     <i class="fa fa-check-circle me-check"></i>
+                     <div>
+                        <strong>Deep media domain expertise</strong>
+                        <p>Our engineers have hands-on experience with OTT platforms, broadcast workflows, content supply chains, and ad tech ecosystems — so we understand the technical and commercial challenges you face.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle me-check"></i>
+                     <div>
+                        <strong>Built for audience scale</strong>
+                        <p>We design systems that handle millions of concurrent users, petabytes of content, and real-time data streams — using cloud-native architectures proven in high-traffic media environments.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle me-check"></i>
+                     <div>
+                        <strong>AI-powered personalization and analytics</strong>
+                        <p>We embed machine learning into the platforms we build — from recommendation engines and churn prediction models to content tagging automation and real-time audience segmentation.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle me-check"></i>
+                     <div>
+                        <strong>Multi-platform, multi-device delivery</strong>
+                        <p>We build for every screen — web, mobile, smart TV, set-top box, and console — ensuring consistent, high-quality experiences across all the devices your audiences use to consume content.</p>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PROCESS ===== -->
+   <section class="me-process">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-7 wow fadeInUp" data-wow-duration="0.9s">
+               <span class="me-section-label">Our Approach</span>
+               <h2 class="me-h2">How we deliver media software<br>that performs at audience scale</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="me-process-step">
+                  <div class="me-process-num">01</div>
+                  <h4>Discovery &amp; Platform Audit</h4>
+                  <p>We assess your existing technology stack, content workflows, audience data, and business goals — identifying gaps, modernization opportunities, and the right architecture for your scale and roadmap.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="me-process-step">
+                  <div class="me-process-num">02</div>
+                  <h4>Architecture &amp; UX Design</h4>
+                  <p>We design scalable, cloud-native architectures and audience-first user experiences — defining the content delivery pipeline, data models, API contracts, and personalization strategy before development begins.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="me-process-step">
+                  <div class="me-process-num">03</div>
+                  <h4>Agile Build &amp; Integration</h4>
+                  <p>We build in iterative sprints with continuous delivery — integrating with your CMS, ad servers, payment providers, and analytics tools while maintaining performance benchmarks and full test coverage.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="me-process-step">
+                  <div class="me-process-num">04</div>
+                  <h4>Launch, Optimize &amp; Grow</h4>
+                  <p>We support go-live, set up real-time monitoring and alerting, and stay engaged post-launch — continuously optimizing performance, improving personalization, and adding features as your audience and content library grow.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CASE STUDIES ===== -->
+   <section class="me-cases">
+      <div class="container">
+         <div class="row align-items-end mb-5">
+            <div class="col-lg-8 wow fadeInLeft" data-wow-duration="0.9s">
+               <span class="me-section-label">Case Studies</span>
+               <h2 class="me-h2">Media software that delivered results</h2>
+            </div>
+            <div class="col-lg-4 text-lg-right wow fadeInRight" data-wow-duration="0.9s">
+               <a href="#" class="wwd-outline-btn">View all case studies</a>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="me-case-card">
+                  <div class="me-case-img">
+                     <img src="img/our culture/futuristic-business-meeting-with-digital-table-cityscape-view.jpg" alt="OTT Platform Launch">
+                  </div>
+                  <div class="me-case-body">
+                     <span class="me-case-tag">Streaming</span>
+                     <h4>OTT Platform Launch &amp; Scale</h4>
+                     <p>Built a cloud-native OTT platform from scratch for a European broadcaster — supporting 5M+ concurrent streams at launch, with adaptive bitrate delivery, multi-DRM protection, and a personalized recommendation engine.</p>
+                     <a href="#" class="me-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="me-case-card">
+                  <div class="me-case-img">
+                     <img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="Recommendation Engine">
+                  </div>
+                  <div class="me-case-body">
+                     <span class="me-case-tag">AI / Personalization</span>
+                     <h4>AI Recommendation Engine</h4>
+                     <p>Developed a real-time ML recommendation system for a global music streaming service — increasing average session length by 38%, reducing churn by 22%, and lifting premium conversion rates by 15%.</p>
+                     <a href="#" class="me-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="me-case-card">
+                  <div class="me-case-img">
+                     <img src="img/our culture/designers-team-working-3d-model.jpg" alt="Ad Tech Platform">
+                  </div>
+                  <div class="me-case-body">
+                     <span class="me-case-tag">Ad Tech</span>
+                     <h4>Dynamic Ad Insertion Platform</h4>
+                     <p>Built a server-side ad insertion platform for a digital publisher — enabling real-time personalized ad delivery across 80M+ monthly users, increasing ad revenue by 34% while reducing ad load latency by 60%.</p>
+                     <a href="#" class="me-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FAQ ===== -->
+   <section class="me-faq">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="0.9s">
+               <span class="me-section-label">FAQ</span>
+               <h2 class="me-h2">Common questions about our media &amp; entertainment software services</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="me-faq-item">
+                  <button class="me-faq-q" aria-expanded="false">
+                     What types of media and entertainment companies do you work with?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="me-faq-a">
+                     <p>We work with broadcasters, OTT and streaming platforms, music services, gaming companies, digital publishers, sports rights holders, and entertainment brands. Whether you're a startup launching your first streaming product or an established broadcaster modernizing legacy infrastructure, our teams adapt to your scale and context.</p>
+                  </div>
+               </div>
+               <div class="me-faq-item">
+                  <button class="me-faq-q" aria-expanded="false">
+                     Can you build a platform that handles millions of concurrent users?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="me-faq-a">
+                     <p>Yes — we design for audience scale from day one. We use cloud-native architectures, auto-scaling infrastructure, CDN optimization, and adaptive bitrate streaming to ensure your platform performs reliably under peak load, whether that's a live sports event or a major content release.</p>
+                  </div>
+               </div>
+               <div class="me-faq-item">
+                  <button class="me-faq-q" aria-expanded="false">
+                     How do you approach content protection and DRM?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="me-faq-a">
+                     <p>We implement multi-DRM solutions supporting Widevine, FairPlay, and PlayReady — covering all major devices and browsers. We also integrate watermarking, geo-restriction, and token-based authentication to give you comprehensive content protection that satisfies studio and rights holder requirements.</p>
+                  </div>
+               </div>
+               <div class="me-faq-item">
+                  <button class="me-faq-q" aria-expanded="false">
+                     Do you build recommendation engines and personalization systems?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="me-faq-a">
+                     <p>Absolutely. We build custom ML-powered recommendation engines tailored to your content catalogue and audience behaviour — using collaborative filtering, content-based models, and hybrid approaches. We also build the data pipelines and A/B testing infrastructure needed to continuously improve recommendation quality over time.</p>
+                  </div>
+               </div>
+               <div class="me-faq-item">
+                  <button class="me-faq-q" aria-expanded="false">
+                     What engagement models do you offer for media projects?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="me-faq-a">
+                     <p>We offer dedicated development teams, project-based delivery, and staff augmentation. For platform builds, we typically recommend a dedicated team model with embedded product and architecture expertise — giving you the continuity and deep context needed to build and evolve a complex media platform over time.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can accelerate your digital transformation.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box1">
+                  <a href="index.html"><img src="img/logo/white_logo.gif" alt="Nixora" class="footer-logo"></a>
+                  <p>A global software engineering company helping businesses accelerate digital transformation and growth.</p>
+                  <div class="social">
+                     <a href="#"><i class="fa fa-facebook"></i></a>
+                     <a href="#"><i class="fa fa-twitter"></i></a>
+                     <a href="#"><i class="fa fa-linkedin"></i></a>
+                     <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">WHO WE ARE</p>
+                  <ul>
+                     <li><a href="our-company.html">Our Company</a></li>
+                     <li><a href="our-culture.html">Our Culture</a></li>
+                     <li><a href="sustainability.html">Sustainability</a></li>
+                     <li class="mb-0"><a href="#">Careers</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                     <div class="txt"><span>66 Broklyn Street, New York. USA</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-envelope"></i></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><i class="fal fa-phone-alt"></i></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><i class="fal fa-envelope"></i></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col"><span>Copyright &copy; 2026 Nixora. All rights reserved.</span></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      new WOW().init();
+      $('.counter').counterUp({ delay: 10, time: 1200 });
+      document.querySelectorAll('.me-faq-q').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            var item = this.closest('.me-faq-item');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.me-faq-item.open').forEach(function(el) {
+               el.classList.remove('open');
+               el.querySelector('.me-faq-q').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) { item.classList.add('open'); this.setAttribute('aria-expanded', 'true'); }
+         });
+      });
+   </script>
+</body>
+</html>

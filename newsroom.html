@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/softoweb.png">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Newsroom – Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .nr-hero {
+         position: relative;
+         min-height: 54vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/core3-rebranding-hero-banner-768x410.webp');
+         background-size: cover;
+         background-position: center center;
+         background-repeat: no-repeat;
+         overflow: hidden;
+      }
+      .nr-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(120deg, rgba(6,8,18,.70) 40%, rgba(6,8,18,.45) 100%);
+      }
+      .nr-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 700px;
+         margin: 0 auto;
+         padding: 140px 20px 80px;
+      }
+      .nr-label {
+         display: inline-block;
+         color: #fb383b;
+         letter-spacing: .14em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: 1.2rem;
+         border: 1px solid rgba(251,56,59,.4);
+         padding: 5px 16px;
+         border-radius: 20px;
+      }
+      .nr-hero-content h1 {
+         font-size: clamp(2rem, 4.5vw, 3.2rem);
+         font-weight: 800;
+         color: #fff;
+         line-height: 1.14;
+         margin-bottom: 1.2rem;
+      }
+      .nr-hero-content p {
+         font-size: 1.05rem;
+         color: rgba(255,255,255,.78);
+         line-height: 1.78;
+         max-width: 540px;
+         margin: 0 auto;
+      }
+
+      /* -- Filter bar -- */
+      .nr-filter-bar {
+         background: #fff;
+         border-bottom: 1px solid #eaedf2;
+         padding: 0;
+      }
+      .nr-filter-inner {
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         padding: 16px 0;
+         overflow-x: auto;
+         scrollbar-width: none;
+      }
+      .nr-filter-inner::-webkit-scrollbar { display: none; }
+      .nr-filter-btn {
+         background: none;
+         border: 1px solid #e0e3ea;
+         border-radius: 30px;
+         padding: 8px 20px;
+         font-size: .83rem;
+         font-weight: 600;
+         color: #555;
+         cursor: pointer;
+         white-space: nowrap;
+         transition: all .2s;
+         flex-shrink: 0;
+      }
+      .nr-filter-btn:hover,
+      .nr-filter-btn.active { background: #fb383b; border-color: #fb383b; color: #fff; }
+
+      /* -- Shared -- */
+      .nr-section-label {
+         color: #fb383b; letter-spacing: .13em;
+         font-size: .75rem; font-weight: 700;
+         text-transform: uppercase; margin-bottom: .8rem; display: block;
+      }
+      .nr-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: #0d0d1a; line-height: 1.22; }
+
+      /* -- Featured news -- */
+      .nr-featured { padding: 80px 0 0; background: #f5f7fa; }
+      .nr-feat-card {
+         border-radius: 18px;
+         overflow: hidden;
+         background: #fff;
+         box-shadow: 0 4px 32px rgba(0,0,0,.08);
+         display: flex;
+         flex-direction: column;
+      }
+      @media (min-width: 992px) {
+         .nr-feat-card { flex-direction: row; min-height: 380px; }
+      }
+      .nr-feat-img {
+         flex: 0 0 55%;
+         overflow: hidden;
+         position: relative;
+      }
+      .nr-feat-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         min-height: 260px;
+         transition: transform .5s;
+      }
+      .nr-feat-card:hover .nr-feat-img img { transform: scale(1.04); }
+      .nr-feat-badge {
+         position: absolute;
+         top: 20px;
+         left: 20px;
+         background: #fb383b;
+         color: #fff;
+         font-size: .72rem;
+         font-weight: 700;
+         letter-spacing: .1em;
+         text-transform: uppercase;
+         padding: 5px 14px;
+         border-radius: 20px;
+      }
+      .nr-feat-body {
+         flex: 1;
+         padding: 44px 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+      }
+      .nr-feat-body h2 {
+         font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+         font-weight: 800;
+         color: #0d0d1a;
+         line-height: 1.22;
+         margin-bottom: 1rem;
+      }
+      .nr-feat-body p {
+         font-size: .93rem;
+         color: #666;
+         line-height: 1.75;
+         margin-bottom: 1.6rem;
+      }
+      .nr-feat-meta {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 18px;
+         margin-bottom: 1.8rem;
+      }
+      .nr-meta-item {
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         font-size: .82rem;
+         color: #888;
+      }
+      .nr-meta-item i { color: #fb383b; font-size: .8rem; }
+      .nr-read-link {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         color: #fb383b;
+         font-size: .92rem;
+         font-weight: 700;
+         text-decoration: none;
+         transition: gap .2s;
+      }
+      .nr-read-link:hover { gap: 12px; color: #d42e31; text-decoration: none; }
+
+      /* -- News grid -- */
+      .nr-grid { padding: 72px 0 96px; background: #f5f7fa; }
+      .nr-card {
+         background: #fff;
+         border-radius: 16px;
+         overflow: hidden;
+         box-shadow: 0 2px 20px rgba(0,0,0,.06);
+         height: 100%;
+         margin-bottom: 28px;
+         transition: transform .25s, box-shadow .25s;
+         display: flex;
+         flex-direction: column;
+      }
+      .nr-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+      .nr-card-img {
+         height: 210px;
+         overflow: hidden;
+         position: relative;
+      }
+      .nr-card-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition: transform .4s;
+      }
+      .nr-card:hover .nr-card-img img { transform: scale(1.06); }
+      .nr-card-badge {
+         position: absolute;
+         top: 14px;
+         left: 14px;
+         background: #fb383b;
+         color: #fff;
+         font-size: .7rem;
+         font-weight: 700;
+         letter-spacing: .08em;
+         text-transform: uppercase;
+         padding: 4px 12px;
+         border-radius: 20px;
+      }
+      .nr-card-body {
+         padding: 26px;
+         display: flex;
+         flex-direction: column;
+         flex: 1;
+      }
+      .nr-card-body h4 {
+         font-size: 1rem;
+         font-weight: 700;
+         color: #0d0d1a;
+         line-height: 1.35;
+         margin-bottom: .65rem;
+      }
+      .nr-card-body p {
+         font-size: .88rem;
+         color: #666;
+         line-height: 1.72;
+         margin-bottom: 1.2rem;
+         flex: 1;
+      }
+      .nr-card-footer {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         border-top: 1px solid #f0f0f0;
+         padding-top: 14px;
+         margin-top: auto;
+      }
+      .nr-card-date {
+         font-size: .78rem;
+         color: #aaa;
+         display: flex;
+         align-items: center;
+         gap: 5px;
+      }
+      .nr-card-date i { color: #fb383b; }
+      .nr-card-link {
+         color: #fb383b;
+         font-size: .85rem;
+         font-weight: 700;
+         text-decoration: none;
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         transition: gap .2s;
+      }
+      .nr-card-link:hover { gap: 10px; color: #d42e31; text-decoration: none; }
+
+      /* -- Press contact -- */
+      .nr-press {
+         background: #0d0d1a;
+         padding: 72px 0;
+      }
+      .nr-press-inner {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 40px;
+         flex-wrap: wrap;
+      }
+      .nr-press-text h3 {
+         font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+         font-weight: 800;
+         color: #fff;
+         margin-bottom: .7rem;
+      }
+      .nr-press-text p { color: rgba(255,255,255,.55); font-size: .95rem; max-width: 480px; line-height: 1.75; margin: 0; }
+      .nr-press-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+         background: #fb383b;
+         color: #fff;
+         padding: 14px 32px;
+         border-radius: 6px;
+         font-size: .95rem;
+         font-weight: 700;
+         text-decoration: none;
+         transition: background .2s, transform .2s;
+         flex-shrink: 0;
+      }
+      .nr-press-btn:hover { background: #d42e31; color: #fff; transform: translateY(-2px); text-decoration: none; }
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/white_logo.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/black_logo.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/black_logo.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item active" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="nr-hero">
+      <div class="container">
+         <div class="nr-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <span class="nr-label">Newsroom</span>
+            <h1>The latest news and announcements<br>from Nixora</h1>
+            <p>Company milestones, partnerships, awards, and industry recognition — stay up to date with everything happening at Nixora.</p>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FILTER BAR ===== -->
+   <div class="nr-filter-bar">
+      <div class="container">
+         <div class="nr-filter-inner">
+            <button class="nr-filter-btn active" data-filter="all">All</button>
+            <button class="nr-filter-btn" data-filter="announcement">Announcements</button>
+            <button class="nr-filter-btn" data-filter="award">Awards</button>
+            <button class="nr-filter-btn" data-filter="partnership">Partnerships</button>
+            <button class="nr-filter-btn" data-filter="certification">Certifications</button>
+            <button class="nr-filter-btn" data-filter="recognition">Recognition</button>
+         </div>
+      </div>
+   </div>
+
+   <!-- ===== FEATURED NEWS ===== -->
+   <section class="nr-featured">
+      <div class="container">
+         <div class="row mb-4 wow fadeInUp" data-wow-duration="0.9s">
+            <div class="col-12">
+               <span class="nr-section-label">Latest News</span>
+               <h2 class="nr-h2">What's happening at Nixora</h2>
+            </div>
+         </div>
+         <div class="nr-feat-card wow fadeInUp" data-wow-duration="1s">
+            <div class="nr-feat-img">
+               <img src="img/Newsroom/Europe-fastest-growing-companies-LI-hero-banner-768x410.webp" alt="Financial Times 1000 Recognition">
+               <span class="nr-feat-badge">Recognition</span>
+            </div>
+            <div class="nr-feat-body">
+               <h2>Nixora Recognized in the Financial Times 1000: Europe's Fastest-Growing Companies 2026</h2>
+               <p>We're proud to announce that Nixora has been named in the Financial Times 1000 list of Europe's fastest-growing companies for 2026 — a recognition of our team's dedication, our clients' trust, and the quality of software we deliver across industries.</p>
+               <div class="nr-feat-meta">
+                  <span class="nr-meta-item"><i class="fa fa-calendar"></i> March 13, 2026</span>
+                  <span class="nr-meta-item"><i class="fa fa-tag"></i> Recognition</span>
+                  <span class="nr-meta-item"><i class="fa fa-newspaper-o"></i> Financial Times</span>
+               </div>
+               <a href="#" class="nr-read-link">Read full announcement <i class="fa fa-arrow-right"></i></a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== NEWS GRID ===== -->
+   <section class="nr-grid">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12 wow fadeInUp" data-wow-duration="0.9s">
+               <p style="color:#fb383b;letter-spacing:.13em;font-size:.75rem;font-weight:700;text-transform:uppercase;margin-bottom:.7rem;">All News</p>
+               <h2 style="font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:800;color:#0d0d1a;margin:0;">Recent announcements</h2>
+            </div>
+         </div>
+         <div class="row" id="nr-cards">
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp nr-card-wrap" data-category="partnership" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="nr-card">
+                  <div class="nr-card-img">
+                     <img src="img/Newsroom/SM-and-WEBCON-partner-newsroom-hero1-768x320.png" alt="WEBCON Partnership">
+                     <span class="nr-card-badge">Partnership</span>
+                  </div>
+                  <div class="nr-card-body">
+                     <h4>Nixora and WEBCON Partner to Deliver High-Velocity Enterprise Automation</h4>
+                     <p>We've partnered with WEBCON, a leading low-code BPS platform provider, to bring enterprise process automation capabilities to our clients — combining Nixora's engineering expertise with WEBCON's powerful workflow platform.</p>
+                     <div class="nr-card-footer">
+                        <span class="nr-card-date"><i class="fa fa-calendar"></i> April 1, 2026</span>
+                        <a href="#" class="nr-card-link">Read more <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp nr-card-wrap" data-category="announcement" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="nr-card">
+                  <div class="nr-card-img">
+                     <img src="img/Newsroom/1920x800-hero-image-core3-04-768x320.jpeg" alt="Nixora Rebranding">
+                     <span class="nr-card-badge">Announcement</span>
+                  </div>
+                  <div class="nr-card-body">
+                     <h4>Nixora Unveils New Brand Identity Reflecting Our Evolution as an AI-First Engineering Company</h4>
+                     <p>Today we're launching a refreshed brand identity that reflects who we are today — a global software engineering company with AI at the core of everything we build. New logo, new visual language, same commitment to engineering excellence.</p>
+                     <div class="nr-card-footer">
+                        <span class="nr-card-date"><i class="fa fa-calendar"></i> Feb 20, 2026</span>
+                        <a href="#" class="nr-card-link">Read more <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp nr-card-wrap" data-category="certification" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="nr-card">
+                  <div class="nr-card-img">
+                     <img src="img/Newsroom/ISO-certification-blog-hero-768x320.webp" alt="ISO Certification">
+                     <span class="nr-card-badge">Certification</span>
+                  </div>
+                  <div class="nr-card-body">
+                     <h4>Nixora Achieves ISO 27001 and ISO 9001 Recertification for 2026</h4>
+                     <p>We're pleased to confirm our successful recertification to ISO 27001 (Information Security Management) and ISO 9001 (Quality Management) — reaffirming our commitment to the highest standards of security and quality in everything we deliver.</p>
+                     <div class="nr-card-footer">
+                        <span class="nr-card-date"><i class="fa fa-calendar"></i> Jan 15, 2026</span>
+                        <a href="#" class="nr-card-link">Read more <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp nr-card-wrap" data-category="recognition award" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="nr-card">
+                  <div class="nr-card-img">
+                     <img src="img/Newsroom/Newsroom_hero_banner.webp" alt="Top Software Company Award">
+                     <span class="nr-card-badge">Award</span>
+                  </div>
+                  <div class="nr-card-body">
+                     <h4>Nixora Named a Top Software Development Company by Clutch for the Third Consecutive Year</h4>
+                     <p>Clutch has recognized Nixora as a top-rated software development company for the third year running — based on verified client reviews, project quality, and market presence across our key service areas.</p>
+                     <div class="nr-card-footer">
+                        <span class="nr-card-date"><i class="fa fa-calendar"></i> Dec 10, 2025</span>
+                        <a href="#" class="nr-card-link">Read more <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp nr-card-wrap" data-category="announcement" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="nr-card">
+                  <div class="nr-card-img">
+                     <img src="img/Newsroom/1920x800-25-Sep-number8-768x320.webp" alt="New Office Opening">
+                     <span class="nr-card-badge">Announcement</span>
+                  </div>
+                  <div class="nr-card-body">
+                     <h4>Nixora Opens New Engineering Hub in Warsaw to Support Continued Growth</h4>
+                     <p>We're expanding our European presence with a new engineering hub in Warsaw — adding 150+ engineering roles and strengthening our capacity to serve clients across the EU with nearshore talent and local expertise.</p>
+                     <div class="nr-card-footer">
+                        <span class="nr-card-date"><i class="fa fa-calendar"></i> Sep 25, 2025</span>
+                        <a href="#" class="nr-card-link">Read more <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp nr-card-wrap" data-category="partnership" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="nr-card">
+                  <div class="nr-card-img">
+                     <img src="img/Tech meeting in a futuristic office.png" alt="Microsoft Azure Partnership">
+                     <span class="nr-card-badge">Partnership</span>
+                  </div>
+                  <div class="nr-card-body">
+                     <h4>Nixora Achieves Microsoft Azure Advanced Specialization in AI and Machine Learning</h4>
+                     <p>We're proud to announce that Nixora has achieved Microsoft Azure Advanced Specialization in AI and Machine Learning — recognizing our deep technical expertise and proven track record delivering AI solutions on the Azure platform.</p>
+                     <div class="nr-card-footer">
+                        <span class="nr-card-date"><i class="fa fa-calendar"></i> Aug 8, 2025</span>
+                        <a href="#" class="nr-card-link">Read more <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PRESS CONTACT ===== -->
+   <section class="nr-press">
+      <div class="container">
+         <div class="nr-press-inner wow fadeInUp" data-wow-duration="1s">
+            <div class="nr-press-text">
+               <h3>Press &amp; media enquiries</h3>
+               <p>For press releases, interview requests, or media assets, please get in touch with our communications team. We're happy to provide information, commentary, and spokespeople for relevant stories.</p>
+            </div>
+            <a href="contact.html" class="nr-press-btn"><i class="fa fa-envelope"></i> Contact our press team</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can accelerate your digital transformation.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box1">
+                  <a href="index.html"><img src="img/logo/white_logo.gif" alt="Nixora" class="footer-logo"></a>
+                  <p>A global software engineering company helping businesses accelerate digital transformation and growth.</p>
+                  <div class="social">
+                     <a href="#"><i class="fa fa-facebook"></i></a>
+                     <a href="#"><i class="fa fa-twitter"></i></a>
+                     <a href="#"><i class="fa fa-linkedin"></i></a>
+                     <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">WHO WE ARE</p>
+                  <ul>
+                     <li><a href="our-company.html">Our Company</a></li>
+                     <li><a href="our-culture.html">Our Culture</a></li>
+                     <li><a href="sustainability.html">Sustainability</a></li>
+                     <li class="mb-0"><a href="#">Careers</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                     <div class="txt"><span>66 Broklyn Street, New York. USA</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-envelope"></i></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><i class="fal fa-phone-alt"></i></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><i class="fal fa-envelope"></i></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col"><span>Copyright &copy; 2026 Nixora. All rights reserved.</span></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      new WOW().init();
+      document.querySelectorAll('.nr-filter-btn').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            document.querySelectorAll('.nr-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            var filter = this.getAttribute('data-filter');
+            document.querySelectorAll('.nr-card-wrap').forEach(function(card) {
+               var cats = card.getAttribute('data-category') || '';
+               card.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
+            });
+         });
+      });
+   </script>
+</body>
+</html>

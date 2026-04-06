@@ -37,13 +37,9 @@ $(document).ready(function() {
    $(window).scroll(function() {
       var st = $(this).scrollTop();
       if( st > 10 ) {
-         $("#navigration").css({
-            background: "#222429"
-         });
+         $("#navigration").addClass("nav-scrolled");
       } else {
-         $("#navigration").css({
-            background: "none"
-         });
+         $("#navigration").removeClass("nav-scrolled");
       }
    });
 

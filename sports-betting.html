@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/softoweb.png">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Sports Betting Software Development – Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .sb-hero {
+         position: relative;
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/1920x800-main-pages-featured-image-Sports-Betting.webp');
+         background-size: cover;
+         background-position: center center;
+         background-repeat: no-repeat;
+         overflow: hidden;
+      }
+      .sb-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(120deg, rgba(5,8,20,.78) 40%, rgba(5,8,20,.50) 100%);
+      }
+      .sb-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 820px;
+         margin: 0 auto;
+      }
+      .sb-label {
+         display: inline-block;
+         color: #fb383b;
+         letter-spacing: .14em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: 1.2rem;
+         border: 1px solid rgba(251,56,59,.4);
+         padding: 5px 16px;
+         border-radius: 20px;
+      }
+      .sb-hero-content h1 {
+         font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+         font-weight: 800;
+         color: #fff;
+         line-height: 1.12;
+         margin-bottom: 1.4rem;
+      }
+      .sb-hero-content p {
+         font-size: 1.08rem;
+         color: rgba(255,255,255,.82);
+         line-height: 1.78;
+         margin-bottom: 2.2rem;
+         max-width: 660px;
+         margin-left: auto;
+         margin-right: auto;
+      }
+      .sb-hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+      .sb-btn-primary {
+         background: #fb383b; color: #fff; border: none;
+         padding: 14px 32px; border-radius: 6px;
+         font-size: .95rem; font-weight: 700;
+         text-decoration: none; display: inline-block;
+         transition: background .2s, transform .2s;
+      }
+      .sb-btn-primary:hover { background: #d42e31; color: #fff; transform: translateY(-2px); text-decoration: none; }
+      .sb-btn-outline {
+         background: transparent; color: #fff;
+         border: 2px solid rgba(255,255,255,.55);
+         padding: 13px 30px; border-radius: 6px;
+         font-size: .95rem; font-weight: 600;
+         text-decoration: none; display: inline-block;
+         transition: border-color .2s, background .2s;
+      }
+      .sb-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); color: #fff; text-decoration: none; }
+
+      /* -- Shared -- */
+      .sb-section-label {
+         color: #fb383b; letter-spacing: .13em;
+         font-size: .75rem; font-weight: 700;
+         text-transform: uppercase; margin-bottom: .9rem; display: block;
+      }
+      .sb-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: #0d0d1a; line-height: 1.22; }
+      .sb-body-text { font-size: 1rem; color: #555; line-height: 1.82; }
+
+      /* -- Intro -- */
+      .sb-intro { padding: 96px 0; background: #fff; }
+
+      /* -- Stats -- */
+      .sb-stats { padding: 72px 0; background: #050814; }
+      .sb-stat-item { padding: 20px 12px; }
+      .sb-stat-num { font-size: 3.2rem; font-weight: 900; color: #fb383b; display: inline; }
+      .sb-stat-suffix { font-size: 2.2rem; font-weight: 800; color: #fb383b; }
+      .sb-stat-item p { color: rgba(255,255,255,.6); font-size: .88rem; margin-top: .6rem; line-height: 1.55; }
+
+      /* -- Services -- */
+      .sb-services { padding: 96px 0; background: #f5f7fa; }
+      .sb-svc-card {
+         background: #fff; border-radius: 14px;
+         box-shadow: 0 2px 22px rgba(0,0,0,.06);
+         height: 100%; transition: transform .25s, box-shadow .25s;
+         margin-bottom: 28px; border-bottom: 3px solid transparent;
+      }
+      .sb-svc-card:hover { transform: translateY(-6px); box-shadow: 0 10px 36px rgba(0,0,0,.11); border-bottom-color: #fb383b; }
+      .sb-svc-icon {
+         width: 54px; height: 54px;
+         background: linear-gradient(135deg, #fb383b, #c0272a);
+         border-radius: 12px; display: flex; align-items: center; justify-content: center;
+         margin-bottom: 1.2rem;
+      }
+      .sb-svc-icon i { color: #fff; font-size: 1.35rem; }
+      .sb-svc-body { padding: 30px; }
+      .sb-svc-body h4 { font-size: 1.05rem; font-weight: 700; color: #0d0d1a; margin-bottom: .75rem; }
+      .sb-svc-body p { font-size: .91rem; color: #666; line-height: 1.72; margin: 0; }
+
+      /* -- Compliance strip -- */
+      .sb-compliance { padding: 64px 0; background: #050814; }
+      .sb-compliance h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
+      .sb-compliance .sub { color: rgba(255,255,255,.5); font-size: .87rem; margin: 0 0 1.6rem; }
+      .sb-badge-row { display: flex; flex-wrap: wrap; gap: 10px; }
+      .sb-badge {
+         background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+         border-radius: 8px; padding: 9px 18px;
+         color: rgba(255,255,255,.82); font-size: .83rem; font-weight: 600; letter-spacing: .02em;
+      }
+
+      /* -- Why -- */
+      .sb-why { padding: 96px 0; background: #fff; }
+      .sb-why-img img { border-radius: 16px; width: 100%; object-fit: cover; max-height: 540px; }
+      .sb-why-list { list-style: none; padding: 0; margin: 2rem 0 0; }
+      .sb-why-list li { display: flex; gap: 16px; margin-bottom: 1.7rem; }
+      .sb-why-list li .sb-check { color: #fb383b; font-size: 1.15rem; margin-top: 3px; flex-shrink: 0; }
+      .sb-why-list li strong { display: block; font-size: .97rem; font-weight: 700; color: #0d0d1a; margin-bottom: .3rem; }
+      .sb-why-list li p { font-size: .9rem; color: #666; line-height: 1.68; margin: 0; }
+
+      /* -- Process -- */
+      .sb-process { padding: 96px 0; background: #f5f7fa; }
+      .sb-process-step {
+         padding: 34px 28px; background: #fff; border-radius: 14px;
+         height: 100%; margin-bottom: 24px; border-top: 3px solid #fb383b;
+         box-shadow: 0 2px 16px rgba(0,0,0,.05);
+      }
+      .sb-process-num { font-size: 3rem; font-weight: 900; color: #f0f0f0; line-height: 1; margin-bottom: .7rem; }
+      .sb-process-step h4 { font-size: 1rem; font-weight: 700; color: #0d0d1a; margin-bottom: .65rem; }
+      .sb-process-step p { font-size: .9rem; color: #666; line-height: 1.72; margin: 0; }
+
+      /* -- Case Studies -- */
+      .sb-cases { padding: 96px 0; background: #fff; }
+      .sb-case-card {
+         border-radius: 14px; overflow: hidden;
+         box-shadow: 0 2px 20px rgba(0,0,0,.07);
+         height: 100%; margin-bottom: 28px;
+         transition: transform .25s, box-shadow .25s; background: #fff;
+      }
+      .sb-case-card:hover { transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,.12); }
+      .sb-case-img { height: 210px; overflow: hidden; }
+      .sb-case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+      .sb-case-card:hover .sb-case-img img { transform: scale(1.05); }
+      .sb-case-body { padding: 26px; }
+      .sb-case-tag {
+         display: inline-block; background: rgba(251,56,59,.1); color: #fb383b;
+         font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+         text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: .9rem;
+      }
+      .sb-case-body h4 { font-size: 1.02rem; font-weight: 700; color: #0d0d1a; margin-bottom: .65rem; }
+      .sb-case-body p { font-size: .9rem; color: #666; line-height: 1.7; margin-bottom: 1rem; }
+      .sb-case-link { color: #fb383b; font-size: .88rem; font-weight: 600; text-decoration: none; }
+      .sb-case-link:hover { text-decoration: underline; color: #d42e31; }
+
+      /* -- FAQ -- */
+      .sb-faq { padding: 96px 0; background: #f5f7fa; }
+      .sb-faq-item { border-bottom: 1px solid #e5e8ee; }
+      .sb-faq-q {
+         width: 100%; background: none; border: none;
+         text-align: left; padding: 22px 0;
+         font-size: .97rem; font-weight: 600; color: #0d0d1a;
+         display: flex; justify-content: space-between; align-items: center;
+         cursor: pointer; gap: 12px;
+      }
+      .sb-faq-q i { color: #fb383b; transition: transform .25s; flex-shrink: 0; }
+      .sb-faq-item.open .sb-faq-q i { transform: rotate(180deg); }
+      .sb-faq-a { display: none; padding: 0 0 20px; }
+      .sb-faq-item.open .sb-faq-a { display: block; }
+      .sb-faq-a p { font-size: .92rem; color: #666; line-height: 1.78; margin: 0; }
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/white_logo.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/black_logo.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/black_logo.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item active" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="sb-hero">
+      <div class="container">
+         <div class="sb-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <span class="sb-label">Sports Betting</span>
+            <h1>Software that powers the next generation<br>of sports betting platforms</h1>
+            <p>We help sportsbooks, iGaming operators, and betting technology companies build high-performance, compliant platforms — from real-time odds engines and risk management systems to player-facing apps and responsible gambling tools.</p>
+            <div class="sb-hero-btns">
+               <a href="contact.html" class="sb-btn-primary">Talk to our team</a>
+               <a href="#sb-services" class="sb-btn-outline">Explore solutions</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== INTRO ===== -->
+   <section class="sb-intro">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <span class="sb-section-label">The Opportunity</span>
+               <h2 class="sb-h2">Turning sports data and player engagement into scalable betting products</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="sb-body-text">The global sports betting market is growing rapidly — driven by mobile-first players, live in-play betting, and the expansion of regulated markets across the US, Europe, and beyond. Operators who win are those who can deliver the fastest odds, the most engaging player experiences, and the most robust risk management — all while staying compliant with an increasingly complex regulatory landscape. We help sportsbooks, white-label platform providers, and iGaming operators build the software they need to compete: fast, scalable, compliant, and built for the demands of real-time sports data.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== STATS ===== -->
+   <section class="sb-stats">
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="sb-stat-item">
+                  <span class="sb-stat-num counter">80</span><span class="sb-stat-suffix">+</span>
+                  <p>sports betting and iGaming software projects delivered globally</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="sb-stat-item">
+                  <span class="sb-stat-num counter">10</span><span class="sb-stat-suffix">M+</span>
+                  <p>active players managed across platforms we have built and maintained</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="sb-stat-item">
+                  <span class="sb-stat-num counter">&lt;50</span><span class="sb-stat-suffix">ms</span>
+                  <p>average odds update latency achieved on live in-play betting platforms</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="sb-stat-item">
+                  <span class="sb-stat-num counter">25</span><span class="sb-stat-suffix">+</span>
+                  <p>regulated markets supported across platforms we have delivered</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== SERVICES ===== -->
+   <section class="sb-services" id="sb-services">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-8 wow fadeInUp" data-wow-duration="0.9s">
+               <span class="sb-section-label">What We Build</span>
+               <h2 class="sb-h2">End-to-end sports betting software solutions</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="sb-svc-card">
+                  <div class="sb-svc-body">
+                     <div class="sb-svc-icon"><i class="fa fa-bolt"></i></div>
+                     <h4>Sportsbook &amp; Odds Engine</h4>
+                     <p>We build high-performance sportsbook platforms and real-time odds engines — integrating with data providers, processing millions of events per second, and delivering sub-50ms odds updates for live in-play betting across all major sports.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="sb-svc-card">
+                  <div class="sb-svc-body">
+                     <div class="sb-svc-icon"><i class="fa fa-shield"></i></div>
+                     <h4>Risk Management &amp; Trading Systems</h4>
+                     <p>We develop automated risk management platforms, liability monitoring tools, and trading systems that give operators real-time visibility and control over exposure — protecting margins while maximizing betting volume.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="sb-svc-card">
+                  <div class="sb-svc-body">
+                     <div class="sb-svc-icon"><i class="fa fa-mobile"></i></div>
+                     <h4>Player-Facing Apps &amp; Web Platforms</h4>
+                     <p>We design and build engaging, high-performance betting apps and web platforms — with live streaming integration, bet builders, cash-out functionality, and personalized promotions — optimized for conversion and retention.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="sb-svc-card">
+                  <div class="sb-svc-body">
+                     <div class="sb-svc-icon"><i class="fa fa-credit-card"></i></div>
+                     <h4>Payments &amp; Wallet Systems</h4>
+                     <p>We build secure, multi-currency payment platforms and digital wallet systems — integrating with payment processors, e-wallets, and banking APIs to deliver fast deposits, instant withdrawals, and full AML/KYC compliance.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+               <div class="sb-svc-card">
+                  <div class="sb-svc-body">
+                     <div class="sb-svc-icon"><i class="fa fa-bar-chart"></i></div>
+                     <h4>Player Analytics &amp; CRM Platforms</h4>
+                     <p>We build player analytics platforms, segmentation engines, and CRM integrations that give operators deep insight into player behaviour — enabling personalized bonusing, churn prediction, and data-driven retention campaigns.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+               <div class="sb-svc-card">
+                  <div class="sb-svc-body">
+                     <div class="sb-svc-icon"><i class="fa fa-heart"></i></div>
+                     <h4>Responsible Gambling &amp; Compliance Tools</h4>
+                     <p>We build responsible gambling systems — including self-exclusion, deposit limits, reality checks, and AI-powered problem gambling detection — ensuring operators meet regulatory requirements and protect their players.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== COMPLIANCE STRIP ===== -->
+   <section class="sb-compliance">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-3 mb-4 mb-lg-0 wow fadeInLeft" data-wow-duration="0.9s">
+               <h3>Built for regulated betting markets</h3>
+               <p class="sub">Every platform we deliver is designed with compliance, player protection, and security at its core.</p>
+            </div>
+            <div class="col-lg-9 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="sb-badge-row">
+                  <span class="sb-badge">UKGC Licensed</span>
+                  <span class="sb-badge">MGA Compliant</span>
+                  <span class="sb-badge">AML / KYC</span>
+                  <span class="sb-badge">GDPR</span>
+                  <span class="sb-badge">PCI-DSS</span>
+                  <span class="sb-badge">ISO 27001</span>
+                  <span class="sb-badge">Responsible Gambling</span>
+                  <span class="sb-badge">SOC 2 Type II</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== WHY NIXORA ===== -->
+   <section class="sb-why">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1s">
+               <div class="sb-why-img">
+                  <img src="img/Futuristic DevOps control center workspace.png" class="img-fluid" alt="Sports betting software engineering team">
+               </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <span class="sb-section-label">Why Nixora</span>
+               <h2 class="sb-h2">Engineering partners who understand sports betting</h2>
+               <ul class="sb-why-list">
+                  <li>
+                     <i class="fa fa-check-circle sb-check"></i>
+                     <div>
+                        <strong>Deep iGaming domain expertise</strong>
+                        <p>Our engineers have hands-on experience with sportsbook platforms, odds management, risk systems, and regulated market compliance — so we understand the technical and commercial pressures you operate under.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle sb-check"></i>
+                     <div>
+                        <strong>Real-time performance at scale</strong>
+                        <p>We design systems that process millions of events per second with sub-50ms latency — using event-driven architectures, in-memory data grids, and cloud-native infrastructure proven in live betting environments.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle sb-check"></i>
+                     <div>
+                        <strong>Compliance and player protection by design</strong>
+                        <p>We build regulatory requirements and responsible gambling controls into the architecture from day one — reducing the cost and risk of retrofitting compliance onto systems that weren't designed for it.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle sb-check"></i>
+                     <div>
+                        <strong>AI-powered risk and personalization</strong>
+                        <p>We embed machine learning into the platforms we build — from automated risk management and fraud detection to player segmentation, churn prediction, and personalized bonus engines.</p>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PROCESS ===== -->
+   <section class="sb-process">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-7 wow fadeInUp" data-wow-duration="0.9s">
+               <span class="sb-section-label">Our Approach</span>
+               <h2 class="sb-h2">How we deliver sports betting software<br>that performs under pressure</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="sb-process-step">
+                  <div class="sb-process-num">01</div>
+                  <h4>Discovery &amp; Compliance Mapping</h4>
+                  <p>We assess your target markets, regulatory obligations, existing technology, and business goals — defining the compliance framework, integration requirements, and architecture strategy before any development begins.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="sb-process-step">
+                  <div class="sb-process-num">02</div>
+                  <h4>Architecture &amp; Performance Design</h4>
+                  <p>We design low-latency, high-throughput architectures — defining the event processing pipeline, data models, API contracts, and risk management strategy to handle peak betting volumes without degradation.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="sb-process-step">
+                  <div class="sb-process-num">03</div>
+                  <h4>Agile Build &amp; Integration</h4>
+                  <p>We build in iterative sprints with continuous delivery — integrating with data providers, payment processors, KYC vendors, and CRM systems while maintaining full test coverage and performance benchmarks throughout.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="sb-process-step">
+                  <div class="sb-process-num">04</div>
+                  <h4>Launch, Monitor &amp; Optimize</h4>
+                  <p>We support go-live, set up real-time monitoring and alerting, and stay engaged post-launch — continuously optimizing performance, improving player experience, and adapting to new market regulations as they emerge.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CASE STUDIES ===== -->
+   <section class="sb-cases">
+      <div class="container">
+         <div class="row align-items-end mb-5">
+            <div class="col-lg-8 wow fadeInLeft" data-wow-duration="0.9s">
+               <span class="sb-section-label">Case Studies</span>
+               <h2 class="sb-h2">Sports betting software that delivered results</h2>
+            </div>
+            <div class="col-lg-4 text-lg-right wow fadeInRight" data-wow-duration="0.9s">
+               <a href="#" class="wwd-outline-btn">View all case studies</a>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="sb-case-card">
+                  <div class="sb-case-img">
+                     <img src="img/our culture/futuristic-business-meeting-with-digital-table-cityscape-view.jpg" alt="Sportsbook Platform">
+                  </div>
+                  <div class="sb-case-body">
+                     <span class="sb-case-tag">Sportsbook</span>
+                     <h4>Real-Time Sportsbook Platform</h4>
+                     <p>Built a cloud-native sportsbook platform for a Tier-1 operator — processing 2M+ bets per day with sub-40ms odds latency, supporting 30+ sports and 500+ markets, and achieving 99.99% uptime during major sporting events.</p>
+                     <a href="#" class="sb-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="sb-case-card">
+                  <div class="sb-case-img">
+                     <img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="Risk Management">
+                  </div>
+                  <div class="sb-case-body">
+                     <span class="sb-case-tag">Risk Management</span>
+                     <h4>AI-Powered Risk Management System</h4>
+                     <p>Developed an ML-powered risk and liability management platform — reducing exposure on sharp player activity by 48%, cutting manual trading interventions by 65%, and improving gross margin by 12% within 6 months of launch.</p>
+                     <a href="#" class="sb-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="sb-case-card">
+                  <div class="sb-case-img">
+                     <img src="img/our culture/designers-team-working-3d-model.jpg" alt="Mobile Betting App">
+                  </div>
+                  <div class="sb-case-body">
+                     <span class="sb-case-tag">Mobile</span>
+                     <h4>Mobile Betting App Relaunch</h4>
+                     <p>Redesigned and rebuilt a mobile betting app for a major European operator — increasing app store rating from 2.8 to 4.6, reducing bet placement time by 55%, and growing mobile GGR by 40% in the first quarter post-launch.</p>
+                     <a href="#" class="sb-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FAQ ===== -->
+   <section class="sb-faq">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="0.9s">
+               <span class="sb-section-label">FAQ</span>
+               <h2 class="sb-h2">Common questions about our sports betting software services</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="sb-faq-item">
+                  <button class="sb-faq-q" aria-expanded="false">
+                     What types of sports betting companies do you work with?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="sb-faq-a">
+                     <p>We work with the full spectrum of sports betting and iGaming organizations — from startup operators launching their first sportsbook to established Tier-1 operators, white-label platform providers, and betting technology ISVs. Our teams adapt to your scale, market, and technology stack.</p>
+                  </div>
+               </div>
+               <div class="sb-faq-item">
+                  <button class="sb-faq-q" aria-expanded="false">
+                     Can you build a platform that handles live in-play betting at scale?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="sb-faq-a">
+                     <p>Yes — this is one of our core specialisms. We design event-driven architectures using in-memory data grids, message streaming, and auto-scaling infrastructure to handle millions of odds updates and bet placements per second with sub-50ms latency, even during peak events like the World Cup or Super Bowl.</p>
+                  </div>
+               </div>
+               <div class="sb-faq-item">
+                  <button class="sb-faq-q" aria-expanded="false">
+                     How do you approach regulatory compliance across multiple markets?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="sb-faq-a">
+                     <p>We build compliance into the architecture from day one — using configurable rule engines, market-specific product restrictions, and modular responsible gambling controls that can be enabled or adjusted per jurisdiction. We have experience delivering platforms compliant with UKGC, MGA, and US state-level regulations.</p>
+                  </div>
+               </div>
+               <div class="sb-faq-item">
+                  <button class="sb-faq-q" aria-expanded="false">
+                     Do you integrate with third-party data providers and payment processors?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="sb-faq-a">
+                     <p>Absolutely. We have extensive experience integrating with sports data providers (Sportradar, Stats Perform, Genius Sports), payment processors, e-wallet providers, KYC/AML vendors, and CRM platforms. We design integrations that are resilient, low-latency, and maintainable as your vendor landscape evolves.</p>
+                  </div>
+               </div>
+               <div class="sb-faq-item">
+                  <button class="sb-faq-q" aria-expanded="false">
+                     What engagement models do you offer for betting platform projects?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="sb-faq-a">
+                     <p>We offer dedicated development teams, project-based delivery, and staff augmentation. For platform builds, we typically recommend a dedicated team model with embedded domain architects — giving you the continuity and deep context needed to build and evolve a complex, regulated betting platform over time.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can accelerate your digital transformation.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box1">
+                  <a href="index.html"><img src="img/logo/white_logo.gif" alt="Nixora" class="footer-logo"></a>
+                  <p>A global software engineering company helping businesses accelerate digital transformation and growth.</p>
+                  <div class="social">
+                     <a href="#"><i class="fa fa-facebook"></i></a>
+                     <a href="#"><i class="fa fa-twitter"></i></a>
+                     <a href="#"><i class="fa fa-linkedin"></i></a>
+                     <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">WHO WE ARE</p>
+                  <ul>
+                     <li><a href="our-company.html">Our Company</a></li>
+                     <li><a href="our-culture.html">Our Culture</a></li>
+                     <li><a href="sustainability.html">Sustainability</a></li>
+                     <li class="mb-0"><a href="#">Careers</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                     <div class="txt"><span>66 Broklyn Street, New York. USA</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-envelope"></i></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><i class="fal fa-phone-alt"></i></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><i class="fal fa-envelope"></i></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col"><span>Copyright &copy; 2026 Nixora. All rights reserved.</span></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      new WOW().init();
+      $('.counter').counterUp({ delay: 10, time: 1200 });
+      document.querySelectorAll('.sb-faq-q').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            var item = this.closest('.sb-faq-item');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.sb-faq-item.open').forEach(function(el) {
+               el.classList.remove('open');
+               el.querySelector('.sb-faq-q').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) { item.classList.add('open'); this.setAttribute('aria-expanded', 'true'); }
+         });
+      });
+   </script>
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/softoweb.png">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Events – Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .ev-hero {
+         position: relative;
+         min-height: 56vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/hero-banner-events.webp');
+         background-size: cover;
+         background-position: center center;
+         background-repeat: no-repeat;
+         overflow: hidden;
+      }
+      .ev-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(120deg, rgba(6,8,18,.68) 40%, rgba(6,8,18,.42) 100%);
+      }
+      .ev-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 720px;
+         margin: 0 auto;
+         padding: 140px 20px 80px;
+      }
+      .ev-label {
+         display: inline-block;
+         color: #fb383b;
+         letter-spacing: .14em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: 1.2rem;
+         border: 1px solid rgba(251,56,59,.4);
+         padding: 5px 16px;
+         border-radius: 20px;
+      }
+      .ev-hero-content h1 {
+         font-size: clamp(2rem, 4.5vw, 3.2rem);
+         font-weight: 800;
+         color: #fff;
+         line-height: 1.14;
+         margin-bottom: 1.2rem;
+      }
+      .ev-hero-content p {
+         font-size: 1.05rem;
+         color: rgba(255,255,255,.78);
+         line-height: 1.78;
+         max-width: 560px;
+         margin: 0 auto;
+      }
+
+      /* -- Filter tabs -- */
+      .ev-tabs {
+         background: #fff;
+         border-bottom: 1px solid #eaedf2;
+         padding: 0;
+      }
+      .ev-tabs-inner {
+         display: flex;
+         align-items: center;
+         gap: 4px;
+         padding: 16px 0;
+         overflow-x: auto;
+         scrollbar-width: none;
+      }
+      .ev-tabs-inner::-webkit-scrollbar { display: none; }
+      .ev-tab-btn {
+         background: none;
+         border: 1px solid #e0e3ea;
+         border-radius: 30px;
+         padding: 8px 22px;
+         font-size: .83rem;
+         font-weight: 600;
+         color: #555;
+         cursor: pointer;
+         white-space: nowrap;
+         transition: all .2s;
+         flex-shrink: 0;
+      }
+      .ev-tab-btn:hover,
+      .ev-tab-btn.active { background: #fb383b; border-color: #fb383b; color: #fff; }
+
+      /* -- Section label -- */
+      .ev-section-label {
+         color: #fb383b; letter-spacing: .13em;
+         font-size: .75rem; font-weight: 700;
+         text-transform: uppercase; margin-bottom: .8rem; display: block;
+      }
+      .ev-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: #0d0d1a; line-height: 1.22; }
+
+      /* -- Featured event -- */
+      .ev-featured { padding: 80px 0 0; background: #f5f7fa; }
+      .ev-feat-card {
+         border-radius: 18px;
+         overflow: hidden;
+         background: #fff;
+         box-shadow: 0 4px 32px rgba(0,0,0,.08);
+         display: flex;
+         flex-direction: column;
+      }
+      @media (min-width: 992px) {
+         .ev-feat-card { flex-direction: row; min-height: 380px; }
+      }
+      .ev-feat-img {
+         flex: 0 0 55%;
+         overflow: hidden;
+         position: relative;
+      }
+      .ev-feat-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         min-height: 260px;
+         transition: transform .5s;
+      }
+      .ev-feat-card:hover .ev-feat-img img { transform: scale(1.04); }
+      .ev-feat-badge {
+         position: absolute;
+         top: 20px;
+         left: 20px;
+         background: #fb383b;
+         color: #fff;
+         font-size: .72rem;
+         font-weight: 700;
+         letter-spacing: .1em;
+         text-transform: uppercase;
+         padding: 5px 14px;
+         border-radius: 20px;
+      }
+      .ev-feat-body {
+         flex: 1;
+         padding: 44px 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+      }
+      .ev-feat-body h2 {
+         font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+         font-weight: 800;
+         color: #0d0d1a;
+         line-height: 1.22;
+         margin-bottom: 1rem;
+      }
+      .ev-feat-body p {
+         font-size: .93rem;
+         color: #666;
+         line-height: 1.75;
+         margin-bottom: 1.6rem;
+      }
+      .ev-feat-details {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 18px;
+         margin-bottom: 2rem;
+      }
+      .ev-detail {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         font-size: .88rem;
+         color: #555;
+         font-weight: 500;
+      }
+      .ev-detail i { color: #fb383b; font-size: .9rem; }
+      .ev-register-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+         background: #fb383b;
+         color: #fff;
+         padding: 13px 28px;
+         border-radius: 6px;
+         font-size: .92rem;
+         font-weight: 700;
+         text-decoration: none;
+         transition: background .2s, transform .2s;
+         width: fit-content;
+      }
+      .ev-register-btn:hover { background: #d42e31; color: #fff; transform: translateY(-2px); text-decoration: none; }
+      .ev-outline-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         background: transparent;
+         color: #fb383b;
+         border: 2px solid #fb383b;
+         padding: 11px 26px;
+         border-radius: 6px;
+         font-size: .92rem;
+         font-weight: 700;
+         text-decoration: none;
+         transition: all .2s;
+         width: fit-content;
+      }
+      .ev-outline-btn:hover { background: #fb383b; color: #fff; text-decoration: none; }
+
+      /* -- Upcoming events -- */
+      .ev-upcoming { padding: 80px 0; background: #f5f7fa; }
+      .ev-card {
+         background: #fff;
+         border-radius: 16px;
+         overflow: hidden;
+         box-shadow: 0 2px 20px rgba(0,0,0,.06);
+         height: 100%;
+         margin-bottom: 28px;
+         transition: transform .25s, box-shadow .25s;
+         display: flex;
+         flex-direction: column;
+      }
+      .ev-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+      .ev-card-img {
+         height: 200px;
+         overflow: hidden;
+         position: relative;
+      }
+      .ev-card-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition: transform .4s;
+      }
+      .ev-card:hover .ev-card-img img { transform: scale(1.06); }
+      .ev-card-badge {
+         position: absolute;
+         top: 14px;
+         left: 14px;
+         background: #fb383b;
+         color: #fff;
+         font-size: .7rem;
+         font-weight: 700;
+         letter-spacing: .08em;
+         text-transform: uppercase;
+         padding: 4px 12px;
+         border-radius: 20px;
+      }
+      .ev-card-date-box {
+         position: absolute;
+         bottom: 14px;
+         right: 14px;
+         background: rgba(13,13,26,.85);
+         border-radius: 10px;
+         padding: 8px 14px;
+         text-align: center;
+         min-width: 56px;
+      }
+      .ev-card-date-box .day { font-size: 1.4rem; font-weight: 900; color: #fb383b; line-height: 1; }
+      .ev-card-date-box .month { font-size: .7rem; font-weight: 700; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: .06em; }
+      .ev-card-body {
+         padding: 24px;
+         display: flex;
+         flex-direction: column;
+         flex: 1;
+      }
+      .ev-card-body h4 {
+         font-size: 1rem;
+         font-weight: 700;
+         color: #0d0d1a;
+         line-height: 1.35;
+         margin-bottom: .65rem;
+      }
+      .ev-card-body p {
+         font-size: .88rem;
+         color: #666;
+         line-height: 1.7;
+         margin-bottom: 1.2rem;
+         flex: 1;
+      }
+      .ev-card-meta {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 12px;
+         margin-bottom: 1.2rem;
+      }
+      .ev-card-meta span {
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         font-size: .78rem;
+         color: #888;
+      }
+      .ev-card-meta i { color: #fb383b; font-size: .75rem; }
+      .ev-card-footer {
+         border-top: 1px solid #f0f0f0;
+         padding-top: 14px;
+         margin-top: auto;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+      }
+      .ev-card-link {
+         color: #fb383b;
+         font-size: .85rem;
+         font-weight: 700;
+         text-decoration: none;
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         transition: gap .2s;
+      }
+      .ev-card-link:hover { gap: 10px; color: #d42e31; text-decoration: none; }
+
+      /* -- Past events -- */
+      .ev-past { padding: 80px 0 96px; background: #fff; }
+      .ev-past-card {
+         display: flex;
+         gap: 20px;
+         align-items: flex-start;
+         padding: 24px;
+         background: #f5f7fa;
+         border-radius: 14px;
+         margin-bottom: 16px;
+         transition: box-shadow .25s;
+      }
+      .ev-past-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+      .ev-past-thumb {
+         width: 100px;
+         height: 70px;
+         border-radius: 8px;
+         overflow: hidden;
+         flex-shrink: 0;
+      }
+      .ev-past-thumb img { width: 100%; height: 100%; object-fit: cover; }
+      .ev-past-info h5 {
+         font-size: .95rem;
+         font-weight: 700;
+         color: #0d0d1a;
+         margin-bottom: .4rem;
+         line-height: 1.3;
+      }
+      .ev-past-info p { font-size: .83rem; color: #888; margin: 0; }
+      .ev-past-info .ev-past-meta {
+         display: flex;
+         gap: 14px;
+         margin-top: .5rem;
+         flex-wrap: wrap;
+      }
+      .ev-past-info .ev-past-meta span {
+         font-size: .78rem;
+         color: #aaa;
+         display: flex;
+         align-items: center;
+         gap: 4px;
+      }
+      .ev-past-info .ev-past-meta i { color: #fb383b; font-size: .72rem; }
+
+      /* -- Newsletter -- */
+      .ev-newsletter { background: #0d0d1a; padding: 72px 0; }
+      .ev-nl-inner {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 32px;
+         flex-wrap: wrap;
+      }
+      .ev-nl-text h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 800; color: #fff; margin-bottom: .5rem; }
+      .ev-nl-text p { color: rgba(255,255,255,.5); font-size: .92rem; margin: 0; }
+      .ev-nl-form { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
+      .ev-nl-form input {
+         background: rgba(255,255,255,.08);
+         border: 1px solid rgba(255,255,255,.15);
+         border-radius: 6px;
+         padding: 12px 20px;
+         color: #fff;
+         font-size: .9rem;
+         outline: none;
+         width: 260px;
+         transition: border-color .2s;
+      }
+      .ev-nl-form input::placeholder { color: rgba(255,255,255,.35); }
+      .ev-nl-form input:focus { border-color: #fb383b; }
+      .ev-nl-form button {
+         background: #fb383b;
+         border: none;
+         border-radius: 6px;
+         padding: 12px 26px;
+         color: #fff;
+         font-size: .9rem;
+         font-weight: 700;
+         cursor: pointer;
+         transition: background .2s;
+      }
+      .ev-nl-form button:hover { background: #d42e31; }
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/white_logo.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/black_logo.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/black_logo.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item active" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="ev-hero">
+      <div class="container">
+         <div class="ev-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <span class="ev-label">Events</span>
+            <h1>Meet us at the events<br>shaping the future of software</h1>
+            <p>From industry conferences and tech summits to our own hosted workshops and meetups — find out where the Nixora team will be next and register to connect with us.</p>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FILTER TABS ===== -->
+   <div class="ev-tabs">
+      <div class="container">
+         <div class="ev-tabs-inner">
+            <button class="ev-tab-btn active" data-filter="all">All Events</button>
+            <button class="ev-tab-btn" data-filter="upcoming">Upcoming</button>
+            <button class="ev-tab-btn" data-filter="past">Past</button>
+            <button class="ev-tab-btn" data-filter="conference">Conferences</button>
+            <button class="ev-tab-btn" data-filter="workshop">Workshops</button>
+            <button class="ev-tab-btn" data-filter="webinar">Webinars</button>
+         </div>
+      </div>
+   </div>
+
+   <!-- ===== FEATURED EVENT ===== -->
+   <section class="ev-featured">
+      <div class="container">
+         <div class="row mb-4 wow fadeInUp" data-wow-duration="0.9s">
+            <div class="col-12">
+               <span class="ev-section-label">Featured Event</span>
+               <h2 class="ev-h2">Don't miss our next event</h2>
+            </div>
+         </div>
+         <div class="ev-feat-card wow fadeInUp" data-wow-duration="1s">
+            <div class="ev-feat-img">
+               <img src="img/event/LP-events-Warsaw-2-1536x640.webp" alt="Nixora Tech Summit Warsaw 2026">
+               <span class="ev-feat-badge">Upcoming</span>
+            </div>
+            <div class="ev-feat-body">
+               <h2>Nixora Tech Summit Warsaw 2026</h2>
+               <p>Join us in Warsaw for a full-day summit bringing together engineering leaders, product teams, and technology innovators. Featuring keynotes on AI, cloud-native architecture, and the future of software engineering — plus hands-on workshops and networking sessions.</p>
+               <div class="ev-feat-details">
+                  <span class="ev-detail"><i class="fa fa-calendar"></i> May 22, 2026</span>
+                  <span class="ev-detail"><i class="fa fa-clock-o"></i> 9:00 AM – 6:00 PM CET</span>
+                  <span class="ev-detail"><i class="fa fa-map-marker"></i> Warsaw, Poland</span>
+                  <span class="ev-detail"><i class="fa fa-users"></i> 400+ attendees</span>
+               </div>
+               <div style="display:flex;gap:14px;flex-wrap:wrap;">
+                  <a href="#" class="ev-register-btn"><i class="fa fa-ticket"></i> Register now</a>
+                  <a href="#" class="ev-outline-btn"><i class="fa fa-info-circle"></i> Learn more</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== UPCOMING EVENTS ===== -->
+   <section class="ev-upcoming">
+      <div class="container">
+         <div class="row mb-5 wow fadeInUp" data-wow-duration="0.9s">
+            <div class="col-12">
+               <span class="ev-section-label">Upcoming Events</span>
+               <h2 class="ev-h2">Where we'll be next</h2>
+            </div>
+         </div>
+         <div class="row" id="ev-cards">
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp ev-card-wrap" data-category="upcoming conference" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="ev-card">
+                  <div class="ev-card-img">
+                     <img src="img/event/LP-events-Warsaw-2-768x320.webp" alt="AI &amp; Cloud Summit">
+                     <span class="ev-card-badge">Conference</span>
+                     <div class="ev-card-date-box">
+                        <div class="day">22</div>
+                        <div class="month">May</div>
+                     </div>
+                  </div>
+                  <div class="ev-card-body">
+                     <h4>AI &amp; Cloud Engineering Summit 2026</h4>
+                     <p>A premier gathering of engineering leaders exploring the intersection of AI, cloud-native architecture, and platform engineering — with keynotes, panels, and deep-dive technical sessions.</p>
+                     <div class="ev-card-meta">
+                        <span><i class="fa fa-map-marker"></i> Warsaw, Poland</span>
+                        <span><i class="fa fa-clock-o"></i> 9:00 AM CET</span>
+                        <span><i class="fa fa-users"></i> 400+ attendees</span>
+                     </div>
+                     <div class="ev-card-footer">
+                        <span style="font-size:.75rem;font-weight:700;color:#fb383b;text-transform:uppercase;letter-spacing:.06em;">Free entry</span>
+                        <a href="#" class="ev-card-link">Register <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp ev-card-wrap" data-category="upcoming webinar" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="ev-card">
+                  <div class="ev-card-img">
+                     <img src="img/Futuristic AI brain and data network.png" alt="Generative AI Webinar" style="object-position:center;">
+                     <span class="ev-card-badge">Webinar</span>
+                     <div class="ev-card-date-box">
+                        <div class="day">08</div>
+                        <div class="month">May</div>
+                     </div>
+                  </div>
+                  <div class="ev-card-body">
+                     <h4>Generative AI in Production: What Engineering Teams Need to Know</h4>
+                     <p>A live 90-minute webinar covering RAG architectures, LLM guardrails, cost optimization, and the governance frameworks needed to deploy generative AI safely at enterprise scale.</p>
+                     <div class="ev-card-meta">
+                        <span><i class="fa fa-globe"></i> Online</span>
+                        <span><i class="fa fa-clock-o"></i> 3:00 PM CET</span>
+                        <span><i class="fa fa-users"></i> Free</span>
+                     </div>
+                     <div class="ev-card-footer">
+                        <span style="font-size:.75rem;font-weight:700;color:#fb383b;text-transform:uppercase;letter-spacing:.06em;">Free entry</span>
+                        <a href="#" class="ev-card-link">Register <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp ev-card-wrap" data-category="upcoming workshop" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="ev-card">
+                  <div class="ev-card-img">
+                     <img src="img/Collaborating on cloud infrastructure monitoring.png" alt="DevOps Workshop">
+                     <span class="ev-card-badge">Workshop</span>
+                     <div class="ev-card-date-box">
+                        <div class="day">15</div>
+                        <div class="month">May</div>
+                     </div>
+                  </div>
+                  <div class="ev-card-body">
+                     <h4>Platform Engineering Workshop: Building Your Internal Developer Platform</h4>
+                     <p>A hands-on half-day workshop for engineering leads and DevOps teams — covering IDP design patterns, Backstage setup, golden paths, and the metrics that matter for developer experience.</p>
+                     <div class="ev-card-meta">
+                        <span><i class="fa fa-globe"></i> Online</span>
+                        <span><i class="fa fa-clock-o"></i> 10:00 AM CET</span>
+                        <span><i class="fa fa-users"></i> 50 seats</span>
+                     </div>
+                     <div class="ev-card-footer">
+                        <span style="font-size:.75rem;font-weight:700;color:#fb383b;text-transform:uppercase;letter-spacing:.06em;">Limited seats</span>
+                        <a href="#" class="ev-card-link">Register <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PAST EVENTS ===== -->
+   <section class="ev-past">
+      <div class="container">
+         <div class="row mb-5 wow fadeInUp" data-wow-duration="0.9s">
+            <div class="col-12">
+               <span class="ev-section-label">Past Events</span>
+               <h2 class="ev-h2">Events we've hosted and attended</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-lg-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="ev-past-card">
+                  <div class="ev-past-thumb">
+                     <img src="img/event/LP-events-warsaw-poland-768x320.webp" alt="Warsaw Tech Meetup">
+                  </div>
+                  <div class="ev-past-info">
+                     <h5>Warsaw Tech Meetup — AI in Enterprise Software</h5>
+                     <p>A sold-out evening meetup with 200+ engineers discussing real-world AI implementation challenges.</p>
+                     <div class="ev-past-meta">
+                        <span><i class="fa fa-calendar"></i> March 12, 2026</span>
+                        <span><i class="fa fa-map-marker"></i> Warsaw, Poland</span>
+                        <span><i class="fa fa-users"></i> 200+ attendees</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="ev-past-card">
+                  <div class="ev-past-thumb">
+                     <img src="img/our culture/futuristic-business-meeting-with-digital-table-cityscape-view.jpg" alt="Cloud Summit">
+                  </div>
+                  <div class="ev-past-info">
+                     <h5>Cloud-Native Architecture Summit — London 2026</h5>
+                     <p>Nixora engineers presented on microservices migration patterns and platform engineering at this 500-person conference.</p>
+                     <div class="ev-past-meta">
+                        <span><i class="fa fa-calendar"></i> Feb 18, 2026</span>
+                        <span><i class="fa fa-map-marker"></i> London, UK</span>
+                        <span><i class="fa fa-users"></i> 500+ attendees</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="ev-past-card">
+                  <div class="ev-past-thumb">
+                     <img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="Telecom Innovation Forum">
+                  </div>
+                  <div class="ev-past-info">
+                     <h5>Telecom Innovation Forum — BSS/OSS Modernization Panel</h5>
+                     <p>Our telecom practice lead joined a panel discussion on cloud-native BSS transformation and 5G software architecture.</p>
+                     <div class="ev-past-meta">
+                        <span><i class="fa fa-calendar"></i> Jan 28, 2026</span>
+                        <span><i class="fa fa-map-marker"></i> Amsterdam, Netherlands</span>
+                        <span><i class="fa fa-users"></i> 350+ attendees</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="ev-past-card">
+                  <div class="ev-past-thumb">
+                     <img src="img/our culture/team-meeting-renewable-energy-project.jpg" alt="iGaming Summit">
+                  </div>
+                  <div class="ev-past-info">
+                     <h5>iGaming &amp; Sports Betting Technology Summit 2025</h5>
+                     <p>Nixora showcased our sportsbook platform capabilities and met with operators exploring platform migration options.</p>
+                     <div class="ev-past-meta">
+                        <span><i class="fa fa-calendar"></i> Nov 14, 2025</span>
+                        <span><i class="fa fa-map-marker"></i> Malta</span>
+                        <span><i class="fa fa-users"></i> 600+ attendees</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== NEWSLETTER ===== -->
+   <section class="ev-newsletter">
+      <div class="container">
+         <div class="ev-nl-inner wow fadeInUp" data-wow-duration="1s">
+            <div class="ev-nl-text">
+               <h3>Never miss an event</h3>
+               <p>Get notified about upcoming Nixora events, webinars, and workshops delivered to your inbox.</p>
+            </div>
+            <form class="ev-nl-form" onsubmit="return false;">
+               <input type="email" placeholder="Your email address">
+               <button type="submit">Notify me</button>
+            </form>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can accelerate your digital transformation.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box1">
+                  <a href="index.html"><img src="img/logo/white_logo.gif" alt="Nixora" class="footer-logo"></a>
+                  <p>A global software engineering company helping businesses accelerate digital transformation and growth.</p>
+                  <div class="social">
+                     <a href="#"><i class="fa fa-facebook"></i></a>
+                     <a href="#"><i class="fa fa-twitter"></i></a>
+                     <a href="#"><i class="fa fa-linkedin"></i></a>
+                     <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">WHO WE ARE</p>
+                  <ul>
+                     <li><a href="our-company.html">Our Company</a></li>
+                     <li><a href="our-culture.html">Our Culture</a></li>
+                     <li><a href="sustainability.html">Sustainability</a></li>
+                     <li class="mb-0"><a href="#">Careers</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                     <div class="txt"><span>66 Broklyn Street, New York. USA</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-envelope"></i></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><i class="fal fa-phone-alt"></i></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><i class="fal fa-envelope"></i></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col"><span>Copyright &copy; 2026 Nixora. All rights reserved.</span></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      new WOW().init();
+      document.querySelectorAll('.ev-tab-btn').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            document.querySelectorAll('.ev-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            var filter = this.getAttribute('data-filter');
+            document.querySelectorAll('.ev-card-wrap').forEach(function(card) {
+               var cats = card.getAttribute('data-category') || '';
+               card.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
+            });
+         });
+      });
+   </script>
+</body>
+</html>

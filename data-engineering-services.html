@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/softoweb.png">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Data Engineering and Data Science Services – Nixora</title>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/white_logo.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/black_logo.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/black_logo.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link active-mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="svc-hero" style="background-image: url('img/Team collaboration on data analysis.png'); background-size: 100% 100%; background-position: center center; background-repeat: no-repeat;">
+      <div class="svc-hero-inner">
+         <div class="container">
+            <div class="svc-hero-content wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">COLLECT · ENGINEER · ANALYZE</p>
+               <h1>Data Engineering and Data Science Services</h1>
+               <p>Gather, organize, analyze and operationalize large data sets to deliver a personalized customer experience and increase your competitive advantage.</p>
+               <a href="contact.html" class="oc2-btn-red">Contact us</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== INTRO ===== -->
+   <section class="svc-intro">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <h2 class="svc-intro-h2">Data engineering services that provide real-time business insight</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="svc-body">The rise of AI and a daily influx of complex data sets means companies need to find and take advantage of the most useful ones. Data engineering consultants enable companies to leverage AI solutions to gain a better business understanding and react in real time. With our team, you can quickly discover, access, analyze, share and operationalize data to create actionable insights that drive your business growth.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== STATS ===== -->
+   <section class="svc-stats-dark">
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="svc-stat-item">
+                  <div class="svc-stat-num counter">500</div><span class="svc-stat-suffix">+</span>
+                  <p>TB of data processed and engineered for enterprise clients</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="svc-stat-item">
+                  <div class="svc-stat-num counter">60</div><span class="svc-stat-suffix">%</span>
+                  <p>faster time-to-insight after implementing modern data pipelines</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="svc-stat-item">
+                  <div class="svc-stat-num counter">10</div><span class="svc-stat-suffix">+</span>
+                  <p>industries served with tailored data engineering solutions</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="svc-stat-item">
+                  <div class="svc-stat-num counter">95</div><span class="svc-stat-suffix">%</span>
+                  <p>of clients report improved decision-making after data platform delivery</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== WHAT WE OFFER ===== -->
+   <section class="svc-offerings">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12 wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">WHAT WE OFFER</p>
+               <h2 class="oc2-h2">End-to-end data engineering and science services</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="cld-svc-card">
+                  <div class="cld-svc-img"><img src="img/our culture/modern-equipped-computer-lab.jpg" alt="Data Pipelines"></div>
+                  <div class="cld-svc-body">
+                     <h4>Data Pipeline Engineering</h4>
+                     <p>We design and build robust, scalable data pipelines that ingest, transform, and deliver data from any source to any destination — in batch or real time — with full observability and fault tolerance.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="cld-svc-card">
+                  <div class="cld-svc-img"><img src="img/our culture/futuristic-business-meeting-with-digital-table-cityscape-view.jpg" alt="Data Warehouse"></div>
+                  <div class="cld-svc-body">
+                     <h4>Data Warehouse &amp; Lakehouse Design</h4>
+                     <p>We architect and implement modern data warehouses and lakehouses on Snowflake, Databricks, BigQuery, and Redshift — giving your teams a single source of truth for analytics and reporting.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="cld-svc-card">
+                  <div class="cld-svc-img"><img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="Streaming Analytics"></div>
+                  <div class="cld-svc-body">
+                     <h4>Real-Time Streaming Analytics</h4>
+                     <p>We build real-time data streaming solutions using Apache Kafka, Spark Streaming, and Flink — enabling instant insights from live data for fraud detection, personalization, and operational monitoring.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="cld-svc-card">
+                  <div class="cld-svc-img"><img src="img/our culture/asian-business-team-discussing-project.jpg" alt="BI Dashboards"></div>
+                  <div class="cld-svc-body">
+                     <h4>Business Intelligence &amp; Dashboards</h4>
+                     <p>We design and build BI dashboards and self-service analytics platforms using Power BI, Tableau, and Looker — turning complex data into clear, actionable visualizations for every stakeholder.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+               <div class="cld-svc-card">
+                  <div class="cld-svc-img"><img src="img/our culture/designers-team-working-3d-model.jpg" alt="Data Governance"></div>
+                  <div class="cld-svc-body">
+                     <h4>Data Governance &amp; Quality</h4>
+                     <p>We implement data governance frameworks, data catalogues, lineage tracking, and quality monitoring — ensuring your data is accurate, consistent, compliant, and trusted across the organization.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+               <div class="cld-svc-card">
+                  <div class="cld-svc-img"><img src="img/our culture/team-meeting-renewable-energy-project.jpg" alt="Data Science"></div>
+                  <div class="cld-svc-body">
+                     <h4>Data Science &amp; Advanced Analytics</h4>
+                     <p>We apply statistical modelling, machine learning, and predictive analytics to your data — uncovering patterns, forecasting outcomes, and generating insights that drive strategic business decisions.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== TECHNOLOGIES ===== -->
+   <section class="svc-tools">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12 text-center wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">TECHNOLOGIES</p>
+               <h2 class="oc2-h2">Data platforms &amp; tools we work with</h2>
+            </div>
+         </div>
+         <div class="row justify-content-center">
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="svc-tool-card"><i class="fa fa-bolt" aria-hidden="true"></i><p>Apache Spark</p></div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="svc-tool-card"><i class="fa fa-exchange" aria-hidden="true"></i><p>Apache Kafka</p></div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="svc-tool-card"><i class="fa fa-snowflake-o" aria-hidden="true"></i><p>Snowflake / dbt</p></div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="svc-tool-card"><i class="fa fa-cubes" aria-hidden="true"></i><p>Databricks</p></div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+               <div class="svc-tool-card"><i class="fa fa-google" aria-hidden="true"></i><p>BigQuery / Redshift</p></div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+               <div class="svc-tool-card"><i class="fa fa-cogs" aria-hidden="true"></i><p>Airflow / dbt</p></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PROCESS ===== -->
+   <section class="svc-process">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-7 wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">OUR APPROACH</p>
+               <h2 class="oc2-h2">From raw data to<br>actionable business insights</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="svc-process-step">
+                  <div class="svc-process-num">01</div>
+                  <h4>Data Discovery</h4>
+                  <p>We audit your existing data sources, assess quality and completeness, map data flows, and identify gaps — giving you a clear picture of your data landscape before any engineering begins.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="svc-process-step">
+                  <div class="svc-process-num">02</div>
+                  <h4>Architecture Design</h4>
+                  <p>We design the right data architecture for your needs — choosing between batch, streaming, or lambda architectures, and selecting the optimal storage, processing, and orchestration tools.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="svc-process-step">
+                  <div class="svc-process-num">03</div>
+                  <h4>Pipeline Build &amp; Integration</h4>
+                  <p>We build and deploy data pipelines, integrate with your existing systems and cloud platforms, and establish CI/CD practices for data infrastructure — ensuring reliable, repeatable data delivery.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="svc-process-step">
+                  <div class="svc-process-num">04</div>
+                  <h4>Monitor &amp; Optimize</h4>
+                  <p>We implement data observability, set up alerting for pipeline failures and data quality issues, and continuously optimize performance and cost as your data volumes and complexity grow.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== WHY NIXORA ===== -->
+   <section class="svc-why">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1s">
+               <div class="svc-why-img">
+                  <img src="img/our culture/successful-business-people-with-ideas.jpg" class="img-fluid" alt="Data engineering team">
+               </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="oc2-label">WHY NIXORA</p>
+               <h2 class="oc2-h2">Data platforms that power<br>smarter decisions</h2>
+               <ul class="svc-why-list">
+                  <li>
+                     <i class="fa fa-check-circle" aria-hidden="true"></i>
+                     <div>
+                        <strong>End-to-end data ownership</strong>
+                        <p>We own the full data lifecycle — from ingestion and transformation to serving and governance — so you get a complete, production-ready data platform, not just a proof of concept.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle" aria-hidden="true"></i>
+                     <div>
+                        <strong>Business-outcome focus</strong>
+                        <p>Every pipeline and platform we build is tied to a measurable business outcome — faster reporting, better decisions, reduced costs, or new revenue streams. We don't build data infrastructure for its own sake.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle" aria-hidden="true"></i>
+                     <div>
+                        <strong>Cross-domain expertise</strong>
+                        <p>Our data engineers and scientists have deep experience across fintech, healthcare, retail, and logistics — bringing domain knowledge that makes data models more accurate and platforms more useful.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle" aria-hidden="true"></i>
+                     <div>
+                        <strong>Data governance built in</strong>
+                        <p>We embed data quality checks, lineage tracking, access controls, and compliance frameworks from day one — ensuring your data platform is trustworthy, auditable, and regulation-ready.</p>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CASE STUDIES ===== -->
+   <section class="svc-portfolio">
+      <div class="container">
+         <div class="row align-items-end mb-5">
+            <div class="col-lg-8 wow fadeInLeft" data-wow-duration="0.9s">
+               <p class="oc2-label">CASE STUDIES</p>
+               <h2 class="oc2-h2">Data engineering that moved the needle</h2>
+            </div>
+            <div class="col-lg-4 text-lg-right wow fadeInRight" data-wow-duration="0.9s">
+               <a href="#" class="wwd-outline-btn">View all case studies</a>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="svc-port-card">
+                  <div class="svc-port-img"><img src="img/our culture/futuristic-business-meeting-with-digital-table-cityscape-view.jpg" alt="Fintech"></div>
+                  <div class="svc-port-body">
+                     <span class="svc-port-tag">Fintech</span>
+                     <h4>Real-Time Transaction Data Platform</h4>
+                     <p>Built a Kafka-based streaming pipeline processing 2M+ transactions per day, enabling real-time fraud scoring and reducing detection latency from 5 minutes to under 200ms.</p>
+                     <a href="#" class="wwd-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="svc-port-card">
+                  <div class="svc-port-img"><img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="Retail"></div>
+                  <div class="svc-port-body">
+                     <span class="svc-port-tag">Retail</span>
+                     <h4>Unified Data Lakehouse for Retail Analytics</h4>
+                     <p>Migrated 15 siloed data sources into a Databricks lakehouse, reducing report generation time from 8 hours to 12 minutes and enabling self-service analytics for 200+ business users.</p>
+                     <a href="#" class="wwd-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="svc-port-card">
+                  <div class="svc-port-img"><img src="img/our culture/modern-equipped-computer-lab.jpg" alt="Healthcare"></div>
+                  <div class="svc-port-body">
+                     <span class="svc-port-tag">Healthcare</span>
+                     <h4>Clinical Data Pipeline for Population Health</h4>
+                     <p>Designed a HIPAA-compliant data pipeline ingesting EHR, claims, and lab data for 1M+ patients — enabling population health analytics that reduced hospital readmission rates by 18%.</p>
+                     <a href="#" class="wwd-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FAQ ===== -->
+   <section class="svc-faq">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <p class="oc2-label">FAQ</p>
+               <h2 class="oc2-h2">Common questions about data engineering</h2>
+               <p class="svc-body mt-3">Can't find your answer? <a href="contact.html" style="color:#fb383b;font-weight:600;">Contact us</a> and we'll get back to you within 24 hours.</p>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <div class="svc-faq-item">
+                  <button class="svc-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     What is the difference between data engineering and data science?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="svc-faq-a">
+                     <p>Data engineering focuses on building the infrastructure that collects, stores, and moves data reliably — pipelines, warehouses, and data platforms. Data science uses that data to extract insights and build models. Both are essential, and we provide both as an integrated service.</p>
+                  </div>
+               </div>
+               <div class="svc-faq-item">
+                  <button class="svc-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     How do you ensure data quality in pipelines?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="svc-faq-a">
+                     <p>We implement automated data quality checks at every stage — schema validation, null checks, statistical profiling, and anomaly detection — with alerting so your team is notified immediately when quality drops below defined thresholds.</p>
+                  </div>
+               </div>
+               <div class="svc-faq-item">
+                  <button class="svc-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     Can you work with our existing data infrastructure?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="svc-faq-a">
+                     <p>Yes. We regularly integrate with existing databases, cloud platforms, BI tools, and data sources. We assess your current stack and build on top of it where possible — avoiding unnecessary migrations and minimizing disruption to your existing workflows.</p>
+                  </div>
+               </div>
+               <div class="svc-faq-item">
+                  <button class="svc-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     How long does it take to build a data platform?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="svc-faq-a">
+                     <p>A focused pipeline or dashboard project can be delivered in 4–8 weeks. A full data platform with warehouse, pipelines, governance, and BI layer typically takes 3–6 months. We always start with a discovery phase to scope the work accurately before committing to a timeline.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== RELATED SERVICES ===== -->
+   <section class="svc-related">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12 text-center wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">RELATED SERVICES</p>
+               <h2 class="oc2-h2">Explore more from Nixora</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <a href="ai-ml-development-services.html" class="svc-related-card">
+                  <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                  <h4>AI &amp; ML Development Services</h4>
+                  <p>Custom machine learning models, predictive analytics, and MLOps pipelines built on your data.</p>
+                  <span class="wwd-link">Learn more <i class="fa fa-arrow-right"></i></span>
+               </a>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <a href="generative-ai-development-services.html" class="svc-related-card">
+                  <i class="fa fa-magic" aria-hidden="true"></i>
+                  <h4>Generative AI Development Services</h4>
+                  <p>LLM integration, RAG systems, and AI agents powered by your data infrastructure.</p>
+                  <span class="wwd-link">Learn more <i class="fa fa-arrow-right"></i></span>
+               </a>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <a href="cloud-consulting.html" class="svc-related-card">
+                  <i class="fa fa-cloud" aria-hidden="true"></i>
+                  <h4>Cloud Consulting &amp; Services</h4>
+                  <p>The scalable cloud infrastructure your data platforms need to run reliably and cost-efficiently.</p>
+                  <span class="wwd-link">Learn more <i class="fa fa-arrow-right"></i></span>
+               </a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can turn your data into a strategic asset.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box1">
+                  <a href="index.html"><img src="img/logo/white_logo.gif" alt="Nixora" class="footer-logo"></a>
+                  <p>We build data platforms and science solutions that turn raw data into actionable insights and competitive advantage.</p>
+                  <div class="social">
+                     <a href="#"><i class="fa fa-facebook"></i></a>
+                     <a href="#"><i class="fa fa-twitter"></i></a>
+                     <a href="#"><i class="fa fa-linkedin"></i></a>
+                     <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">SERVICES</p>
+                  <ul>
+                     <li><a href="custom-software.html">Custom Software</a></li>
+                     <li><a href="cloud-consulting.html">Cloud Consulting</a></li>
+                     <li><a href="ai-ml-development-services.html">AI &amp; ML Services</a></li>
+                     <li><a href="generative-ai-development-services.html">Generative AI</a></li>
+                     <li class="mb-0"><a href="data-engineering-services.html">Data Engineering</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                     <div class="txt"><span>66 Broklyn Street, New York. USA</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-envelope"></i></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><i class="fal fa-phone-alt"></i></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><i class="fal fa-envelope"></i></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col"><span>Copyright &copy; 2026 Nixora. All rights reserved.</span></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>new WOW().init();</script>
+</body>
+</html>

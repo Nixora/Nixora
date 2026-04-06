@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/softoweb.png">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Financial Services Software Development – Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .fin-hero {
+         position: relative;
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/1920x800-main-pages-featured-image-Financial-Services.webp');
+         background-size: cover;
+         background-position: center center;
+         background-repeat: no-repeat;
+         overflow: hidden;
+      }
+      .fin-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(100deg, rgba(10,10,20,.45) 45%, rgba(10,10,20,.2) 100%);
+      }
+      .fin-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 780px;
+         margin: 0 auto;
+         text-align: center;
+      }
+      .fin-hero-content .oc2-label { color: #fb383b; letter-spacing: .12em; font-size: .78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; }
+      .fin-hero-content h1 { font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 1.4rem; }
+      .fin-hero-content p { font-size: 1.05rem; color: rgba(255,255,255,.82); line-height: 1.75; margin-bottom: 2rem; }
+
+      /* -- Intro -- */
+      .fin-intro { padding: 90px 0; background: #fff; }
+      .fin-intro-h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 800; color: #0d0d1a; line-height: 1.25; }
+      .fin-body { font-size: 1rem; color: #555; line-height: 1.8; }
+
+      /* -- Stats -- */
+      .fin-stats { padding: 70px 0; background: #0d0d1a; }
+      .fin-stat-item { padding: 20px 10px; }
+      .fin-stat-num { font-size: 3rem; font-weight: 900; color: #fb383b; display: inline; }
+      .fin-stat-suffix { font-size: 2rem; font-weight: 800; color: #fb383b; }
+      .fin-stat-item p { color: rgba(255,255,255,.65); font-size: .9rem; margin-top: .5rem; line-height: 1.5; }
+
+      /* -- Services -- */
+      .fin-services { padding: 90px 0; background: #f8f9fb; }
+      .fin-svc-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,.06); height: 100%; transition: transform .25s, box-shadow .25s; margin-bottom: 28px; }
+      .fin-svc-card:hover { transform: translateY(-5px); box-shadow: 0 8px 32px rgba(0,0,0,.11); }
+      .fin-svc-icon { width: 52px; height: 52px; background: #fb383b; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; }
+      .fin-svc-icon i { color: #fff; font-size: 1.3rem; }
+      .fin-svc-body { padding: 28px; }
+      .fin-svc-body h4 { font-size: 1.05rem; font-weight: 700; color: #0d0d1a; margin-bottom: .7rem; }
+      .fin-svc-body p { font-size: .92rem; color: #666; line-height: 1.7; margin: 0; }
+
+      /* -- Why -- */
+      .fin-why { padding: 90px 0; background: #fff; }
+      .fin-why-img img { border-radius: 14px; width: 100%; object-fit: cover; max-height: 520px; }
+      .fin-why-list { list-style: none; padding: 0; margin: 2rem 0 0; }
+      .fin-why-list li { display: flex; gap: 16px; margin-bottom: 1.6rem; }
+      .fin-why-list li i { color: #fb383b; font-size: 1.2rem; margin-top: 3px; flex-shrink: 0; }
+      .fin-why-list li strong { display: block; font-size: .98rem; font-weight: 700; color: #0d0d1a; margin-bottom: .3rem; }
+      .fin-why-list li p { font-size: .9rem; color: #666; line-height: 1.65; margin: 0; }
+
+      /* -- Compliance strip -- */
+      .fin-compliance { padding: 60px 0; background: #0d0d1a; }
+      .fin-compliance h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; }
+      .fin-badge-row { display: flex; flex-wrap: wrap; gap: 12px; }
+      .fin-badge { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: 10px 20px; color: rgba(255,255,255,.8); font-size: .85rem; font-weight: 600; }
+
+      /* -- Process -- */
+      .fin-process { padding: 90px 0; background: #f8f9fb; }
+      .fin-process-step { padding: 32px 28px; background: #fff; border-radius: 12px; height: 100%; margin-bottom: 24px; border-top: 3px solid #fb383b; }
+      .fin-process-num { font-size: 2.8rem; font-weight: 900; color: #f0f0f0; line-height: 1; margin-bottom: .6rem; }
+      .fin-process-step h4 { font-size: 1rem; font-weight: 700; color: #0d0d1a; margin-bottom: .6rem; }
+      .fin-process-step p { font-size: .9rem; color: #666; line-height: 1.7; margin: 0; }
+
+      /* -- Case Studies -- */
+      .fin-cases { padding: 90px 0; background: #fff; }
+
+      /* -- FAQ -- */
+      .fin-faq { padding: 90px 0; background: #f8f9fb; }
+      .fin-faq-item { border-bottom: 1px solid #e8e8e8; margin-bottom: 0; }
+      .fin-faq-q { width: 100%; background: none; border: none; text-align: left; padding: 20px 0; font-size: .98rem; font-weight: 600; color: #0d0d1a; display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 12px; }
+      .fin-faq-q i { color: #fb383b; transition: transform .25s; flex-shrink: 0; }
+      .fin-faq-item.open .fin-faq-q i { transform: rotate(180deg); }
+      .fin-faq-a { display: none; padding: 0 0 18px; }
+      .fin-faq-item.open .fin-faq-a { display: block; }
+      .fin-faq-a p { font-size: .92rem; color: #666; line-height: 1.75; margin: 0; }
+
+      /* -- CTA -- */
+      .fin-cta { padding: 90px 0; background: linear-gradient(135deg, #0d0d1a 60%, #1a0a0a); text-align: center; }
+      .fin-cta h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: #fff; margin-bottom: 1rem; }
+      .fin-cta p { color: rgba(255,255,255,.7); font-size: 1rem; max-width: 540px; margin: 0 auto 2rem; line-height: 1.75; }
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/white_logo.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/black_logo.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/black_logo.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="fin-hero">
+      <div class="container">
+         <div class="fin-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <p class="oc2-label">FINANCIAL SERVICES</p>
+            <h1>Software that powers modern financial institutions</h1>
+            <p>We design and build secure, scalable financial software — from core banking platforms and payment systems to AI-driven risk engines — helping banks, fintechs, and insurers accelerate digital transformation.</p>
+            <a href="contact.html" class="oc2-btn-red">Talk to our team</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== INTRO ===== -->
+   <section class="fin-intro">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <h2 class="fin-intro-h2">Financial software development that drives real competitive advantage</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="fin-body">The financial sector is under constant pressure — from regulatory change and rising customer expectations to the threat of agile fintech disruptors. We help banks, investment firms, insurers, and payment providers build the software they need to compete: secure, compliant, and built for scale. Whether you're modernizing legacy infrastructure, launching a new digital product, or embedding AI into your risk and compliance workflows, our teams bring deep financial domain expertise alongside engineering excellence.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== STATS ===== -->
+   <section class="fin-stats">
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="fin-stat-item">
+                  <div class="fin-stat-num counter">200</div><span class="fin-stat-suffix">+</span>
+                  <p>financial software projects delivered globally</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="fin-stat-item">
+                  <div class="fin-stat-num counter">40</div><span class="fin-stat-suffix">%</span>
+                  <p>average reduction in compliance overhead after platform modernization</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="fin-stat-item">
+                  <div class="fin-stat-num counter">99</div><span class="fin-stat-suffix">.9%</span>
+                  <p>uptime SLA maintained across mission-critical payment systems</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="fin-stat-item">
+                  <div class="fin-stat-num counter">15</div><span class="fin-stat-suffix">+</span>
+                  <p>years of combined financial domain expertise across our engineering teams</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== SERVICES ===== -->
+   <section class="fin-services">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12 wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">WHAT WE BUILD</p>
+               <h2 class="oc2-h2">End-to-end financial software solutions</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="fin-svc-card">
+                  <div class="fin-svc-body">
+                     <div class="fin-svc-icon"><i class="fa fa-university"></i></div>
+                     <h4>Core Banking &amp; Neobank Platforms</h4>
+                     <p>We build modern core banking systems and neobank platforms — account management, ledgers, transaction processing, and customer onboarding — designed for cloud-native deployment and rapid product iteration.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="fin-svc-card">
+                  <div class="fin-svc-body">
+                     <div class="fin-svc-icon"><i class="fa fa-credit-card"></i></div>
+                     <h4>Payment Systems &amp; Processing</h4>
+                     <p>From real-time payment rails and card processing to open banking APIs and cross-border transfers, we engineer payment infrastructure that is fast, secure, and PCI-DSS compliant.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="fin-svc-card">
+                  <div class="fin-svc-body">
+                     <div class="fin-svc-icon"><i class="fa fa-shield"></i></div>
+                     <h4>Risk &amp; Fraud Management</h4>
+                     <p>We build AI-powered fraud detection engines, credit risk scoring models, and AML transaction monitoring systems that reduce false positives and catch threats in real time.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="fin-svc-card">
+                  <div class="fin-svc-body">
+                     <div class="fin-svc-icon"><i class="fa fa-line-chart"></i></div>
+                     <h4>Wealth &amp; Investment Platforms</h4>
+                     <p>We develop robo-advisory platforms, portfolio management tools, and trading systems — giving wealth managers and retail investors intuitive, data-rich experiences backed by robust execution engines.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+               <div class="fin-svc-card">
+                  <div class="fin-svc-body">
+                     <div class="fin-svc-icon"><i class="fa fa-file-text"></i></div>
+                     <h4>RegTech &amp; Compliance Automation</h4>
+                     <p>We build regulatory reporting tools, KYC/KYB automation, and compliance workflow platforms that reduce manual effort, minimize regulatory risk, and keep you audit-ready at all times.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+               <div class="fin-svc-card">
+                  <div class="fin-svc-body">
+                     <div class="fin-svc-icon"><i class="fa fa-mobile"></i></div>
+                     <h4>Digital Banking &amp; Mobile Apps</h4>
+                     <p>We design and build consumer and business banking apps — from onboarding and account management to personal finance tools and in-app payments — with a focus on UX, security, and conversion.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== COMPLIANCE STRIP ===== -->
+   <section class="fin-compliance">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-3 mb-4 mb-lg-0 wow fadeInLeft" data-wow-duration="0.9s">
+               <h3>Built for regulated environments</h3>
+               <p style="color:rgba(255,255,255,.55);font-size:.88rem;margin:0;">Every solution we deliver is designed with compliance and security at its core.</p>
+            </div>
+            <div class="col-lg-9 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="fin-badge-row">
+                  <span class="fin-badge">PCI-DSS</span>
+                  <span class="fin-badge">SOC 2 Type II</span>
+                  <span class="fin-badge">ISO 27001</span>
+                  <span class="fin-badge">GDPR</span>
+                  <span class="fin-badge">PSD2 / Open Banking</span>
+                  <span class="fin-badge">AML / KYC</span>
+                  <span class="fin-badge">Basel III</span>
+                  <span class="fin-badge">MiFID II</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== WHY NIXORA ===== -->
+   <section class="fin-why">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1s">
+               <div class="fin-why-img">
+                  <img src="img/Collaborating on code in modern office.png" class="img-fluid" alt="Financial software team">
+               </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="oc2-label">WHY NIXORA</p>
+               <h2 class="oc2-h2">Engineering partners who understand finance</h2>
+               <ul class="fin-why-list">
+                  <li>
+                     <i class="fa fa-check-circle"></i>
+                     <div>
+                        <strong>Deep financial domain knowledge</strong>
+                        <p>Our engineers and architects have hands-on experience in banking, capital markets, insurance, and payments — so we speak your language and understand the constraints you operate under.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle"></i>
+                     <div>
+                        <strong>Security-first engineering</strong>
+                        <p>Security is not an afterthought. We embed threat modelling, penetration testing, and secure coding practices into every sprint — protecting your customers and your reputation.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle"></i>
+                     <div>
+                        <strong>Compliance by design</strong>
+                        <p>We build regulatory requirements into the architecture from day one — reducing the cost and risk of retrofitting compliance controls onto systems that weren't designed for them.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle"></i>
+                     <div>
+                        <strong>Scalable, cloud-native architecture</strong>
+                        <p>We design systems that scale with your transaction volumes and user growth — using microservices, event-driven architecture, and cloud-native patterns proven in high-throughput financial environments.</p>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PROCESS ===== -->
+   <section class="fin-process">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-7 wow fadeInUp" data-wow-duration="0.9s">
+               <p class="oc2-label">OUR APPROACH</p>
+               <h2 class="oc2-h2">How we deliver financial software<br>that works in the real world</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="fin-process-step">
+                  <div class="fin-process-num">01</div>
+                  <h4>Discovery &amp; Domain Mapping</h4>
+                  <p>We immerse ourselves in your business — understanding your regulatory environment, existing systems, user journeys, and strategic goals before writing a single line of code.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="fin-process-step">
+                  <div class="fin-process-num">02</div>
+                  <h4>Architecture &amp; Security Design</h4>
+                  <p>We design a secure, scalable architecture — defining data flows, integration points, compliance controls, and the technology stack best suited to your performance and regulatory requirements.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="fin-process-step">
+                  <div class="fin-process-num">03</div>
+                  <h4>Agile Build &amp; Integration</h4>
+                  <p>We build in short, iterative sprints with continuous delivery — integrating with your core systems, third-party APIs, and cloud infrastructure while maintaining full test coverage and code quality.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="fin-process-step">
+                  <div class="fin-process-num">04</div>
+                  <h4>Launch, Monitor &amp; Evolve</h4>
+                  <p>We support go-live, set up observability and alerting, and stay engaged post-launch — continuously improving performance, adding features, and adapting to regulatory changes as they arise.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CASE STUDIES ===== -->
+   <section class="fin-cases">
+      <div class="container">
+         <div class="row align-items-end mb-5">
+            <div class="col-lg-8 wow fadeInLeft" data-wow-duration="0.9s">
+               <p class="oc2-label">CASE STUDIES</p>
+               <h2 class="oc2-h2">Financial software that delivered results</h2>
+            </div>
+            <div class="col-lg-4 text-lg-right wow fadeInRight" data-wow-duration="0.9s">
+               <a href="#" class="wwd-outline-btn">View all case studies</a>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="svc-port-card">
+                  <div class="svc-port-img"><img src="img/our culture/futuristic-business-meeting-with-digital-table-cityscape-view.jpg" alt="Digital Banking"></div>
+                  <div class="svc-port-body">
+                     <span class="svc-port-tag">Neobank</span>
+                     <h4>Digital Banking Platform Launch</h4>
+                     <p>Built a cloud-native core banking platform from scratch for a European neobank — onboarding 250,000 customers in the first 6 months with 99.98% uptime and full PSD2 compliance.</p>
+                     <a href="#" class="wwd-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="svc-port-card">
+                  <div class="svc-port-img"><img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="Fraud Detection"></div>
+                  <div class="svc-port-body">
+                     <span class="svc-port-tag">Payments</span>
+                     <h4>Real-Time Fraud Detection Engine</h4>
+                     <p>Developed an ML-powered fraud scoring system processing 5M+ transactions daily — reducing fraud losses by 62% and cutting false positive rates by 45% for a global payment processor.</p>
+                     <a href="#" class="wwd-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="svc-port-card">
+                  <div class="svc-port-img"><img src="img/our culture/modern-equipped-computer-lab.jpg" alt="Wealth Management"></div>
+                  <div class="svc-port-body">
+                     <span class="svc-port-tag">Wealth Management</span>
+                     <h4>Robo-Advisory &amp; Portfolio Platform</h4>
+                     <p>Designed and built a robo-advisory platform managing $2B+ in AUM — with automated rebalancing, tax-loss harvesting, and a mobile-first client experience that increased AUM by 38% in year one.</p>
+                     <a href="#" class="wwd-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FAQ ===== -->
+   <section class="fin-faq">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <p class="oc2-label">FAQ</p>
+               <h2 class="oc2-h2">Common questions about financial software development</h2>
+               <p class="fin-body mt-3">Can't find your answer? <a href="contact.html" style="color:#fb383b;font-weight:600;">Contact us</a> and we'll get back to you within 24 hours.</p>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <div class="fin-faq-item">
+                  <button class="fin-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     How do you handle regulatory compliance in financial software?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="fin-faq-a">
+                     <p>We embed compliance requirements into the architecture from the start — not as an afterthought. Our teams are familiar with PCI-DSS, PSD2, GDPR, AML, and MiFID II requirements, and we work with your compliance and legal teams to ensure every system we build meets the standards you operate under.</p>
+                  </div>
+               </div>
+               <div class="fin-faq-item">
+                  <button class="fin-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     Can you integrate with our existing core banking system?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="fin-faq-a">
+                     <p>Yes. We have experience integrating with major core banking platforms including Temenos, Finastra, Mambu, and legacy in-house systems. We use API-first and event-driven integration patterns to minimize disruption to your existing operations while enabling new digital capabilities.</p>
+                  </div>
+               </div>
+               <div class="fin-faq-item">
+                  <button class="fin-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     How do you ensure the security of financial applications?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="fin-faq-a">
+                     <p>Security is built into every stage of our development process. We conduct threat modelling during design, apply OWASP secure coding standards during development, run automated SAST/DAST scanning in CI/CD, and perform penetration testing before every major release. We also support ongoing security monitoring post-launch.</p>
+                  </div>
+               </div>
+               <div class="fin-faq-item">
+                  <button class="fin-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                     What engagement models do you offer?
+                     <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="fin-faq-a">
+                     <p>We offer dedicated development teams that embed with your organization, project-based delivery for defined scope, and staff augmentation to extend your existing engineering capacity. We'll recommend the model that best fits your timeline, budget, and internal capabilities.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="fin-cta">
+      <div class="container wow fadeInUp" data-wow-duration="0.9s">
+         <h2>Ready to build financial software that scales?</h2>
+         <p>Tell us about your project and we'll put together a team with the right financial domain expertise to deliver it.</p>
+         <a href="contact.html" class="oc2-btn-red">Get in touch</a>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box1">
+                  <a href="index.html"><img src="img/logo/white_logo.gif" alt="Nixora" class="footer-logo"></a>
+                  <p>We build secure, scalable financial software that helps banks, fintechs, and insurers compete in a digital-first world.</p>
+                  <div class="social">
+                     <a href="#"><i class="fa fa-facebook"></i></a>
+                     <a href="#"><i class="fa fa-twitter"></i></a>
+                     <a href="#"><i class="fa fa-linkedin"></i></a>
+                     <a href="#"><i class="fa fa-instagram"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">SERVICES</p>
+                  <ul>
+                     <li><a href="custom-software.html">Custom Software</a></li>
+                     <li><a href="cloud-consulting.html">Cloud Consulting</a></li>
+                     <li><a href="ai-ml-development-services.html">AI &amp; ML Services</a></li>
+                     <li><a href="generative-ai-development-services.html">Generative AI</a></li>
+                     <li class="mb-0"><a href="data-engineering-services.html">Data Engineering</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                     <div class="txt"><span>66 Broklyn Street, New York. USA</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><i class="fal fa-envelope"></i></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><i class="fal fa-phone-alt"></i></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><i class="fal fa-envelope"></i></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col"><span>Copyright &copy; 2026 Nixora. All rights reserved.</span></div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>new WOW().init();</script>
+   <script>
+      $('.counter').counterUp({ delay: 10, time: 1200 });
+   </script>
+</body>
+</html>
