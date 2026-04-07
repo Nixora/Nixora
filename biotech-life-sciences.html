@@ -1,0 +1,829 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/logo/7.gif">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Biotech &amp; Life Sciences Software Development Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .bio-hero {
+         position: relative;
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/1920x800-featured-image-biotechnology-healthcare-software.webp');
+         background-size: cover;
+         background-position: center center;
+         background-repeat: no-repeat;
+         overflow: hidden;
+      }
+      .bio-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(120deg, rgba(4,18,36,.65) 40%, rgba(4,18,36,.35) 100%);
+      }
+      .bio-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 800px;
+         margin: 0 auto;
+      }
+      .bio-hero-content .bio-label {
+         display: inline-block;
+         color: #fb383b;
+         letter-spacing: .14em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: 1.2rem;
+         border: 1px solid rgba(251,56,59,.4);
+         padding: 5px 16px;
+         border-radius: 20px;
+      }
+      .bio-hero-content h1 {
+         font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+         font-weight: 800;
+         color: #fff;
+         line-height: 1.12;
+         margin-bottom: 1.4rem;
+      }
+      .bio-hero-content p {
+         font-size: 1.08rem;
+         color: rgba(255,255,255,.82);
+         line-height: 1.78;
+         margin-bottom: 2.2rem;
+         max-width: 640px;
+         margin-left: auto;
+         margin-right: auto;
+      }
+      .bio-hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+      .bio-btn-primary {
+         background: #fb383b;
+         color: #fff;
+         border: none;
+         padding: 14px 32px;
+         border-radius: 6px;
+         font-size: .95rem;
+         font-weight: 700;
+         text-decoration: none;
+         transition: background .2s, transform .2s;
+         display: inline-block;
+      }
+      .bio-btn-primary:hover { background: #d42e31; color: #fff; transform: translateY(-2px); text-decoration: none; }
+      .bio-btn-outline {
+         background: transparent;
+         color: #fff;
+         border: 2px solid rgba(255,255,255,.55);
+         padding: 13px 30px;
+         border-radius: 6px;
+         font-size: .95rem;
+         font-weight: 600;
+         text-decoration: none;
+         transition: border-color .2s, background .2s;
+         display: inline-block;
+      }
+      .bio-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); color: #fff; text-decoration: none; }
+
+      /* -- Shared label -- */
+      .bio-section-label {
+         color: #fb383b;
+         letter-spacing: .13em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: .9rem;
+         display: block;
+      }
+      .bio-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: #0d0d1a; line-height: 1.22; }
+      .bio-body-text { font-size: 1rem; color: #555; line-height: 1.82; }
+
+      /* -- Intro -- */
+      .bio-intro { padding: 96px 0; background: #fff; }
+
+      /* -- Stats -- */
+      .bio-stats { padding: 72px 0; background: #041224; }
+      .bio-stat-item { padding: 20px 12px; }
+      .bio-stat-num { font-size: 3.2rem; font-weight: 900; color: #fb383b; display: inline; }
+      .bio-stat-suffix { font-size: 2.2rem; font-weight: 800; color: #fb383b; }
+      .bio-stat-item p { color: rgba(255,255,255,.6); font-size: .88rem; margin-top: .6rem; line-height: 1.55; }
+
+      /* -- Services -- */
+      .bio-services { padding: 96px 0; background: #f5f7fa; }
+      .bio-svc-card {
+         background: #fff;
+         border-radius: 14px;
+         box-shadow: 0 2px 22px rgba(0,0,0,.06);
+         width: 100%;
+         transition: transform .25s, box-shadow .25s;
+         margin-bottom: 28px;
+         border-bottom: 3px solid transparent;
+         display: flex;
+         flex-direction: column;
+      }
+      .bio-svc-card:hover { transform: translateY(-6px); box-shadow: 0 10px 36px rgba(0,0,0,.11); border-bottom-color: #fb383b; }
+      .bio-svc-icon {
+         width: 54px; height: 54px;
+         background: linear-gradient(135deg, #fb383b, #c0272a);
+         border-radius: 12px;
+         display: flex; align-items: center; justify-content: center;
+         margin-bottom: 1.2rem;
+      }
+      .bio-svc-icon i { color: #fff; font-size: 1.35rem; }
+      .bio-svc-body { padding: 30px; }
+      .bio-svc-body h4 { font-size: 1.05rem; font-weight: 700; color: #0d0d1a; margin-bottom: .75rem; }
+      .bio-svc-body p { font-size: .91rem; color: #666; line-height: 1.72; margin: 0; }
+
+      /* -- Compliance strip -- */
+      .bio-compliance { padding: 64px 0; background: #041224; }
+      .bio-compliance h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
+      .bio-compliance .sub { color: rgba(255,255,255,.5); font-size: .87rem; margin: 0 0 1.6rem; }
+      .bio-badge-row { display: flex; flex-wrap: wrap; gap: 10px; }
+      .bio-badge {
+         background: rgba(255,255,255,.06);
+         border: 1px solid rgba(255,255,255,.14);
+         border-radius: 8px;
+         padding: 9px 18px;
+         color: rgba(255,255,255,.82);
+         font-size: .83rem;
+         font-weight: 600;
+         letter-spacing: .02em;
+      }
+
+      /* -- Why -- */
+      .bio-why { padding: 96px 0; background: #fff; }
+      .bio-why-img img { border-radius: 16px; width: 100%; object-fit: cover; max-height: 540px; }
+      .bio-why-list { list-style: none; padding: 0; margin: 2rem 0 0; }
+      .bio-why-list li { display: flex; gap: 16px; margin-bottom: 1.7rem; }
+      .bio-why-list li .bio-check { color: #fb383b; font-size: 1.15rem; margin-top: 3px; flex-shrink: 0; }
+      .bio-why-list li strong { display: block; font-size: .97rem; font-weight: 700; color: #0d0d1a; margin-bottom: .3rem; }
+      .bio-why-list li p { font-size: .9rem; color: #666; line-height: 1.68; margin: 0; }
+
+      /* -- Process -- */
+      .bio-process { padding: 96px 0; background: #f5f7fa; }
+      .bio-process-step {
+         padding: 34px 28px;
+         background: #fff;
+         border-radius: 14px;
+         height: 100%;
+         margin-bottom: 24px;
+         border-top: 3px solid #fb383b;
+         box-shadow: 0 2px 16px rgba(0,0,0,.05);
+         transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, background .3s;
+      }
+      .bio-process-step:hover {
+         transform: translateY(-8px);
+         box-shadow: 0 20px 48px rgba(251,56,59,.12);
+         background: #fff;
+      }
+      .bio-process-num {
+         font-size: 3rem;
+         font-weight: 900;
+         color: #f0f0f0;
+         line-height: 1;
+         margin-bottom: .7rem;
+         transition: color .3s, transform .3s;
+      }
+      .bio-process-step:hover .bio-process-num {
+         color: rgba(251,56,59,.2);
+         transform: scale(1.08);
+      }
+      .bio-process-step h4 { font-size: 1rem; font-weight: 700; color: #0d0d1a; margin-bottom: .65rem; transition: color .3s; }
+      .bio-process-step:hover h4 { color: #fb383b; }
+      .bio-process-step p { font-size: .9rem; color: #666; line-height: 1.72; margin: 0; }
+
+      /* -- Case Studies -- */
+      .bio-cases { padding: 96px 0; background: #fff; }
+      .bio-case-card {
+         border-radius: 14px;
+         overflow: hidden;
+         box-shadow: 0 2px 20px rgba(0,0,0,.07);
+         height: 100%;
+         margin-bottom: 28px;
+         transition: transform .25s, box-shadow .25s;
+         background: #fff;
+      }
+      .bio-case-card:hover { transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,.12); }
+      .bio-case-img { height: 210px; overflow: hidden; }
+      .bio-case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+      .bio-case-card:hover .bio-case-img img { transform: scale(1.05); }
+      .bio-case-body { padding: 26px; }
+      .bio-case-tag {
+         display: inline-block;
+         background: rgba(251,56,59,.1);
+         color: #fb383b;
+         font-size: .75rem;
+         font-weight: 700;
+         letter-spacing: .08em;
+         text-transform: uppercase;
+         padding: 4px 12px;
+         border-radius: 20px;
+         margin-bottom: .9rem;
+      }
+      .bio-case-body h4 { font-size: 1.02rem; font-weight: 700; color: #0d0d1a; margin-bottom: .65rem; }
+      .bio-case-body p { font-size: .9rem; color: #666; line-height: 1.7; margin-bottom: 1rem; }
+      .bio-case-link { color: #fb383b; font-size: .88rem; font-weight: 600; text-decoration: none; }
+      .bio-case-link:hover { text-decoration: underline; color: #d42e31; }
+
+      /* -- FAQ -- */
+      .bio-faq { padding: 96px 0; background: #f5f7fa; }
+      .bio-faq-item { border-bottom: 1px solid #e5e8ee; }
+      .bio-faq-q {
+         width: 100%; background: none; border: none;
+         text-align: left; padding: 22px 0;
+         font-size: .97rem; font-weight: 600; color: #0d0d1a;
+         display: flex; justify-content: space-between; align-items: center;
+         cursor: pointer; gap: 12px;
+      }
+      .bio-faq-q i { color: #fb383b; transition: transform .25s; flex-shrink: 0; }
+      .bio-faq-item.open .bio-faq-q i { transform: rotate(180deg); }
+      .bio-faq-a { display: none; padding: 0 0 20px; }
+      .bio-faq-item.open .bio-faq-a { display: block; }
+      .bio-faq-a p { font-size: .92rem; color: #666; line-height: 1.78; margin: 0; }
+
+
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/7.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/7.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/7.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item active" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="bio-hero" style="background-image:url('img/1920x800-featured-image-biotechnology-healthcare-software.webp');background-size:cover;background-position:center top;">
+      <div class="container">
+         <div class="bio-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <span class="bio-label">Biotech &amp; Life Sciences</span>
+            <h1>Software that accelerates discovery<br>and improves lives</h1>
+            <p>We empower biotech companies, pharma firms, and life sciences organizations with AI-driven software from R&amp;D platforms and clinical data systems to regulatory compliance tools and digital health solutions.</p>
+            <div class="bio-hero-btns">
+               <a href="contact.html" class="bio-btn-primary">Talk to our team</a>
+               <a href="#bio-services" class="bio-btn-outline">Explore solutions</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== INTRO ===== -->
+   <section class="bio-intro">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="1s">
+               <span class="bio-section-label">The Opportunity</span>
+               <h2 class="bio-h2">Turning scientific breakthroughs into scalable digital products</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <p class="bio-body-text">The life sciences industry is being transformed by data, AI, and digital technology from how drugs are discovered and trialled to how patients are monitored and treated. We help biotech startups, pharmaceutical companies, medical device manufacturers, and healthcare providers build the software they need to move faster, stay compliant, and deliver better outcomes. Our teams combine deep life sciences domain knowledge with engineering excellence to build systems that work in regulated, high-stakes environments.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== STATS ===== -->
+   <section class="bio-stats">
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="bio-stat-item">
+                  <span class="bio-stat-num">150</span><span class="bio-stat-suffix">+</span>
+                  <p>life sciences and biotech software projects delivered</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="bio-stat-item">
+                  <span class="bio-stat-num">35</span><span class="bio-stat-suffix">%</span>
+                  <p>average reduction in R&amp;D cycle time through digital tooling</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="bio-stat-item">
+                  <span class="bio-stat-num">12</span><span class="bio-stat-suffix">+</span>
+                  <p>FDA and EMA regulated systems successfully delivered</p>
+               </div>
+            </div>
+            <div class="col-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="bio-stat-item">
+                  <span class="bio-stat-num">98</span><span class="bio-stat-suffix">%</span>
+                  <p>of clients report improved data quality after platform implementation</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== SERVICES ===== -->
+   <section class="bio-services" id="bio-services">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-8 wow fadeInUp" data-wow-duration="0.9s">
+               <span class="bio-section-label">What We Build</span>
+               <h2 class="bio-h2">End-to-end life sciences software solutions</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="bio-svc-card">
+                  <div class="bio-svc-body">
+                     <div class="bio-svc-icon"><i class="fa fa-flask"></i></div>
+                     <h4>R&amp;D Data Platforms</h4>
+                     <p>We build laboratory information management systems (LIMS), electronic lab notebooks (ELN), and research data platforms that centralize experimental data, accelerate analysis, and improve reproducibility across your R&amp;D organization.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="bio-svc-card">
+                  <div class="bio-svc-body">
+                     <div class="bio-svc-icon"><i class="fa fa-stethoscope"></i></div>
+                     <h4>Clinical Trial Management</h4>
+                     <p>We develop clinical trial management systems (CTMS), eClinical platforms, and patient data collection tools streamlining trial operations, improving data integrity, and accelerating time to regulatory submission.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="bio-svc-card">
+                  <div class="bio-svc-body">
+                     <div class="bio-svc-icon"><i class="fa fa-heartbeat"></i></div>
+                     <h4>Digital Health &amp; Patient Platforms</h4>
+                     <p>We design and build patient-facing apps, remote monitoring platforms, and connected health solutions enabling continuous care, improving patient engagement, and generating real-world evidence at scale.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="bio-svc-card">
+                  <div class="bio-svc-body">
+                     <div class="bio-svc-icon"><i class="fa fa-bar-chart"></i></div>
+                     <h4>Bioinformatics &amp; AI/ML Solutions</h4>
+                     <p>We build AI-powered drug discovery tools, genomic data analysis pipelines, and predictive models that help researchers identify targets, predict outcomes, and accelerate the path from molecule to market.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.4s">
+               <div class="bio-svc-card">
+                  <div class="bio-svc-body">
+                     <div class="bio-svc-icon"><i class="fa fa-file-text-o"></i></div>
+                     <h4>Regulatory &amp; Compliance Systems</h4>
+                     <p>We build regulatory submission tools, quality management systems (QMS), and audit trail platforms that keep you compliant with FDA 21 CFR Part 11, EU Annex 11, HIPAA, and GDPR requirements.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.5s">
+               <div class="bio-svc-card">
+                  <div class="bio-svc-body">
+                     <div class="bio-svc-icon"><i class="fa fa-cogs"></i></div>
+                     <h4>Manufacturing &amp; Supply Chain Software</h4>
+                     <p>We develop manufacturing execution systems (MES), batch record management tools, and supply chain platforms for pharmaceutical and biotech manufacturers ensuring traceability, quality, and GMP compliance.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== COMPLIANCE STRIP ===== -->
+   <section class="bio-compliance">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-3 mb-4 mb-lg-0 wow fadeInLeft" data-wow-duration="0.9s">
+               <h3>Built for regulated life sciences environments</h3>
+               <p class="sub">Every system we deliver is designed with validation, traceability, and compliance at its core.</p>
+            </div>
+            <div class="col-lg-9 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="bio-badge-row">
+                  <span class="bio-badge">FDA 21 CFR Part 11</span>
+                  <span class="bio-badge">EU Annex 11</span>
+                  <span class="bio-badge">HIPAA</span>
+                  <span class="bio-badge">GDPR</span>
+                  <span class="bio-badge">GMP / GLP / GCP</span>
+                  <span class="bio-badge">ISO 13485</span>
+                  <span class="bio-badge">IEC 62304</span>
+                  <span class="bio-badge">SOC 2 Type II</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== WHY NIXORA ===== -->
+   <section class="bio-why">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1s">
+               <div class="bio-why-img">
+                  <img src="img/Modern data science lab in action.png" class="img-fluid" alt="Life sciences software team at work">
+               </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 wow fadeInRight" data-wow-duration="1s">
+               <span class="bio-section-label">Why Nixora</span>
+               <h2 class="bio-h2">Engineering partners who understand life sciences</h2>
+               <ul class="bio-why-list">
+                  <li>
+                     <i class="fa fa-check-circle bio-check"></i>
+                     <div>
+                        <strong>Deep life sciences domain expertise</strong>
+                        <p>Our engineers and architects have hands-on experience in pharma, biotech, medical devices, and clinical research so we understand the scientific, regulatory, and operational constraints you work within.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle bio-check"></i>
+                     <div>
+                        <strong>Validation-ready software delivery</strong>
+                        <p>We follow GAMP 5 guidelines and deliver full IQ/OQ/PQ validation documentation so your systems are audit-ready from day one and regulatory submissions go smoothly.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle bio-check"></i>
+                     <div>
+                        <strong>AI and data science at the core</strong>
+                        <p>We embed machine learning, predictive analytics, and bioinformatics capabilities into the platforms we build helping your scientists extract more insight from data and make better decisions faster.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <i class="fa fa-check-circle bio-check"></i>
+                     <div>
+                        <strong>Security and data integrity by design</strong>
+                        <p>We build systems with role-based access, full audit trails, encryption at rest and in transit, and data integrity controls that meet the strictest regulatory standards in the industry.</p>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PROCESS ===== -->
+   <section class="bio-process">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-lg-7 wow fadeInUp" data-wow-duration="0.9s">
+               <span class="bio-section-label">Our Approach</span>
+               <h2 class="bio-h2">How we deliver life sciences software<br>that passes validation and scales</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="bio-process-step">
+                  <div class="bio-process-num">01</div>
+                  <h4>Discovery &amp; Requirements</h4>
+                  <p>We work with your scientific, clinical, and regulatory teams to define user requirements, map workflows, and identify compliance obligations creating a solid foundation before any development begins.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="bio-process-step">
+                  <div class="bio-process-num">02</div>
+                  <h4>Architecture &amp; Validation Planning</h4>
+                  <p>We design a secure, scalable architecture and produce a validation master plan defining the system design, data flows, risk assessment, and validation strategy aligned to your regulatory framework.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="bio-process-step">
+                  <div class="bio-process-num">03</div>
+                  <h4>Agile Build &amp; Testing</h4>
+                  <p>We build in iterative sprints with continuous integration, automated testing, and traceability from requirements to test cases ensuring every feature is verified and documented throughout development.</p>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+               <div class="bio-process-step">
+                  <div class="bio-process-num">04</div>
+                  <h4>Validation, Launch &amp; Support</h4>
+                  <p>We execute IQ/OQ/PQ validation protocols, support regulatory review, and provide ongoing maintenance keeping your systems compliant, performant, and evolving as your science and regulations change.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CASE STUDIES ===== -->
+   <section class="bio-cases">
+      <div class="container">
+         <div class="row align-items-end mb-5">
+            <div class="col-lg-8 wow fadeInLeft" data-wow-duration="0.9s">
+               <span class="bio-section-label">Case Studies</span>
+               <h2 class="bio-h2">Life sciences software that moved the needle</h2>
+            </div>
+            <div class="col-lg-4 text-lg-right wow fadeInRight" data-wow-duration="0.9s">
+               <a href="#" class="wwd-outline-btn">View all case studies</a>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="bio-case-card">
+                  <div class="bio-case-img">
+                     <img src="img/our culture/modern-equipped-computer-lab.jpg" alt="AI Drug Discovery Platform">
+                  </div>
+                  <div class="bio-case-body">
+                     <span class="bio-case-tag">Pharma</span>
+                     <h4>AI-Powered Drug Discovery Platform</h4>
+                     <p>Built an ML platform that screens 10M+ molecular compounds per day reducing early-stage drug candidate identification time by 60% for a top-10 global pharmaceutical company.</p>
+                     <a href="#" class="bio-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="bio-case-card">
+                  <div class="bio-case-img">
+                     <img src="img/our culture/corporate-workers-brainstorming-together.jpg" alt="eClinical Trial Management">
+                  </div>
+                  <div class="bio-case-body">
+                     <span class="bio-case-tag">Biotech</span>
+                     <h4>eClinical Trial Management System</h4>
+                     <p>Developed a fully validated CTMS managing 40+ concurrent trials across 15 countries cutting data entry errors by 72% and reducing time to database lock by 3 weeks per trial.</p>
+                     <a href="#" class="bio-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp d-flex" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="bio-case-card">
+                  <div class="bio-case-img">
+                     <img src="img/our culture/designers-team-working-3d-model.jpg" alt="Digital Health Platform">
+                  </div>
+                  <div class="bio-case-body">
+                     <span class="bio-case-tag">Digital Health</span>
+                     <h4>Remote Patient Monitoring Platform</h4>
+                     <p>Launched a connected health platform for a medical device company monitoring 50,000+ patients in real time, reducing hospital readmissions by 28% and improving medication adherence by 41%.</p>
+                     <a href="#" class="bio-case-link">Read case study <i class="fa fa-arrow-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FAQ ===== -->
+   <section class="bio-faq">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-duration="0.9s">
+               <span class="bio-section-label">FAQ</span>
+               <h2 class="bio-h2">Common questions about our life sciences software services</h2>
+            </div>
+            <div class="col-lg-6 offset-lg-1 wow fadeInRight" data-wow-duration="0.9s">
+               <div class="bio-faq-item">
+                  <button class="bio-faq-q" aria-expanded="false">
+                     What types of life sciences companies do you work with?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="bio-faq-a">
+                     <p>We work with the full spectrum of life sciences organizations from early-stage biotech startups and CROs to large pharmaceutical companies, medical device manufacturers, and digital health providers. Our teams adapt to your stage, scale, and regulatory context.</p>
+                  </div>
+               </div>
+               <div class="bio-faq-item">
+                  <button class="bio-faq-q" aria-expanded="false">
+                     Can you deliver FDA 21 CFR Part 11 and EU Annex 11 compliant systems?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="bio-faq-a">
+                     <p>Yes. We have extensive experience delivering validated systems under FDA 21 CFR Part 11 and EU Annex 11 requirements. We produce full validation documentation including URS, FS, DS, IQ, OQ, and PQ protocols and we work closely with your QA team throughout the process.</p>
+                  </div>
+               </div>
+               <div class="bio-faq-item">
+                  <button class="bio-faq-q" aria-expanded="false">
+                     How do you handle sensitive patient and clinical data?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="bio-faq-a">
+                     <p>Data security and privacy are built into every system we deliver. We implement role-based access controls, end-to-end encryption, full audit trails, and data residency controls ensuring compliance with HIPAA, GDPR, and any applicable local regulations from the ground up.</p>
+                  </div>
+               </div>
+               <div class="bio-faq-item">
+                  <button class="bio-faq-q" aria-expanded="false">
+                     Do you integrate with existing laboratory and clinical systems?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="bio-faq-a">
+                     <p>Absolutely. We have deep experience integrating with instruments, EHR/EMR systems, EDC platforms, ERP systems, and third-party APIs using HL7 FHIR, DICOM, and custom integration patterns. We design integrations that are robust, auditable, and maintainable.</p>
+                  </div>
+               </div>
+               <div class="bio-faq-item">
+                  <button class="bio-faq-q" aria-expanded="false">
+                     What engagement models do you offer?
+                     <i class="fa fa-chevron-down"></i>
+                  </button>
+                  <div class="bio-faq-a">
+                     <p>We offer flexible engagement models including dedicated development teams, project-based delivery, and staff augmentation. Whether you need a full product team or specialist engineers to complement your in-house capability, we can structure an engagement that fits your needs and timeline.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can accelerate your digital transformation.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box">
+                  <a href="index.html" class="logo">NIXORA</a>
+                  <p class="about">A global software engineering company helping businesses accelerate digital transformation and growth.</p>
+                  <div class="social-links">
+                     <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                     <a href="#" aria-label="Twitter/X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                     <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                     <a href="#" class="mr-0" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">WHO WE ARE</p>
+                  <ul>
+                     <li><a href="our-company.html">Our Company</a></li>
+                     <li><a href="our-culture.html">Our Culture</a></li>
+                     <li><a href="sustainability.html">Sustainability</a></li>
+                     <li class="mb-0"><a href="careers.html" target="_blank">Careers</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                     <div class="txt"><span>Calle Gran Via 28, Madrid, Spain</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col">
+                  <span>Copyright &copy; 2026 Nixora. All rights reserved.</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      new WOW().init();
+      $('.counter').counterUp({ delay: 10, time: 1200 });
+      document.querySelectorAll('.bio-faq-q').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            var item = this.closest('.bio-faq-item');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.bio-faq-item.open').forEach(function(el) {
+               el.classList.remove('open');
+               el.querySelector('.bio-faq-q').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) { item.classList.add('open'); this.setAttribute('aria-expanded', 'true'); }
+         });
+      });
+   </script>
+</body>
+</html>

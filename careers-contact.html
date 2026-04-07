@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="img/logo/7.gif">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <title>Contact – Nixora Careers</title>
+   <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Inter',sans-serif;color:#1a1a2e;background:#fff;}
+      a{text-decoration:none;}
+      .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+      .car-nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;padding:0 40px;height:70px;background:transparent;transition:background .3s,box-shadow .3s;}.car-nav.scrolled{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.1);}.car-nav-logo-text{font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;flex-shrink:0;}.car-nav-logo-img{display:none;height:32px;width:auto;flex-shrink:0;}.car-nav.scrolled .car-nav-logo-text{display:none;}.car-nav.scrolled .car-nav-logo-img{display:block;}.car-nav-links{display:flex;align-items:center;gap:28px;position:absolute;left:50%;transform:translateX(-50%);}
+      .car-nav-right{display:flex;align-items:center;gap:28px;}
+      .car-nav-link{color:#555;font-size:.9rem;font-weight:600;transition:color .2s;position:relative;}
+      .car-nav-link::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:#fb383b;transform:scaleX(0);transition:transform .25s;}
+      .car-nav-link:hover{color:#fb383b;}
+      .car-nav-link:hover::after,.car-nav-link.active::after{transform:scaleX(1);}
+      .car-nav-link.active{color:#fb383b;}
+
+      /* HERO */
+      .contact-hero{background:#1a1a2e;padding:120px 0 80px;text-align:center;}
+      .contact-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:.8rem;animation:fadeUp .7s .2s both;}
+      .contact-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);animation:fadeUp .7s .4s both;}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+      /* FORM SECTION */
+      .contact-section{padding:80px 0;}
+      .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+      @media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:48px;}}
+
+      /* FORM */
+      .car-form-group{margin-bottom:20px;}
+      .car-form-group label{display:block;font-size:.85rem;font-weight:600;color:#555;margin-bottom:6px;}
+      .car-form-group input,.car-form-group textarea,.car-form-group select{width:100%;border:1.5px solid #e0e3ea;border-radius:8px;padding:12px 16px;font-size:.92rem;font-family:'Inter',sans-serif;color:#1a1a2e;outline:none;transition:border-color .2s,box-shadow .2s;background:#fff;}
+      .car-form-group input:focus,.car-form-group textarea:focus,.car-form-group select:focus{border-color:#fb383b;box-shadow:0 0 0 3px rgba(251,56,59,.08);}
+      .car-form-group textarea{resize:vertical;min-height:130px;}
+      .car-form-check{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;}
+      .car-form-check input[type="checkbox"]{margin-top:3px;flex-shrink:0;accent-color:#fb383b;width:16px;height:16px;}
+      .car-form-check label{font-size:.82rem;color:#888;line-height:1.6;}
+      .car-form-submit{background:#fb383b;color:#fff;border:none;padding:15px 44px;border-radius:6px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s,transform .2s;width:100%;}
+      .car-form-submit:hover{background:#d42e31;transform:translateY(-2px);}
+
+      /* SIDEBAR */
+      .contact-sidebar h3{font-size:1.2rem;font-weight:800;color:#1a1a2e;margin-bottom:1.5rem;}
+      .recruiter-card{display:flex;align-items:center;gap:16px;background:#f5f7fa;border-radius:14px;padding:18px 20px;margin-bottom:14px;transition:box-shadow .25s,transform .25s;}
+      .recruiter-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px);}
+      .recruiter-card img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+      .recruiter-name{font-size:.95rem;font-weight:700;color:#1a1a2e;}
+      .recruiter-role{font-size:.78rem;color:#888;margin-top:2px;}
+
+      /* OFFICES */
+      .offices-section{background:#f5f7fa;padding:80px 0;}
+      .offices-section h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#1a1a2e;margin-bottom:2.5rem;}
+      .office-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+      .office-card{background:#fff;border-radius:14px;padding:22px 20px;border-left:4px solid #fb383b;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:box-shadow .25s,transform .25s;opacity:0;transform:translateY(16px);}
+      .office-card.visible{opacity:1;transform:translateY(0);}
+      .office-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.1);transform:translateY(-3px);}
+      .office-city{font-size:1rem;font-weight:800;color:#1a1a2e;margin-bottom:.4rem;}
+      .office-addr{font-size:.82rem;color:#888;line-height:1.6;}
+
+      #footerSection{background:#1a1c22;}
+   </style>
+</head>
+<body>
+
+   <nav class="car-nav" id="carNav">
+      
+      <a href="index.html" class="car-nav-logo-text">Nixora</a><img src="img/logo/black_logo.gif" alt="Nixora" class="car-nav-logo-img">
+      <div class="car-nav-links">
+         <a href="careers.html" class="car-nav-link">Careers</a>
+         <a href="careers-jobs.html" class="car-nav-link">All jobs</a>
+         <a href="careers-blog.html" class="car-nav-link">Blog</a>
+         <a href="careers-contact.html" class="car-nav-link active">Contact</a>
+      </div>
+   </nav>
+
+   <section class="contact-hero">
+      <div class="container">
+         <h1>Ready for a role that will inspire you?</h1>
+         <p>Get in touch with our recruitment team — we'd love to hear from you</p>
+      </div>
+   </section>
+
+   <section class="contact-section">
+      <div class="container">
+         <div class="contact-grid">
+            <div>
+               <h2 style="font-size:1.5rem;font-weight:800;color:#1a1a2e;margin-bottom:1.8rem;">Send us a message</h2>
+               <form onsubmit="handleSubmit(event)">
+                  <div class="car-form-group">
+                     <label>Full Name</label>
+                     <input type="text" placeholder="Your full name" required>
+                  </div>
+                  <div class="car-form-group">
+                     <label>Email Address</label>
+                     <input type="email" placeholder="your@email.com" required>
+                  </div>
+                  <div class="car-form-group">
+                     <label>Phone Number</label>
+                     <input type="tel" placeholder="+34 600 000 000">
+                  </div>
+                  <div class="car-form-group">
+                     <label>Role you're interested in</label>
+                     <select>
+                        <option value="">Select a category...</option>
+                        <option>Software Development</option>
+                        <option>DevOps, Security &amp; Cloud</option>
+                        <option>AI &amp; Data Engineering</option>
+                        <option>Quality Assurance &amp; Testing</option>
+                        <option>Product &amp; Project Management</option>
+                        <option>People &amp; Talent</option>
+                        <option>Other</option>
+                     </select>
+                  </div>
+                  <div class="car-form-group">
+                     <label>Message</label>
+                     <textarea placeholder="Hello, I would like to get more information about..."></textarea>
+                  </div>
+                  <div class="car-form-check">
+                     <input type="checkbox" id="c1" required>
+                     <label for="c1">I consent to Nixora processing my personal data provided in my CV for the purposes of future recruitment processes.</label>
+                  </div>
+                  <div class="car-form-check">
+                     <input type="checkbox" id="c2">
+                     <label for="c2">I consent to Nixora sharing my personal data with other entities from the Nixora group for future recruitment processes.</label>
+                  </div>
+                  <button type="submit" class="car-form-submit">SEND APPLICATION</button>
+               </form>
+            </div>
+            <div class="contact-sidebar">
+               <h3>Meet our recruitment team</h3>
+               <div class="recruiter-card">
+                  <img src="img/our team member/Tony.jpg" alt="Tony">
+                  <div><div class="recruiter-name">Tony Williams</div><div class="recruiter-role">Head of Talent Acquisition</div></div>
+               </div>
+               <div class="recruiter-card">
+                  <img src="img/our team member/David.png" alt="David">
+                  <div><div class="recruiter-name">David Chen</div><div class="recruiter-role">Recruitment Specialist</div></div>
+               </div>
+               <div class="recruiter-card">
+                  <img src="img/our team member/Emir.png" alt="Emir">
+                  <div><div class="recruiter-name">Emir Kovac</div><div class="recruiter-role">Recruitment Specialist</div></div>
+               </div>
+               <div style="margin-top:2rem;padding:24px;background:#f5f7fa;border-radius:14px;">
+                  <p style="font-size:.85rem;font-weight:700;color:#1a1a2e;margin-bottom:.5rem;">Response time</p>
+                  <p style="font-size:.85rem;color:#666;line-height:1.6;">We aim to respond to all applications within <strong>3 business days</strong>. You'll receive feedback after each stage of the process.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="offices-section">
+      <div class="container">
+         <h2>Our offices</h2>
+         <div class="office-grid">
+            <div class="office-card"><div class="office-city">HQ — Madrid</div><div class="office-addr">Calle Gran Vía 28<br>28013 Madrid, Spain</div></div>
+            <div class="office-card"><div class="office-city">Paris</div><div class="office-addr">25 Rue de la Paix<br>75002 Paris, France</div></div>
+            <div class="office-card"><div class="office-city">Berlin</div><div class="office-addr">Unter den Linden 21<br>10117 Berlin, Germany</div></div>
+            <div class="office-card"><div class="office-city">London</div><div class="office-addr">1 Canada Square<br>Canary Wharf, E14 5AB</div></div>
+            <div class="office-card"><div class="office-city">New York</div><div class="office-addr">350 Fifth Avenue<br>Suite 4000, NY 10118</div></div>
+            <div class="office-card"><div class="office-city">Barcelona</div><div class="office-addr">Passeig de Gracia 55<br>08007 Barcelona, Spain</div></div>
+         </div>
+      </div>
+   </section>
+
+   <section id="footerSection">
+      <div class="container" style="padding:40px 24px;">
+         <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;">
+            <a href="index.html" style="font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;">NIXORA</a><div style="display:flex;gap:10px;margin-top:1rem;"><a href="#" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#" aria-label="Twitter/X" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="#" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div>
+            <div style="display:flex;gap:24px;">
+               <a href="careers.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Careers Home</a>
+               <a href="careers-jobs.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">All Jobs</a>
+               <a href="careers-blog.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Blog</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      function handleSubmit(e) {
+         e.preventDefault();
+         const btn = e.target.querySelector('.car-form-submit');
+         btn.textContent = 'Sending...';
+         btn.disabled = true;
+         setTimeout(() => {
+            btn.textContent = 'Sent! We\'ll be in touch soon.';
+            btn.style.background = '#22c55e';
+         }, 1200);
+      }
+      const observer = new IntersectionObserver((entries) => {
+         entries.forEach((e, i) => {
+            if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }
+         });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.office-card').forEach(el => observer.observe(el));
+
+      // Nav scroll
+      const nav = document.getElementById('carNav');
+      window.addEventListener('scroll', () => {
+         if (window.scrollY > 60) {
+            nav.classList.add('scrolled');
+         } else {
+            nav.classList.remove('scrolled');
+         }
+      });
+   </script>
+</body>
+</html>

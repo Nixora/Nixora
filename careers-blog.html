@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="img/logo/7.gif">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <title>Life at Nixora – Careers Blog</title>
+   <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Inter',sans-serif;color:#1a1a2e;background:#fff;}
+      a{text-decoration:none;}
+      .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+      .car-nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;padding:0 40px;height:70px;background:transparent;transition:background .3s,box-shadow .3s;}.car-nav.scrolled{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.1);}.car-nav-logo-text{font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;flex-shrink:0;}.car-nav-logo-img{display:none;height:32px;width:auto;flex-shrink:0;}.car-nav.scrolled .car-nav-logo-text{display:none;}.car-nav.scrolled .car-nav-logo-img{display:block;}.car-nav-links{display:flex;align-items:center;gap:28px;position:absolute;left:50%;transform:translateX(-50%);}
+      .car-nav-right{display:flex;align-items:center;gap:28px;}
+      .car-nav-link{color:#555;font-size:.9rem;font-weight:600;transition:color .2s;position:relative;}
+      .car-nav-link::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:#fb383b;transform:scaleX(0);transition:transform .25s;}
+      .car-nav-link:hover{color:#fb383b;}
+      .car-nav-link:hover::after,.car-nav-link.active::after{transform:scaleX(1);}
+      .car-nav-link.active{color:#fb383b;}
+
+      /* HERO */
+      .blog-hero{background:#1a1a2e;padding:120px 0 80px;text-align:center;}
+      .blog-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:.8rem;animation:fadeUp .7s .2s both;}
+      .blog-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);animation:fadeUp .7s .4s both;}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+      /* PHOTO GRID */
+      .blog-gallery{padding:80px 0;background:#f5f7fa;}
+      .blog-gallery h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#1a1a2e;margin-bottom:.5rem;}
+      .blog-gallery .sub{color:#888;font-size:1rem;margin-bottom:2.5rem;}
+      .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+      .gallery-item{border-radius:14px;overflow:hidden;position:relative;cursor:pointer;}
+      .gallery-item img{width:100%;height:220px;object-fit:cover;transition:transform .4s;}
+      .gallery-item:hover img{transform:scale(1.06);}
+      .gallery-item.tall img{height:340px;}
+
+      /* BLOG POSTS */
+      .blog-posts{padding:80px 0;}
+      .blog-posts h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#1a1a2e;margin-bottom:.5rem;}
+      .blog-posts .sub{color:#888;font-size:1rem;margin-bottom:2.5rem;}
+      .posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;}
+      .post-card{border-radius:16px;overflow:hidden;border:1.5px solid #eee;transition:transform .3s,box-shadow .3s;opacity:0;transform:translateY(20px);}
+      .post-card.visible{opacity:1;transform:translateY(0);}
+      .post-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.1);}
+      .post-img{height:200px;overflow:hidden;}
+      .post-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+      .post-card:hover .post-img img{transform:scale(1.05);}
+      .post-body{padding:24px;}
+      .post-tag{display:inline-block;background:rgba(251,56,59,.08);color:#fb383b;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:.8rem;}
+      .post-title{font-size:1rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:.6rem;}
+      .post-excerpt{font-size:.85rem;color:#666;line-height:1.65;}
+
+      /* VALUES */
+      .blog-values{background:#1a1a2e;padding:80px 0;}
+      .blog-values h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:.5rem;}
+      .blog-values .sub{color:rgba(255,255,255,.5);font-size:1rem;margin-bottom:2.5rem;}
+      .values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+      .value-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px 24px;transition:background .3s,border-color .3s,transform .3s;opacity:0;transform:translateY(16px);}
+      .value-card.visible{opacity:1;transform:translateY(0);}
+      .value-card:hover{background:rgba(251,56,59,.15);border-color:#fb383b;transform:translateY(-4px);}
+      .value-icon{width:48px;height:48px;background:rgba(251,56,59,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;transition:background .3s;}
+      .value-card:hover .value-icon{background:#fb383b;}
+      .value-icon i{color:#fb383b;font-size:1.2rem;transition:color .3s;}
+      .value-card:hover .value-icon i{color:#fff;}
+      .value-card h4{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+      .value-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.65;}
+
+      #footerSection{background:#1a1c22;}
+   </style>
+</head>
+<body>
+
+   <nav class="car-nav" id="carNav">
+      
+      <a href="index.html" class="car-nav-logo-text">Nixora</a><img src="img/logo/black_logo.gif" alt="Nixora" class="car-nav-logo-img">
+      <div class="car-nav-links">
+         <a href="careers.html" class="car-nav-link">Careers</a>
+         <a href="careers-jobs.html" class="car-nav-link">All jobs</a>
+         <a href="careers-blog.html" class="car-nav-link active">Blog</a>
+         <a href="careers-contact.html" class="car-nav-link">Contact</a>
+      </div>
+   </nav>
+
+   <section class="blog-hero">
+      <div class="container">
+         <h1>Life at Nixora</h1>
+         <p>A culture that's serious about work — and serious about fun</p>
+      </div>
+   </section>
+
+   <section class="blog-gallery">
+      <div class="container">
+         <h2>Our culture in pictures</h2>
+         <p class="sub">Real moments from our team around the world</p>
+         <div class="gallery-grid">
+            <div class="gallery-item tall"><img src="img/careers/DSC01116_1.jpg" alt="Team"></div>
+            <div class="gallery-item"><img src="img/careers/DSC_0111.webp" alt="Office"></div>
+            <div class="gallery-item"><img src="img/careers/DSC00474.webp" alt="Team event"></div>
+            <div class="gallery-item"><img src="img/careers/DJI_0183.webp" alt="Office aerial"></div>
+            <div class="gallery-item tall"><img src="img/careers/DSC00234.webp" alt="Team"></div>
+            <div class="gallery-item"><img src="img/careers/DSC01180.webp" alt="Team fun"></div>
+            <div class="gallery-item"><img src="img/careers/DSC00892.webp" alt="Work"></div>
+            <div class="gallery-item"><img src="img/careers/DJI_0153.webp" alt="Aerial"></div>
+         </div>
+      </div>
+   </section>
+
+   <section class="blog-posts">
+      <div class="container">
+         <h2>Stories from our team</h2>
+         <p class="sub">Insights, culture, and life at Nixora</p>
+         <div class="posts-grid">
+            <div class="post-card">
+               <div class="post-img"><img src="img/Focused at work in a bright office.png" alt="Post"></div>
+               <div class="post-body">
+                  <span class="post-tag">Culture</span>
+                  <div class="post-title">What it's really like to work at Nixora</div>
+                  <p class="post-excerpt">From day one, we focus on ownership, transparency and growth. Here's what our engineers say about life on the team.</p>
+               </div>
+            </div>
+            <div class="post-card">
+               <div class="post-img"><img src="img/Business meeting in modern office.png" alt="Post"></div>
+               <div class="post-body">
+                  <span class="post-tag">Engineering</span>
+                  <div class="post-title">How we run engineering at Nixora</div>
+                  <p class="post-excerpt">Agile, async-first, and always shipping. A look at how our engineering teams stay productive across time zones.</p>
+               </div>
+            </div>
+            <div class="post-card">
+               <div class="post-img"><img src="img/Collaborative tech workspace with data analysis.png" alt="Post"></div>
+               <div class="post-body">
+                  <span class="post-tag">Growth</span>
+                  <div class="post-title">Career paths at Nixora — from junior to lead</div>
+                  <p class="post-excerpt">We invest in our people. Here's how engineers grow their careers at Nixora, with real examples from the team.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="blog-values">
+      <div class="container">
+         <h2>What we stand for</h2>
+         <p class="sub">The values that shape how we work every day</p>
+         <div class="values-grid">
+            <div class="value-card"><div class="value-icon"><i class="fa fa-comments"></i></div><h4>Openness</h4><p>We communicate transparently and welcome every perspective.</p></div>
+            <div class="value-card"><div class="value-icon"><i class="fa fa-check-circle"></i></div><h4>Ownership</h4><p>We take full responsibility for our work and our clients' outcomes.</p></div>
+            <div class="value-card"><div class="value-icon"><i class="fa fa-heart"></i></div><h4>Respect</h4><p>We treat every person with dignity, empathy and genuine care.</p></div>
+            <div class="value-card"><div class="value-icon"><i class="fa fa-bolt"></i></div><h4>Impact</h4><p>We build software that creates real, measurable value for businesses.</p></div>
+         </div>
+      </div>
+   </section>
+
+   <section id="footerSection">
+      <div class="container" style="padding:40px 24px;">
+         <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;">
+            <a href="index.html" style="font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;">NIXORA</a><div style="display:flex;gap:10px;margin-top:1rem;"><a href="#" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#" aria-label="Twitter/X" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="#" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div>
+            <div style="display:flex;gap:24px;">
+               <a href="careers.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Careers Home</a>
+               <a href="careers-jobs.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">All Jobs</a>
+               <a href="careers-contact.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Apply Now</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      const observer = new IntersectionObserver((entries) => {
+         entries.forEach((e, i) => {
+            if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }
+         });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.post-card, .value-card').forEach(el => observer.observe(el));
+
+      // Nav scroll
+      const nav = document.getElementById('carNav');
+      window.addEventListener('scroll', () => {
+         if (window.scrollY > 60) {
+            nav.classList.add('scrolled');
+         } else {
+            nav.classList.remove('scrolled');
+         }
+      });
+   </script>
+</body>
+</html>

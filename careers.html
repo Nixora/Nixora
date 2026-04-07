@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="img/logo/7.gif">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <title>Careers – Nixora</title>
+   <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Inter',sans-serif;color:#1a1a2e;background:#fff;}
+      a{text-decoration:none;}
+      .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+      /* NAV */
+      .car-nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;padding:0 40px;height:70px;background:transparent;transition:background .3s,box-shadow .3s;}
+      .car-nav.scrolled{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.1);}
+      .car-nav-logo-text{font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;flex-shrink:0;transition:opacity .3s;}
+      .car-nav-logo-img{display:none;height:32px;width:auto;flex-shrink:0;}
+      .car-nav.scrolled .car-nav-logo-text{display:none;}
+      .car-nav.scrolled .car-nav-logo-img{display:block;}
+      .car-nav-links{display:flex;align-items:center;gap:28px;position:absolute;left:50%;transform:translateX(-50%);}
+      .car-nav-link{color:rgba(255,255,255,.85);font-size:.9rem;font-weight:600;transition:color .2s;position:relative;}
+      .car-nav-link::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:#fb383b;transform:scaleX(0);transition:transform .25s;}
+      .car-nav-link:hover{color:#fb383b;}
+      .car-nav-link:hover::after,.car-nav-link.active::after{transform:scaleX(1);}
+      .car-nav-link.active{color:#fb383b;}
+      .car-nav.scrolled .car-nav-link{color:#1a1a2e;}
+      .car-nav.scrolled .car-nav-link:hover,.car-nav.scrolled .car-nav-link.active{color:#fb383b;}
+
+      /* HERO */
+      .car-hero{position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#06080e;}
+      .car-hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+      .car-hero::before{content:'';position:absolute;inset:0;background:rgba(6,8,14,.58);z-index:1;}
+      .car-hero-inner{position:relative;z-index:2;max-width:860px;padding:0 20px;}
+      .eyebrow{display:inline-block;color:#fb383b;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.4rem;opacity:0;animation:fadeUp .8s .3s forwards;}
+      .car-hero-inner h1{font-size:clamp(2.4rem,5.5vw,4.4rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:.8rem;opacity:0;animation:fadeUp .8s .5s forwards;}
+      .car-hero-inner h1 span{color:#fb383b;}
+      .car-hero-inner .sub{font-size:1.1rem;color:rgba(255,255,255,.72);margin-bottom:2.8rem;line-height:1.65;opacity:0;animation:fadeUp .8s .7s forwards;}
+      .car-hero-cta{display:inline-flex;align-items:center;gap:10px;background:#fb383b;color:#fff;padding:16px 40px;border-radius:6px;font-size:1rem;font-weight:700;transition:background .2s,transform .2s;opacity:0;animation:fadeUp .8s .9s forwards;}
+      .car-hero-cta:hover{background:#d42e31;color:#fff;transform:translateY(-2px);}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+      /* INTRO */
+      .car-intro{background:#f5f7fa;padding:80px 0;}
+      .car-intro-text{font-size:1.05rem;color:#555;line-height:1.82;}
+      .car-intro-text strong{color:#1a1a2e;}
+
+      /* JOB CATEGORIES */
+      .car-jobs{background:#fff;padding:80px 0;}
+      .car-jobs h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;color:#1a1a2e;margin-bottom:.6rem;}
+      .car-jobs .sub-h{font-size:1rem;color:#888;margin-bottom:3rem;}
+      .car-cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+      .car-cat-card{background:#f5f7fa;border-radius:14px;padding:28px 24px;border:2px solid transparent;transition:border-color .3s,box-shadow .3s,transform .3s;cursor:pointer;opacity:0;transform:translateY(20px);transition:border-color .3s,box-shadow .3s,transform .3s,opacity .5s;}
+      .car-cat-card.visible{opacity:1;transform:translateY(0);}
+      .car-cat-card:hover{border-color:#fb383b;box-shadow:0 8px 32px rgba(251,56,59,.12);transform:translateY(-6px) !important;}
+      .car-cat-count{font-size:2.4rem;font-weight:900;color:#fb383b;line-height:1;margin-bottom:.5rem;}
+      .car-cat-label{font-size:.75rem;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;}
+      .car-cat-name{font-size:1rem;font-weight:700;color:#1a1a2e;line-height:1.3;}
+      .car-all-jobs{display:inline-flex;align-items:center;gap:8px;margin-top:2.5rem;background:#1a1a2e;color:#fff;padding:14px 32px;border-radius:6px;font-size:.95rem;font-weight:700;transition:background .2s,transform .2s;}
+      .car-all-jobs:hover{background:#fb383b;color:#fff;transform:translateY(-2px);}
+
+      /* CULTURE STRIP */
+      .car-culture{background:#1a1a2e;padding:96px 0;overflow:hidden;}
+      .car-culture h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.5rem;}
+      .car-culture .sub-h{color:rgba(255,255,255,.5);font-size:1rem;margin-bottom:3rem;}
+      .car-strip-wrap{overflow:hidden;margin-bottom:16px;}
+      .car-strip{display:flex;gap:12px;animation:stripScroll 30s linear infinite;width:max-content;}
+      .car-strip.reverse{animation-direction:reverse;}
+      .car-strip-wrap:hover .car-strip{animation-play-state:paused;}
+      @keyframes stripScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+      .car-strip-item{width:280px;height:190px;border-radius:12px;overflow:hidden;flex-shrink:0;}
+      .car-strip-item.tall{height:260px;}
+      .car-strip-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+      .car-strip-item:hover img{transform:scale(1.05);}
+      .car-follow{display:flex;align-items:center;gap:16px;margin-top:3rem;}
+      .car-follow span{color:rgba(255,255,255,.5);font-size:.88rem;font-weight:600;}
+      .car-social-link{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:background .2s,transform .2s;}
+      .car-social-link:hover{background:#fb383b;transform:scale(1.1);}
+
+      /* PROCESS */
+      .car-process{background:#f5f7fa;padding:96px 0;}
+      .car-process h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;color:#1a1a2e;margin-bottom:.5rem;}
+      .car-process .sub-h{color:#888;font-size:1rem;margin-bottom:3rem;}
+      .car-step-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;}
+      .car-step{background:#fff;border-radius:14px;padding:36px 28px;border-top:4px solid #fb383b;box-shadow:0 2px 16px rgba(0,0,0,.05);transition:transform .3s,box-shadow .3s;opacity:0;transform:translateY(20px);}
+      .car-step.visible{opacity:1;transform:translateY(0);}
+      .car-step:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.1);}
+      .car-step-num{font-size:3rem;font-weight:900;color:#f0f0f0;line-height:1;margin-bottom:.8rem;transition:color .3s;}
+      .car-step:hover .car-step-num{color:rgba(251,56,59,.2);}
+      .car-step h4{font-size:1.05rem;font-weight:700;color:#1a1a2e;margin-bottom:.6rem;}
+      .car-step p{font-size:.9rem;color:#666;line-height:1.7;}
+
+      /* FOOTER */
+      #footerSection{background:#1a1c22;}
+   </style>
+</head>
+<body>
+
+   <nav class="car-nav" id="carNav">
+      
+      <a href="index.html" class="car-nav-logo-text">Nixora</a><img src="img/logo/black_logo.gif" alt="Nixora" class="car-nav-logo-img">
+      <div class="car-nav-links">
+         <a href="careers.html" class="car-nav-link active">Careers</a>
+         <a href="careers-jobs.html" class="car-nav-link">All jobs</a>
+         <a href="careers-blog.html" class="car-nav-link">Blog</a>
+         <a href="careers-contact.html" class="car-nav-link">Contact</a>
+      </div>
+   </nav>
+
+   <!-- HERO -->
+   <section class="car-hero">
+      <video autoplay muted loop playsinline>
+         <source src="video/5725950-uhd_3840_2160_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="car-hero-inner">
+         <span class="eyebrow">Join our squad</span>
+         <h1>You've got talent,<br>we've got <span>opportunities</span></h1>
+         <p class="sub">Build software that makes a difference — with a global team that's serious about engineering and serious about people.</p>
+         <a href="careers-jobs.html" class="car-hero-cta">Find your role <i class="fa fa-arrow-right"></i></a>
+      </div>
+   </section>
+
+   <!-- INTRO -->
+   <section class="car-intro">
+      <div class="container">
+         <div style="display:flex;align-items:center;gap:60px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:280px;">
+               <p style="color:#fb383b;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.8rem;">About us</p>
+               <h2 style="font-size:clamp(1.5rem,2.8vw,2rem);font-weight:800;color:#1a1a2e;margin-bottom:1.2rem;line-height:1.25;">Our line-up is looking for A players like you!</h2>
+               <p class="car-intro-text">For <strong>7+ years</strong> our experts have developed groundbreaking software solutions for companies around the world. Our key to success — a team of talented professionals who are passionate about developing software that makes a difference. If you want to make an impact, we've got a spot for you.</p>
+            </div>
+            <div style="flex:0 0 340px;">
+               <img src="img/careers/DJI_0183.webp" alt="Nixora office" style="width:100%;border-radius:16px;object-fit:cover;max-height:280px;">
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- JOB CATEGORIES -->
+   <section class="car-jobs" id="car-jobs">
+      <div class="container">
+         <h2>Find your role!</h2>
+         <p class="sub-h">Explore open positions across all our teams</p>
+         <div class="car-cat-grid">
+            <div class="car-cat-card"><div class="car-cat-count">12</div><div class="car-cat-label">job offers</div><div class="car-cat-name">Software Development</div></div>
+            <div class="car-cat-card"><div class="car-cat-count">4</div><div class="car-cat-label">job offers</div><div class="car-cat-name">Quality Assurance &amp; Testing</div></div>
+            <div class="car-cat-card"><div class="car-cat-count">6</div><div class="car-cat-label">job offers</div><div class="car-cat-name">DevOps, Security &amp; Cloud</div></div>
+            <div class="car-cat-card"><div class="car-cat-count">3</div><div class="car-cat-label">job offers</div><div class="car-cat-name">AI &amp; Data Engineering</div></div>
+            <div class="car-cat-card"><div class="car-cat-count">2</div><div class="car-cat-label">job offers</div><div class="car-cat-name">Product &amp; Project Management</div></div>
+            <div class="car-cat-card"><div class="car-cat-count">1</div><div class="car-cat-label">job offer</div><div class="car-cat-name">People &amp; Talent</div></div>
+         </div>
+         <a href="careers-jobs.html" class="car-all-jobs">View all jobs <i class="fa fa-arrow-right"></i></a>
+      </div>
+   </section>
+
+   <!-- CULTURE STRIP -->
+   <section class="car-culture">
+      <div class="container">
+         <h2>A culture that's serious about work and fun</h2>
+         <p class="sub-h">Life at Nixora</p>
+      </div>
+      <div class="car-strip-wrap" style="margin-bottom:12px;">
+         <div class="car-strip">
+            <div class="car-strip-item"><img src="img/careers/DSC_0111.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DSC01116_1.jpg" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC00474.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DJI_0153.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC00892.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC01180.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC_0111.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DSC01116_1.jpg" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC00474.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DJI_0153.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC00892.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC01180.webp" alt=""></div>
+         </div>
+      </div>
+      <div class="car-strip-wrap">
+         <div class="car-strip reverse">
+            <div class="car-strip-item"><img src="img/careers/DSC01180.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DSC00234.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DJI_0183.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DSC_0111.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC00892.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC01116_1.jpg" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC01180.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DSC00234.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DJI_0183.webp" alt=""></div>
+            <div class="car-strip-item tall"><img src="img/careers/DSC_0111.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC00892.webp" alt=""></div>
+            <div class="car-strip-item"><img src="img/careers/DSC01116_1.jpg" alt=""></div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="car-follow">
+            <span>Follow Nixora</span>
+            <a href="#" class="car-social-link"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="car-social-link"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="car-social-link"><i class="fa fa-linkedin"></i></a>
+         </div>
+      </div>
+   </section>
+
+   <!-- PROCESS -->
+   <section class="car-process">
+      <div class="container">
+         <h2>In just 4 easy steps you'll be part of the Nixora Team!</h2>
+         <p class="sub-h">You will receive feedback after each stage of the recruitment process.</p>
+         <div class="car-step-grid">
+            <div class="car-step"><div class="car-step-num">01</div><h4>Send us your CV</h4><p>We'd like to learn about your achievements and what makes you stand out.</p></div>
+            <div class="car-step"><div class="car-step-num">02</div><h4>Jump on a call</h4><p>Let's have a chat and get to know each other — no pressure, just a conversation.</p></div>
+            <div class="car-step"><div class="car-step-num">03</div><h4>Demonstrate your skills</h4><p>Show one of our experts what you can do. We keep it practical and relevant.</p></div>
+            <div class="car-step"><div class="car-step-num">04</div><h4>Discuss your options</h4><p>If we both think we're a good fit, we'll make you an offer and get you started.</p></div>
+         </div>
+      </div>
+   </section>
+
+   <!-- FOOTER -->
+   <section id="footerSection">
+      <div class="container" style="padding:60px 24px 40px;">
+         <div style="display:flex;flex-wrap:wrap;gap:40px;">
+            <div style="flex:0 0 240px;">
+               <a href="index.html" style="font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;">NIXORA</a>
+               <p style="color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.7;margin-bottom:1.2rem;">A global software engineering company helping businesses accelerate digital transformation.</p>
+               <div style="display:flex;gap:10px;">
+                  <a href="#" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;transition:background .3s;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                  <a href="#" aria-label="Twitter/X" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;transition:background .3s;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                  <a href="#" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;transition:background .3s;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                  <a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;transition:background .3s;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+               </div>
+            </div>
+            <div style="flex:1;min-width:120px;">
+               <p style="color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;">Careers</p>
+               <a href="careers.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.6rem;">Home</a>
+               <a href="careers-jobs.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.6rem;">All Jobs</a>
+               <a href="careers-blog.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.6rem;">Blog</a>
+               <a href="careers-contact.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;">Contact</a>
+            </div>
+            <div style="flex:1;min-width:120px;">
+               <p style="color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;">Company</p>
+               <a href="our-company.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.6rem;">Our Company</a>
+               <a href="our-culture.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:.6rem;">Our Culture</a>
+               <a href="contact.html" style="display:block;color:rgba(255,255,255,.5);font-size:.85rem;">Contact Us</a>
+            </div>
+         </div>
+         <div style="border-top:1px solid rgba(255,255,255,.08);margin-top:40px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+            <p style="color:rgba(255,255,255,.3);font-size:.82rem;">© 2026 Nixora. All rights reserved.</p>
+            <a href="index.html" style="color:rgba(255,255,255,.3);font-size:.82rem;">nixora.com</a>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      // Nav scroll
+      const nav = document.getElementById('carNav');
+      const logo = document.getElementById('carLogo');
+      window.addEventListener('scroll', () => {
+         if (window.scrollY > 60) {
+            nav.classList.add('scrolled');
+            logo.src = 'img/logo/black_logo.gif';
+         } else {
+            nav.classList.remove('scrolled');
+            logo.src = 'img/logo/white_logo.gif';
+         }
+      });
+      // Scroll reveal
+      const observer = new IntersectionObserver((entries) => {
+         entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+               setTimeout(() => e.target.classList.add('visible'), i * 80);
+               observer.unobserve(e.target);
+            }
+         });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.car-cat-card, .car-step').forEach(el => observer.observe(el));
+   </script>
+</body>
+</html>

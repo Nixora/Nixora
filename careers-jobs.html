@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="img/logo/7.gif">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <title>All Jobs – Nixora Careers</title>
+   <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Inter',sans-serif;color:#1a1a2e;background:#fff;}
+      a{text-decoration:none;}
+      .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+      .car-nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;padding:0 40px;height:70px;background:transparent;transition:background .3s,box-shadow .3s;}.car-nav.scrolled{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.1);}.car-nav-logo-text{font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;flex-shrink:0;}.car-nav-logo-img{display:none;height:32px;width:auto;flex-shrink:0;}.car-nav.scrolled .car-nav-logo-text{display:none;}.car-nav.scrolled .car-nav-logo-img{display:block;}.car-nav-links{display:flex;align-items:center;gap:28px;position:absolute;left:50%;transform:translateX(-50%);}
+      .car-nav-right{display:flex;align-items:center;gap:28px;}
+      .car-nav-link{color:#555;font-size:.9rem;font-weight:600;transition:color .2s;position:relative;}
+      .car-nav-link::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:#fb383b;transform:scaleX(0);transition:transform .25s;}
+      .car-nav-link:hover{color:#fb383b;}
+      .car-nav-link:hover::after,.car-nav-link.active::after{transform:scaleX(1);}
+      .car-nav-link.active{color:#fb383b;}
+
+      /* PAGE HERO */
+      .jobs-hero{background:#1a1a2e;padding:120px 0 60px;text-align:center;}
+      .jobs-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:.8rem;animation:fadeUp .7s .2s both;}
+      .jobs-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);animation:fadeUp .7s .4s both;}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+      /* FILTERS */
+      .jobs-filters{background:#f5f7fa;padding:24px 0;border-bottom:1px solid #eee;position:sticky;top:70px;z-index:10;}
+      .jobs-filter-inner{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+      .filter-btn{background:#fff;border:1.5px solid #e0e3ea;border-radius:30px;padding:8px 20px;font-size:.85rem;font-weight:600;color:#555;cursor:pointer;transition:all .2s;}
+      .filter-btn:hover,.filter-btn.active{background:#fb383b;border-color:#fb383b;color:#fff;}
+
+      /* JOB LIST */
+      .jobs-list{padding:60px 0;}
+      .jobs-category{margin-bottom:48px;}
+      .jobs-category-title{font-size:1.1rem;font-weight:800;color:#1a1a2e;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #f0f0f0;display:flex;align-items:center;gap:10px;}
+      .jobs-category-count{background:#fb383b;color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+      .job-card{background:#fff;border:1.5px solid #eee;border-radius:14px;padding:24px 28px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:border-color .25s,box-shadow .25s,transform .25s;opacity:0;transform:translateX(-16px);}
+      .job-card.visible{opacity:1;transform:translateX(0);}
+      .job-card:hover{border-color:#fb383b;box-shadow:0 8px 28px rgba(251,56,59,.1);transform:translateY(-2px);}
+      .job-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:.4rem;}
+      .job-meta{display:flex;gap:16px;flex-wrap:wrap;}
+      .job-tag{font-size:.78rem;color:#888;display:flex;align-items:center;gap:5px;}
+      .job-tag i{color:#fb383b;font-size:.75rem;}
+      .job-apply{background:#1a1a2e;color:#fff;padding:10px 22px;border-radius:6px;font-size:.85rem;font-weight:700;white-space:nowrap;transition:background .2s,transform .2s;flex-shrink:0;}
+      .job-apply:hover{background:#fb383b;color:#fff;transform:translateY(-2px);}
+
+      /* FOOTER */
+      #footerSection{background:#1a1c22;}
+   </style>
+</head>
+<body>
+
+   <nav class="car-nav" id="carNav">
+      
+      <a href="index.html" class="car-nav-logo-text">Nixora</a><img src="img/logo/black_logo.gif" alt="Nixora" class="car-nav-logo-img">
+      <div class="car-nav-links">
+         <a href="careers.html" class="car-nav-link">Careers</a>
+         <a href="careers-jobs.html" class="car-nav-link active">All jobs</a>
+         <a href="careers-blog.html" class="car-nav-link">Blog</a>
+         <a href="careers-contact.html" class="car-nav-link">Contact</a>
+      </div>
+   </nav>
+
+   <section class="jobs-hero">
+      <div class="container">
+         <h1>Open Positions</h1>
+         <p>Find your next role at Nixora — 28 open positions across 6 teams</p>
+      </div>
+   </section>
+
+   <section class="jobs-filters">
+      <div class="container">
+         <div class="jobs-filter-inner">
+            <button class="filter-btn active" onclick="filterJobs('all',this)">All (28)</button>
+            <button class="filter-btn" onclick="filterJobs('software',this)">Software Dev (12)</button>
+            <button class="filter-btn" onclick="filterJobs('qa',this)">QA &amp; Testing (4)</button>
+            <button class="filter-btn" onclick="filterJobs('devops',this)">DevOps &amp; Cloud (6)</button>
+            <button class="filter-btn" onclick="filterJobs('ai',this)">AI &amp; Data (3)</button>
+            <button class="filter-btn" onclick="filterJobs('product',this)">Product (2)</button>
+            <button class="filter-btn" onclick="filterJobs('people',this)">People (1)</button>
+         </div>
+      </div>
+   </section>
+
+   <section class="jobs-list">
+      <div class="container">
+
+         <div class="jobs-category" data-cat="software">
+            <div class="jobs-category-title">Software Development <span class="jobs-category-count">12</span></div>
+            <div class="job-card"><div><div class="job-title">Senior Full-Stack Engineer (React / Node.js)</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span><span class="job-tag"><i class="fa fa-laptop"></i>Remote / Hybrid</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Backend Engineer – Python / Django</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Remote</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Mobile Developer – React Native</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span><span class="job-tag"><i class="fa fa-laptop"></i>Hybrid</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Java Backend Engineer (Spring Boot)</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Remote</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Frontend Engineer – TypeScript / Next.js</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Berlin, Germany</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span><span class="job-tag"><i class="fa fa-laptop"></i>Hybrid</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+         </div>
+
+         <div class="jobs-category" data-cat="devops">
+            <div class="jobs-category-title">DevOps, Security &amp; Cloud <span class="jobs-category-count">6</span></div>
+            <div class="job-card"><div><div class="job-title">Senior DevOps Engineer – Kubernetes / AWS</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Remote</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Cloud Infrastructure Engineer – Azure</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span><span class="job-tag"><i class="fa fa-laptop"></i>Hybrid</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Platform Engineer – Terraform / GCP</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Remote</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+         </div>
+
+         <div class="jobs-category" data-cat="ai">
+            <div class="jobs-category-title">AI &amp; Data Engineering <span class="jobs-category-count">3</span></div>
+            <div class="job-card"><div><div class="job-title">ML Engineer – LLM / RAG Systems</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Remote</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Data Engineer – Spark / Kafka</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span><span class="job-tag"><i class="fa fa-laptop"></i>Hybrid</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+         </div>
+
+         <div class="jobs-category" data-cat="qa">
+            <div class="jobs-category-title">Quality Assurance &amp; Testing <span class="jobs-category-count">4</span></div>
+            <div class="job-card"><div><div class="job-title">QA Automation Engineer – Selenium / Cypress</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Remote</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+            <div class="job-card"><div><div class="job-title">Senior QA Engineer – API Testing</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+         </div>
+
+         <div class="jobs-category" data-cat="product">
+            <div class="jobs-category-title">Product &amp; Project Management <span class="jobs-category-count">2</span></div>
+            <div class="job-card"><div><div class="job-title">Product Manager – SaaS Platforms</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span><span class="job-tag"><i class="fa fa-laptop"></i>Hybrid</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+         </div>
+
+         <div class="jobs-category" data-cat="people">
+            <div class="jobs-category-title">People &amp; Talent <span class="jobs-category-count">1</span></div>
+            <div class="job-card"><div><div class="job-title">Talent Acquisition Specialist</div><div class="job-meta"><span class="job-tag"><i class="fa fa-map-marker"></i>Madrid, Spain</span><span class="job-tag"><i class="fa fa-clock-o"></i>Full-time</span></div></div><a href="careers-contact.html" class="job-apply">Apply</a></div>
+         </div>
+
+      </div>
+   </section>
+
+   <section id="footerSection">
+      <div class="container" style="padding:40px 24px;">
+         <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;">
+            <a href="index.html" style="font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none;letter-spacing:.04em;font-family:'Inter',sans-serif;">NIXORA</a><div style="display:flex;gap:10px;margin-top:1rem;"><a href="#" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#" aria-label="Twitter/X" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="#" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#9ca3a9;" onmouseover="this.style.background='#fb383b'" onmouseout="this.style.background='#333'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div>
+            <div style="display:flex;gap:24px;">
+               <a href="careers.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Careers Home</a>
+               <a href="careers-contact.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Apply Now</a>
+               <a href="contact.html" style="color:rgba(255,255,255,.5);font-size:.85rem;">Contact</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      function filterJobs(cat, btn) {
+         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+         btn.classList.add('active');
+         document.querySelectorAll('.jobs-category').forEach(c => {
+            c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+         });
+      }
+      const observer = new IntersectionObserver((entries) => {
+         entries.forEach((e, i) => {
+            if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); observer.unobserve(e.target); }
+         });
+      }, { threshold: 0.05 });
+      document.querySelectorAll('.job-card').forEach(el => observer.observe(el));
+
+      // Nav scroll
+      const nav = document.getElementById('carNav');
+      window.addEventListener('scroll', () => {
+         if (window.scrollY > 60) {
+            nav.classList.add('scrolled');
+         } else {
+            nav.classList.remove('scrolled');
+         }
+      });
+   </script>
+</body>
+</html>

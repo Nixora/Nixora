@@ -1,0 +1,846 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="img/logo/7.gif">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <title>Blog Nixora</title>
+   <style>
+      /* -- Hero -- */
+      .blog-hero {
+         position: relative;
+         height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         background-image: url('img/Insights/Contemplation%20in%20a%20sunlit%20room.png');
+         background-size: 100% 100%;
+         background-position: center center;
+         background-repeat: no-repeat;
+         background-color: #06080e;
+         overflow: hidden;
+      }
+      .blog-hero-bg { display: none; }
+      .blog-hero::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: rgba(6,8,18,.42);
+         z-index: 1;
+      }
+      .blog-hero-content {
+         position: relative;
+         z-index: 2;
+         max-width: 700px;
+         margin: 0 auto;
+         padding: 140px 20px 80px;
+      }
+      .blog-hero-label {
+         display: inline-block;
+         color: #fb383b;
+         letter-spacing: .14em;
+         font-size: .75rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         margin-bottom: 1.2rem;
+         border: 1px solid rgba(251,56,59,.4);
+         padding: 5px 16px;
+         border-radius: 20px;
+      }
+      .blog-hero-content h1 {
+         font-size: clamp(2rem, 4.5vw, 3.2rem);
+         font-weight: 800;
+         color: #fff;
+         line-height: 1.14;
+         margin-bottom: 1.2rem;
+      }
+      .blog-hero-content p {
+         font-size: 1.05rem;
+         color: rgba(255,255,255,.75);
+         line-height: 1.78;
+         max-width: 540px;
+         margin: 0 auto;
+      }
+
+      /* -- Search + Filter bar -- */
+      .blog-toolbar {
+         background: #fff;
+         border-bottom: 1px solid #eaedf2;
+         padding: 0;
+         position: relative;
+         z-index: 1;
+      }
+      .blog-toolbar-inner {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 16px;
+         padding: 16px 0;
+         flex-wrap: wrap;
+      }
+      .blog-filter-row {
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         overflow-x: auto;
+         scrollbar-width: none;
+         flex: 1;
+      }
+      .blog-filter-row::-webkit-scrollbar { display: none; }
+      .blog-filter-btn {
+         background: none;
+         border: 1px solid #e0e3ea;
+         border-radius: 30px;
+         padding: 7px 18px;
+         font-size: .82rem;
+         font-weight: 600;
+         color: #555;
+         cursor: pointer;
+         white-space: nowrap;
+         transition: all .2s;
+         flex-shrink: 0;
+      }
+      .blog-filter-btn:hover,
+      .blog-filter-btn.active { background: #fb383b; border-color: #fb383b; color: #fff; }
+      .blog-search-wrap {
+         position: relative;
+         flex-shrink: 0;
+      }
+      .blog-search-wrap input {
+         border: 1px solid #e0e3ea;
+         border-radius: 30px;
+         padding: 8px 18px 8px 38px;
+         font-size: .85rem;
+         color: #333;
+         outline: none;
+         width: 220px;
+         transition: border-color .2s;
+      }
+      .blog-search-wrap input:focus { border-color: #fb383b; }
+      .blog-search-wrap i {
+         position: absolute;
+         left: 14px;
+         top: 50%;
+         transform: translateY(-50%);
+         color: #aaa;
+         font-size: .85rem;
+      }
+
+      /* -- Featured post -- */
+      .blog-featured { padding: 72px 0 0; background: #f5f7fa; }
+      .blog-feat-card {
+         border-radius: 18px;
+         overflow: hidden;
+         background: #fff;
+         box-shadow: 0 4px 32px rgba(0,0,0,.08);
+         display: flex;
+         flex-direction: column;
+      }
+      @media (min-width: 992px) {
+         .blog-feat-card { flex-direction: row; min-height: 400px; }
+      }
+      .blog-feat-img {
+         flex: 0 0 52%;
+         overflow: hidden;
+      }
+      .blog-feat-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         min-height: 260px;
+         transition: transform .5s;
+      }
+      .blog-feat-card:hover .blog-feat-img img { transform: scale(1.04); }
+      .blog-feat-body {
+         flex: 1;
+         padding: 44px 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+      }
+      .blog-cat-tag {
+         display: inline-block;
+         background: rgba(251,56,59,.1);
+         color: #fb383b;
+         font-size: .72rem;
+         font-weight: 700;
+         letter-spacing: .1em;
+         text-transform: uppercase;
+         padding: 4px 14px;
+         border-radius: 20px;
+         margin-bottom: 1rem;
+         text-decoration: none;
+      }
+      .blog-cat-tag:hover { background: #fb383b; color: #fff; text-decoration: none; }
+      .blog-feat-body h2 {
+         font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+         font-weight: 800;
+         color: #0d0d1a;
+         line-height: 1.25;
+         margin-bottom: .9rem;
+      }
+      .blog-feat-body p {
+         font-size: .93rem;
+         color: #666;
+         line-height: 1.75;
+         margin-bottom: 1.6rem;
+      }
+      .blog-feat-meta {
+         display: flex;
+         align-items: center;
+         gap: 18px;
+         margin-bottom: 1.6rem;
+         flex-wrap: wrap;
+      }
+      .blog-meta-item {
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         font-size: .8rem;
+         color: #999;
+      }
+      .blog-meta-item i { font-size: .78rem; color: #fb383b; }
+      .blog-read-link {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         color: #fb383b;
+         font-size: .9rem;
+         font-weight: 700;
+         text-decoration: none;
+         transition: gap .2s;
+      }
+      .blog-read-link:hover { gap: 12px; color: #d42e31; text-decoration: none; }
+
+      /* -- Grid -- */
+      .blog-grid { padding: 72px 0 96px; background: #f5f7fa; }
+      .blog-post-wrap { display: flex; }
+      .blog-card {
+         background: #fff;
+         border-radius: 16px;
+         overflow: hidden;
+         box-shadow: 0 2px 20px rgba(0,0,0,.06);
+         width: 100%;
+         margin-bottom: 28px;
+         transition: transform .25s, box-shadow .25s;
+         display: flex;
+         flex-direction: column;
+      }
+      .blog-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+      .blog-card-img {
+         height: 210px;
+         overflow: hidden;
+      }
+      .blog-card-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition: transform .4s;
+      }
+      .blog-card:hover .blog-card-img img { transform: scale(1.06); }
+      .blog-card-body {
+         padding: 26px;
+         display: flex;
+         flex-direction: column;
+         flex: 1;
+      }
+      .blog-card-body h4 {
+         font-size: 1.02rem;
+         font-weight: 700;
+         color: #0d0d1a;
+         line-height: 1.35;
+         margin-bottom: .65rem;
+      }
+      .blog-card-body p {
+         font-size: .88rem;
+         color: #666;
+         line-height: 1.72;
+         margin-bottom: 1.2rem;
+         flex: 1;
+      }
+      .blog-card-footer {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         border-top: 1px solid #f0f0f0;
+         padding-top: 14px;
+         margin-top: auto;
+      }
+      .blog-card-date { font-size: .78rem; color: #aaa; }
+      .blog-card-link {
+         color: #fb383b;
+         font-size: .83rem;
+         font-weight: 700;
+         text-decoration: none;
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         transition: gap .2s;
+      }
+      .blog-card-link:hover { gap: 9px; color: #d42e31; text-decoration: none; }
+
+      /* -- Newsletter strip -- */
+      .blog-newsletter {
+         background: #0d0d1a;
+         padding: 72px 0;
+      }
+      .blog-nl-inner {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 32px;
+         flex-wrap: wrap;
+      }
+      .blog-nl-text h3 {
+         font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+         font-weight: 800;
+         color: #fff;
+         margin-bottom: .5rem;
+      }
+      .blog-nl-text p { color: rgba(255,255,255,.55); font-size: .92rem; margin: 0; }
+      .blog-nl-form {
+         display: flex;
+         gap: 10px;
+         flex-wrap: wrap;
+         flex-shrink: 0;
+      }
+      .blog-nl-form input {
+         background: rgba(255,255,255,.08);
+         border: 1px solid rgba(255,255,255,.15);
+         border-radius: 6px;
+         padding: 12px 20px;
+         color: #fff;
+         font-size: .9rem;
+         outline: none;
+         width: 280px;
+         transition: border-color .2s;
+      }
+      .blog-nl-form input::placeholder { color: rgba(255,255,255,.35); }
+      .blog-nl-form input:focus { border-color: #fb383b; }
+      .blog-nl-form button {
+         background: #fb383b;
+         border: none;
+         border-radius: 6px;
+         padding: 12px 28px;
+         color: #fff;
+         font-size: .9rem;
+         font-weight: 700;
+         cursor: pointer;
+         transition: background .2s;
+      }
+      .blog-nl-form button:hover { background: #d42e31; }
+
+      /* -- Pagination -- */
+      .blog-pagination {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         gap: 8px;
+         padding: 0 0 96px;
+         background: #f5f7fa;
+      }
+      .blog-page-btn {
+         width: 40px; height: 40px;
+         border-radius: 8px;
+         border: 1px solid #e0e3ea;
+         background: #fff;
+         color: #555;
+         font-size: .88rem;
+         font-weight: 600;
+         cursor: pointer;
+         display: flex; align-items: center; justify-content: center;
+         transition: all .2s;
+         text-decoration: none;
+      }
+      .blog-page-btn:hover,
+      .blog-page-btn.active { background: #fb383b; border-color: #fb383b; color: #fff; text-decoration: none; }
+      .blog-page-btn.wide { width: auto; padding: 0 16px; }
+   </style>
+</head>
+<body class="oc-page">
+
+   <!-- ===== NAVIGATION ===== -->
+   <nav id="navigration" class="navbar fixed-top p-0">
+      <div class="container-fluid nav-container">
+         <a class="logo" href="index.html"><img src="img/logo/7.gif" class="logo-white" alt="Nixora"><img src="img/logo/black_logo.gif" class="logo-black" alt="Nixora"></a>
+         <div id="hamburger" class="d-lg-none">
+            <img src="img/icon/menu.png" class="img01" alt="menu">
+            <img src="img/icon/menu02.png" class="img02" alt="menu">
+         </div>
+         <div class="sidenav">
+            <div class="header">
+               <a class="logo d-lg-none" href="index.html"><img src="img/logo/7.gif" alt="Nixora" style="height:32px;width:auto;"></a>
+               <a href="#" class="d-lg-none" id="showsidenav"><img src="img/icon/letter-x.png" alt="close"></a>
+            </div>
+            <ul class="mb-0">
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Who We Are <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="our-company.html"><span>Our Company</span></a>
+                     <a class="dropdown-item" href="our-culture.html"><span>Our Culture</span></a>
+                     <a class="dropdown-item" href="sustainability.html"><span>Sustainability</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="what-we-do.html">What We Do</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="service.html">Services <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus mega-menu">
+                     <div class="mega-inner">
+                        <div class="mega-promo">
+                           <img src="img/logo/7.gif" alt="Nixora Logo" class="mega-logo">
+                           <div class="mega-promo-line"></div>
+                           <h3>AI expertise tailored to <span>business goals</span></h3>
+                           <a href="contact.html" class="mega-promo-btn">Let's work together</a>
+                        </div>
+                        <div class="mega-grid">
+                           <div class="mega-row">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Ideate</p>
+                                 <a href="ux-ui-design.html" class="mega-link">UX &amp; UI Design Services</a>
+                                 <a href="custom-software.html" class="mega-link">Custom Software Development</a>
+                                 <a href="cloud-consulting.html" class="mega-link">Cloud Consulting &amp; Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Build</p>
+                                 <a href="dedicated-development-teams.html" class="mega-link">Dedicated Development Teams</a>
+                                 <a href="cloud-engineering-service.html" class="mega-link">Cloud Engineering Service</a>
+                                 <a href="embedded-software-services.html" class="mega-link">Embedded Software Services</a>
+                                 <a href="mobile-apps-development-services.html" class="mega-link">Mobile Apps Development Services</a>
+                              </div>
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Improve</p>
+                                 <a href="digital-transformation-services.html" class="mega-link">Digital Transformation Solutions and Services</a>
+                                 <a href="generative-ai-development-services.html" class="mega-link">Generative AI Development Services</a>
+                                 <a href="ai-ml-development-services.html" class="mega-link">AI &amp; ML Development Services</a>
+                                 <a href="data-engineering-services.html" class="mega-link">Data Engineering and Data Science Services</a>
+                                 <a href="enterprise-ai-platform.html" class="mega-link">Enterprise AI Platform</a>
+                              </div>
+                           </div>
+                           <div class="mega-row mega-row--border">
+                              <div class="mega-col">
+                                 <p class="mega-group-label">Operate</p>
+                                 <a href="identity-access-management-services.html" class="mega-link">Identity and Access Management Services</a>
+                                 <a href="automation-testing-services.html" class="mega-link">Automation Testing Services</a>
+                                 <a href="devops-consulting-services.html" class="mega-link">DevOps Consulting Services &amp; Solutions</a>
+                                 <a href="software-auditing-services.html" class="mega-link">Software Auditing Services</a>
+                                 <a href="security-audit-governance-services.html" class="mega-link">Security Audit and Governance Services</a>
+                              </div>
+                              <div class="mega-col"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link" href="#">Industries <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item" href="financial-services.html"><span>Financial Services</span></a>
+                     <a class="dropdown-item" href="biotech-life-sciences.html"><span>Biotech &amp; Life Sciences</span></a>
+                     <a class="dropdown-item" href="telecom.html"><span>Telecom</span></a>
+                     <a class="dropdown-item" href="media-entertainment.html"><span>Media &amp; Entertainment</span></a>
+                     <a class="dropdown-item" href="sports-betting.html"><span>Sports Betting</span></a>
+                     <a class="dropdown-item" href="manufacturing.html"><span>Manufacturing</span></a>
+                     <a class="dropdown-item" href="real-estate.html"><span>Real Estate</span></a>
+                     <a class="dropdown-item" href="courier.html"><span>Courier</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link active-nav-item" href="#">Insights <i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menus">
+                     <a class="dropdown-item active" href="blog.html"><span>Blog</span></a>
+                     <a class="dropdown-item" href="resources.html"><span>Resources</span></a>
+                     <a class="dropdown-item" href="events.html"><span>Events</span></a>
+                     <a class="dropdown-item" href="newsroom.html"><span>Newsroom</span></a>
+                  </div>
+               </li>
+               <li class="nav-item"><a class="nav-link" href="careers.html" target="_blank">Careers</a></li>
+            </ul>
+         </div>
+         <div class="nav-right d-none d-lg-flex align-items-center">
+            <button class="nav-search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+            <span class="nav-lang">EN <i class="fa fa-angle-down"></i></span>
+            <a href="contact.html" class="btn nav-contact-btn">Contact Us</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- ===== HERO ===== -->
+   <section class="blog-hero">
+      <img src="img/Insights/Contemplation in a sunlit room.png" alt="Blog hero" class="blog-hero-bg">
+      <div class="container">
+         <div class="blog-hero-content wow fadeInUp" data-wow-duration="0.9s">
+            <span class="blog-hero-label">Insights &amp; Blog</span>
+            <h1>Ideas, expertise, and perspectives<br>from the Nixora team</h1>
+            <p>Engineering insights, industry trends, and practical guides from the people building software at the frontier of AI, cloud, and digital transformation.</p>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== TOOLBAR ===== -->
+   <div class="blog-toolbar">
+      <div class="container">
+         <div class="blog-toolbar-inner">
+            <div class="blog-filter-row">
+               <button class="blog-filter-btn active" data-filter="all">All</button>
+               <button class="blog-filter-btn" data-filter="ai">AI &amp; ML</button>
+               <button class="blog-filter-btn" data-filter="cloud">Cloud</button>
+               <button class="blog-filter-btn" data-filter="engineering">Engineering</button>
+               <button class="blog-filter-btn" data-filter="security">Security</button>
+               <button class="blog-filter-btn" data-filter="devops">DevOps</button>
+               <button class="blog-filter-btn" data-filter="industry">Industry</button>
+            </div>
+            <div class="blog-search-wrap d-none d-md-block">
+               <i class="fa fa-search"></i>
+               <input type="text" id="blog-search" placeholder="Search articles�">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- ===== FEATURED POST ===== -->
+   <section class="blog-featured">
+      <div class="container">
+         <div class="blog-feat-card wow fadeInUp" data-wow-duration="1s">
+            <div class="blog-feat-img">
+               <img src="img/Insights/blog-hero-image-header-feb-3-2-1024x427.webp" alt="The Future of AI in Enterprise Software">
+            </div>
+            <div class="blog-feat-body">
+               <a href="#" class="blog-cat-tag">AI &amp; ML</a>
+               <h2>The Future of AI in Enterprise Software: What Engineering Teams Need to Know in 2026</h2>
+               <p>Generative AI has moved from experiment to production. We break down the architectural patterns, integration challenges, and governance frameworks that engineering teams need to navigate as AI becomes a core part of enterprise software stacks.</p>
+               <div class="blog-feat-meta">
+                  <span class="blog-meta-item"><i class="fa fa-calendar"></i> March 18, 2026</span>
+                  <span class="blog-meta-item"><i class="fa fa-clock-o"></i> 9 min read</span>
+                  <span class="blog-meta-item"><i class="fa fa-user"></i> Nixora Engineering</span>
+               </div>
+               <a href="#" class="blog-read-link">Read article <i class="fa fa-arrow-right"></i></a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== BLOG GRID ===== -->
+   <section class="blog-grid">
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12 wow fadeInUp" data-wow-duration="0.9s">
+               <p style="color:#fb383b;letter-spacing:.13em;font-size:.75rem;font-weight:700;text-transform:uppercase;margin-bottom:.7rem;">Latest Articles</p>
+               <h2 style="font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:800;color:#0d0d1a;margin:0;">Fresh from the team</h2>
+            </div>
+         </div>
+
+         <div class="row" id="blog-cards">
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="security" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Insights/software-audit-blog-hero-image-header-1024x427.webp" alt="Software Audit Guide">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">Security</a>
+                     <h4>What a Software Audit Actually Reveals and Why Most Teams Are Surprised</h4>
+                     <p>A software audit is more than a code review. We walk through what a thorough audit uncovers from hidden technical debt and security vulnerabilities to architectural risks that slow down every future release.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Feb 28, 2026</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="cloud" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Collaborating on cloud infrastructure monitoring.png" alt="Cloud Migration">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">Cloud</a>
+                     <h4>Cloud Migration Without the Horror Stories: A Practical Engineering Guide</h4>
+                     <p>Most cloud migrations fail not because of technology but because of planning. We share the frameworks, patterns, and hard-won lessons from migrating complex enterprise systems to cloud-native architectures.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Feb 14, 2026</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="ai" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Futuristic AI brain and data network.png" alt="Generative AI">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">AI &amp; ML</a>
+                     <h4>Building Production-Ready RAG Systems: What the Tutorials Don't Tell You</h4>
+                     <p>Retrieval-augmented generation looks simple in demos. In production, it's a different story. We cover chunking strategies, embedding models, retrieval evaluation, and the guardrails you need before going live.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Jan 30, 2026</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="devops" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Futuristic DevOps control center workspace.png" alt="DevOps Platform Engineering">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">DevOps</a>
+                     <h4>Platform Engineering in 2026: Why Internal Developer Platforms Are Now a Competitive Necessity</h4>
+                     <p>The best engineering teams are building internal developer platforms that abstract infrastructure complexity and let developers ship faster. Here's what a modern IDP looks like and how to build one that actually gets adopted.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Jan 16, 2026</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="engineering" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Collaborating on code in modern office.png" alt="Software Architecture">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">Engineering</a>
+                     <h4>Microservices vs. Modular Monolith: How to Choose the Right Architecture for Your Stage</h4>
+                     <p>Microservices aren't always the answer. We break down the real trade-offs between microservices and modular monoliths and give you a framework for choosing the right architecture based on your team size, scale, and growth trajectory.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Jan 8, 2026</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="industry" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Team collaboration on data analysis.png" alt="Data Engineering">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">Industry</a>
+                     <h4>The Data Mesh vs. Data Lakehouse Debate: What Actually Works at Enterprise Scale</h4>
+                     <p>Data architecture decisions made today will shape your analytics capabilities for years. We cut through the hype to explain when a data mesh makes sense, when a lakehouse is the better choice, and what most teams get wrong about both.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Dec 20, 2025</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="security" data-wow-duration="0.8s" data-wow-delay="0s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Cybersecurity team in action.png" alt="Zero Trust Security">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">Security</a>
+                     <h4>Zero Trust Architecture: A Practical Implementation Guide for Engineering Teams</h4>
+                     <p>Zero trust is no longer optional for enterprise software. We walk through the core principles, the common implementation pitfalls, and a phased approach to adopting zero trust without disrupting your existing systems.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Dec 5, 2025</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="ai" data-wow-duration="0.8s" data-wow-delay="0.1s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Modern data science lab in action.png" alt="MLOps">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">AI &amp; ML</a>
+                     <h4>MLOps in Practice: How to Build ML Pipelines That Actually Stay in Production</h4>
+                     <p>Most ML models never make it to production. Of those that do, most degrade silently within months. We share the MLOps practices, tooling choices, and monitoring strategies that keep models performing in the real world.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Nov 22, 2025</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 wow fadeInUp blog-post-wrap" data-category="engineering" data-wow-duration="0.8s" data-wow-delay="0.2s">
+               <div class="blog-card">
+                  <div class="blog-card-img">
+                     <img src="img/Focused at work in a bright office.png" alt="Technical Debt">
+                  </div>
+                  <div class="blog-card-body">
+                     <a href="#" class="blog-cat-tag">Engineering</a>
+                     <h4>Managing Technical Debt Without Stopping Feature Delivery: A CTO's Playbook</h4>
+                     <p>Technical debt is inevitable. Letting it accumulate unchecked isn't. We share the frameworks, prioritization models, and team practices that let engineering leaders tackle debt systematically without grinding product delivery to a halt.</p>
+                     <div class="blog-card-footer">
+                        <span class="blog-card-date"><i class="fa fa-calendar" style="color:#fb383b;margin-right:5px;"></i>Nov 10, 2025</span>
+                        <a href="#" class="blog-card-link">Read <i class="fa fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== PAGINATION ===== -->
+   <div class="blog-pagination wow fadeInUp" data-wow-duration="0.9s">
+      <a href="#" class="blog-page-btn wide"><i class="fa fa-chevron-left"></i></a>
+      <a href="#" class="blog-page-btn active">1</a>
+      <a href="#" class="blog-page-btn">2</a>
+      <a href="#" class="blog-page-btn">3</a>
+      <span style="color:#aaa;font-size:.9rem;padding:0 8px;letter-spacing:2px;">...</span>
+      <a href="#" class="blog-page-btn">8</a>
+      <a href="#" class="blog-page-btn wide"><i class="fa fa-chevron-right"></i></a>
+   </div>
+
+   <!-- ===== NEWSLETTER ===== -->
+   <section class="blog-newsletter">
+      <div class="container">
+         <div class="blog-nl-inner wow fadeInUp" data-wow-duration="1s">
+            <div class="blog-nl-text">
+               <h3>Stay ahead of the curve</h3>
+               <p>Get the latest engineering insights, industry analysis, and practical guides delivered to your inbox.</p>
+            </div>
+            <form class="blog-nl-form" onsubmit="return false;">
+               <input type="email" placeholder="Your email address">
+               <button type="submit">Subscribe</button>
+            </form>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== CTA ===== -->
+   <section class="svc-cta">
+      <div class="container">
+         <div class="svc-cta-card wow fadeInUp" data-wow-duration="1s">
+            <div class="svc-cta-text">
+               <h2>Ready to build something great together?</h2>
+               <p>Let's talk about how Nixora can accelerate your digital transformation.</p>
+            </div>
+            <a href="contact.html" class="svc-cta-btn">Contact Us</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- ===== FOOTER ===== -->
+   <!-- ===== FOOTER ===== -->
+   <section id="footerSection">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box">
+                  <a href="index.html" class="logo">NIXORA</a>
+                  <p class="about">A global software engineering company helping businesses accelerate digital transformation and growth.</p>
+                  <div class="social-links">
+                     <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                     <a href="#" aria-label="Twitter/X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                     <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                     <a href="#" class="mr-0" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+               <div class="footer-box box2">
+                  <p class="title">WHO WE ARE</p>
+                  <ul>
+                     <li><a href="our-company.html">Our Company</a></li>
+                     <li><a href="our-culture.html">Our Culture</a></li>
+                     <li><a href="sustainability.html">Sustainability</a></li>
+                     <li class="mb-0"><a href="careers.html" target="_blank">Careers</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+               <div class="footer-box box3">
+                  <p class="title">CONTACT</p>
+                  <div class="icon-box">
+                     <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                     <div class="txt"><span>Calle Gran Via 28, Madrid, Spain</span></div>
+                  </div>
+                  <div class="icon-box">
+                     <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                     <div class="txt"><span>nixora@gmail.com</span></div>
+                  </div>
+                  <div class="icon-box mb-0">
+                     <div class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                     <div class="txt"><span>+1 (800) 123-4567</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="footer-box box4">
+                  <p class="title">NEWSLETTER</p>
+                  <form>
+                     <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                     </div>
+                     <button type="submit" class="btn" name="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></button>
+                  </form>
+                  <span>Sign up for our latest news &amp; articles.</span>
+               </div>
+            </div>
+         </div>
+         <div class="copy-right">
+            <div class="row">
+               <div class="col">
+                  <span>Copyright &copy; 2026 Nixora. All rights reserved.</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <a href="#" class="scroll-up"><i class="fal fa-chevron-up" aria-hidden="true"></i></a>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/jquery.waypoints.min.js"></script>
+   <script src="js/jquery.counterup.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      new WOW().init();
+
+      // Category filter
+      document.querySelectorAll('.blog-filter-btn').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            document.querySelectorAll('.blog-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            var filter = this.getAttribute('data-filter');
+            document.querySelectorAll('.blog-post-wrap').forEach(function(card) {
+               if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                  card.style.display = '';
+               } else {
+                  card.style.display = 'none';
+               }
+            });
+         });
+      });
+
+      // Live search
+      document.getElementById('blog-search').addEventListener('input', function() {
+         var q = this.value.toLowerCase();
+         document.querySelectorAll('.blog-post-wrap').forEach(function(card) {
+            var text = card.innerText.toLowerCase();
+            card.style.display = text.includes(q) ? '' : 'none';
+         });
+      });
+   </script>
+</body>
+</html>
